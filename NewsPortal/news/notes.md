@@ -1,7 +1,7 @@
 Замечания по приложению `news`
 ------------------------------
-- from news.models import Author, Post, Category, PostCategory, Comment
-- from django.contrib.auth.models import User
+from news.models import Author, Post, Category, PostCategory, Comment
+from django.contrib.auth.models import User
     
 - u1.get_username -- `rasen` 
 - u1 = User.objects.get(username='rasen')
@@ -35,8 +35,8 @@ pc3 = PostCategory.objects.create(category=c3, post=p3)
 pc4 = PostCategory.objects.create(category=c4, post=p3)
 
 > Создать как минимум 4 комментария к разным объектам  
-модели Post (в каждом объекте должен быть как минимум один комментарий).   
-com1 = Comment.objects.create(post=p1, user=u1, comment_text='се ля ви')
-com2 = Comment.objects.create(post=p2, user=u2, comment_text='все возможно')
-com3 = Comment.objects.create(post=p3, user=u3, comment_text='волейбол')
-com4 = Comment.objects.create(post=p1, user=u1,  comment_text='насморк')
+модели Post (в каждом объекте должен быть как минимум один комментарий).     
+com1 = Comment.objects.create(post=p1, user=u1, comment_text='се ля ви')  
+com2 = Comment.objects.create(post=p2, user=u2, comment_text='все возможно')  
+com3 = Comment.objects.create(post=p3, user=u3, comment_text='волейбол')  
+com4 = Comment.objects.create(post=p1, user=u1,  comment_text='насморк')  
