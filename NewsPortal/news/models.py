@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class Author(models.Model):
-    author = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0)
 
     def __str__(self):
