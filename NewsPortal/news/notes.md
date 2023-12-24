@@ -1,6 +1,7 @@
 Замечания по приложению `news`
 ------------------------------
 # from news.models import Author, Post, Category, PostCategory, Comment
+# from django.contrib.auth.models import User
 
 * Создал двух пользователей (rasen, john)
     > u1 = User.objects.create_user(username='rasen')  
