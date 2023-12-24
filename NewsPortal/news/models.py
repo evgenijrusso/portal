@@ -4,8 +4,11 @@ from django.utils import timezone
 
 
 class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    author = models.OneToOneField(User, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'{self.user, self.rating}'
 
 
 class Category(models.Model):
@@ -28,6 +31,9 @@ class Post(models.Model):
     title = models.CharField(max_length=250, default='')
     content = models.TextField(blank=False)
     rate_new = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'{self.title, self.rate_new}'
 
 
 class PostCategory(models.Model):

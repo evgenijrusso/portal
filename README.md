@@ -1,4 +1,5 @@
-# Создание проекта
+ Создание проекта
+ -------------------
 1. создал каталог 'portal'. Там уже по умолчанию указан интерпретатор Python  3.11 и poetry executable (location) - `C:\Users\rasen\AppData\Roaming\pypoetry\venv\Scripts\poetry.exe`
 2.  `poetry init --no-interaction --dependency django` => create file pyproject.toml  (пропустил)
 3.  `poetry run django-admin startproject NewsPortal` => create file manage.py and another files
@@ -11,3 +12,4 @@
 10. Настроил конфигурцию запуска проектв через порт 8004
 11. Изменил работаю папку проекта
 12. Создал новое приложение `news` (python manage.py startapp news)
+13. Добавил модели и миграции, соединился с БД (sqlite).
