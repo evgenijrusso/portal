@@ -10,6 +10,9 @@ class Author(models.Model):
     def __str__(self):
         return f'{self.user, self.rating}'
 
+    def update_rating(self):
+        return self.rating * 3
+
 
 class Category(models.Model):
     category_name = models.CharField(max_length=200, unique=True)
@@ -32,8 +35,16 @@ class Post(models.Model):
     content = models.TextField(blank=False)
     rate_new = models.IntegerField(default=0)
 
-    def __str__(self):
-        return f'{self.title, self.rate_new}'
+    def preview(self):
+        return f'{self.content[:174]}...'
+
+    def like(self):
+        self.rate_new += 1
+        self.save()
+
+    def dislike(self):
+        self.rate_new -= 1
+        self.save()
 
 
 class PostCategory(models.Model):
@@ -47,3 +58,11 @@ class Comment(models.Model):
     comment_text = models.TextField(blank=False)
     comment_time_in = models.DateTimeField(default=timezone.now)
     comment_rate = models.IntegerField(default=0)
+
+    def like(self):
+        self.rate_new += 1
+        self.save()
+
+    def dislike(self):
+        self.rate_new -= 1
+        self.save()
