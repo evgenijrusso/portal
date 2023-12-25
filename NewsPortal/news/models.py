@@ -66,3 +66,5 @@ class Comment(models.Model):
     def dislike(self):
         self.comment_rate -= 1
         self.save()
+
+a = Author.objects.annotate(rating=Max("rating")).order_by("-rating")

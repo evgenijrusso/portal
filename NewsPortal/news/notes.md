@@ -60,4 +60,23 @@ com4.like()
 a1.rating = 5 a1.save()
 a2.rating = 3 a1.save()
 
-##> User.objects.order_by('-author__rating').values('username', 'author__rating').first()
+> Вывести username и рейтинг лучшего пользователя (применяя сортировку и возвращая поля первого объекта).
+Author.objects.order_by('-rating').first()   result: <Author: (<User: rasen>, 5)>
+Author.objects.order_by('-rating').values('rating').first()  result: {'rating': 5}
+
+> Вывести дату добавления, username автора, рейтинг, заголовок и превью лучшей статьи, 
+основываясь на лайках/дислайках к этой статье.
+ 
+
+
+
+----------------- Тест по  сортировке ----------------------------
+Author.objects.all().order_by('rating') - <QuerySet [<Author: (<User: john>, 3)>, <Author: (<User: rasen>, 5)>]>
+Author.objects.order_by('-rating') <QuerySet [<Author: (<User: rasen>, 5)>, <Author: (<User: john>, 3)>]>
+Author.objects.order_by('-rating').values('rating')  <QuerySet [{'rating': 5}, {'rating': 3}]>
+Author.objects.order_by('-rating').values_list('rating') <QuerySet [(5,), (3,)]>
+Author.objects.order_by('-rating').values_list('rating', flat=True) <QuerySet [5, 3]>
+
+from django.db.models import Max
+Author.objects.aggregate(Max('rating')) - {'rating__max': 5}
+Author.objects.order_by('-rating').first() <Author: (<User: rasen>, 5)>
