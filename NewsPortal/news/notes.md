@@ -27,7 +27,7 @@ p1 = Post.objects.create(author=a1, choice_types='AR')
 p2 = Post.objects.create(author=a2, choice_types='AR')  
 p3 = Post.objects.create(author=a2, choice_types='NE') 
 
-> Присвоиk им категории (как минимум в одной 
+> Присвоить им категории (как минимум в одной 
 статье/новости должно быть не меньше 2 категорий).   
 pc1 = PostCategory.objects.create(category=c1, post=p1)  
 pc2 = PostCategory.objects.create(category=c2, post=p2)  
@@ -59,6 +59,8 @@ com4.like()
 >Обновить рейтинги пользователей.
 a1.rating = 5 a1.save()
 a2.rating = 3 a1.save()
+Author.update_rating(a1) - 15
+Author.update_rating(a1) - 9
 
 > Вывести username и рейтинг лучшего пользователя (применяя сортировку и возвращая поля первого объекта).
 Author.objects.order_by('-rating').first()   result: <Author: (<User: rasen>, 5)>
@@ -80,3 +82,9 @@ Author.objects.order_by('-rating').values_list('rating', flat=True) <QuerySet [5
 from django.db.models import Max
 Author.objects.aggregate(Max('rating')) - {'rating__max': 5}
 Author.objects.order_by('-rating').first() <Author: (<User: rasen>, 5)>
+
+  def preview(self):
+        if len(self.text_post) > 124:
+            return self.text_post[:124] + '...'
+        else:
+            return self.text_post

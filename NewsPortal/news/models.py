@@ -11,7 +11,11 @@ class Author(models.Model):
         return f'{self.user, self.rating}'
 
     def update_rating(self):
-        return self.rating * 3
+        post_rating = self.post_set.aggregate(sum('rating_new'))['rating_new__sum'] or 0
+        comment_rating = self.comment_set.aggregate(sum('comment_rate'))['comment_rate__sum'] or 0
+
+        self.rating = (post_rating + comment_rating) * 3
+        self.save()
 
 
 class Category(models.Model):
@@ -67,4 +71,3 @@ class Comment(models.Model):
         self.comment_rate -= 1
         self.save()
 
-a = Author.objects.annotate(rating=Max("rating")).order_by("-rating")
