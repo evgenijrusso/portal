@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
-
+from django.db.models import Sum
 
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -11,10 +11,11 @@ class Author(models.Model):
         return f'{self.user, self.rating}'
 
     def update_rating(self):
-        post_rating = self.post_set.aggregate(sum('rating_new'))['rating_new__sum'] or 0
-        comment_rating = self.comment_set.aggregate(sum('comment_rate'))['comment_rate__sum'] or 0
+        posts_rating = self.post_set.aggregate(sum('rating_new'))['rating_new__sum'] or 0
+        comments_rating = self.comment_set.aggregate(sum('comment_rate'))['comment_rate__sum'] or 0
+        comment_post = Comment.objects.filter(post__autor__user=self.user).aggregate(result=Sum('rating')).get('result')
 
-        self.rating = (post_rating + comment_rating) * 3
+        self.rating = 3 * posts_rating + comments_rating + comment_post
         self.save()
 
 
