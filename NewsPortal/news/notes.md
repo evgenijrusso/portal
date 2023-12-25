@@ -55,3 +55,9 @@ com2.dislike()
 com3.dislike()
 com4.dislike()
 com4.like()
+
+>Обновить рейтинги пользователей.
+a1.rating = 5 a1.save()
+a2.rating = 3 a1.save()
+
+##> User.objects.order_by('-author__rating').values('username', 'author__rating').first()
