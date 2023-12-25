@@ -40,3 +40,13 @@ com1 = Comment.objects.create(post=p1, user=u1, comment_text='се ля ви')
 com2 = Comment.objects.create(post=p2, user=u2, comment_text='все возможно')  
 com3 = Comment.objects.create(post=p3, user=u3, comment_text='волейбол')  
 com4 = Comment.objects.create(post=p1, user=u1,  comment_text='насморк')  
+
+>Коррекция рейтингов в Post 
+p1.like()  
+p2.dislike() 
+p2.like()  
+p3.like() 
+p3.dislike()
+
+>Коррекция рейтингов в Comment 
+com1.like()  

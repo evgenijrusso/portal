@@ -60,9 +60,9 @@ class Comment(models.Model):
     comment_rate = models.IntegerField(default=0)
 
     def like(self):
-        self.rate_new += 1
+        self.comment_new += 1
         self.save()
 
     def dislike(self):
-        self.rate_new -= 1
+        self.comment_new -= 1
         self.save()
