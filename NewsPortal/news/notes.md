@@ -50,3 +50,8 @@ p3.dislike()
 
 >Коррекция рейтингов в Comment 
 com1.like()  
+com2.like()
+com2.dislike()
+com3.dislike()
+com4.dislike()
+com4.like()
