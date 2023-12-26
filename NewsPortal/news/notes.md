@@ -2,7 +2,8 @@
 ------------------------------
 from news.models import Author, Post, Category, PostCategory, Comment
 from django.contrib.auth.models import User
-    
+from django.db.models import Max
+
 - u1.get_username -- `rasen` 
 - u1 = User.objects.get(username='rasen')
 - u1 = User.objects.get(pk=1)
@@ -79,9 +80,27 @@ Author.objects.order_by('-rating').values('rating')  <QuerySet [{'rating': 5}, {
 Author.objects.order_by('-rating').values_list('rating') <QuerySet [(5,), (3,)]>
 Author.objects.order_by('-rating').values_list('rating', flat=True) <QuerySet [5, 3]>
 
-from django.db.models import Max
 Author.objects.aggregate(Max('rating')) - {'rating__max': 5}
 Author.objects.order_by('-rating').first() <Author: (<User: rasen>, 5)>
+
+----------------------------------------------------------------------------------------
+a1=Author.objects.get(pk=2) - <Author: (<User: rasen>, 5)>
+a2=Author.objects.get(pk=3) <Author: (<User: john>, 3)>
+
+posts_rating = Post.objects.filter(author=a1).aggregate(result=Sum('rate_new')).get('result')    
+result: posts_rating = 3 
+posts_rating = Post.objects.filter(author=a2).aggregate(result=Sum('rate_new')).get('result')
+result: posts_rating = 1
+
+
+      # posts_rating = self.post_set.aggregate(sum('rating_new'))['rating_new__sum'] or 0
+      # posts_rating = Post.objects.filter(autor=self).aggregate(result=Sum('rating')).get('result')
+      # comments_rating = self.comment_set.aggregate(sum('comment_rate'))['comment_rate__sum'] or 0
+      #  comment_post = Comment.objects.filter(post__author__user=self.user).aggregate(result=Sum('rating')).get('result')
+
+
+
+
 
   def preview(self):
         if len(self.text_post) > 124:

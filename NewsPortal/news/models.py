@@ -3,19 +3,15 @@ from django.db import models
 from django.utils import timezone
 from django.db.models import Sum
 
+
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0)
 
-    def __str__(self):
-        return f'{self.user, self.rating}'
-
     def update_rating(self):
-        posts_rating = self.post_set.aggregate(sum('rating_new'))['rating_new__sum'] or 0
-        comments_rating = self.comment_set.aggregate(sum('comment_rate'))['comment_rate__sum'] or 0
-        comment_post = Comment.objects.filter(post__autor__user=self.user).aggregate(result=Sum('rating')).get('result')
-
-        self.rating = 3 * posts_rating + comments_rating + comment_post
+        posts_rating = Post.objects.filter(author=self).aggregate(result=Sum('rate_new')).get('result')
+        comments_rating = Comment.objects.filter(author=self).aggregate(result=Sum('comment_rate')).get('result') #| 0
+        self.rating = 3 * posts_rating + comments_rating   #+ comment_post
         self.save()
 
 
@@ -71,4 +67,5 @@ class Comment(models.Model):
     def dislike(self):
         self.comment_rate -= 1
         self.save()
+
 
