@@ -1,6 +1,6 @@
 Замечания по приложению `news`
 ------------------------------
-from news.models import *
+from news.models import Author, Post, Comment, Category, PostCategory  
 from django.contrib.auth.models import User
 from django.db.models import Max, Sum
 
@@ -37,10 +37,11 @@ pc4 = PostCategory.objects.create(category=c4, post=p3)
 
 > Создать как минимум 4 комментария к разным объектам  
 модели Post (в каждом объекте должен быть как минимум один комментарий).     
-com1 = Comment.objects.create(post=p1, user=u1, comment_text='се ля ви')  
-com2 = Comment.objects.create(post=p2, user=u2, comment_text='все возможно')  
-com3 = Comment.objects.create(post=p3, user=u3, comment_text='волейбол')  
-com4 = Comment.objects.create(post=p1, user=u1,  comment_text='насморк')  
+com1 = Comment.objects.create(post=p1, user=a1.user, comment_text='се ля ви')  
+com2 = Comment.objects.create(post=p2, user=a2.user, comment_text='все возможно')  
+com3 = Comment.objects.create(post=p3, user=a2.user, comment_text='волейбол')  
+com4 = Comment.objects.create(post=p1, user=a1.user,  comment_text='насморк')  
+
 
 >Коррекция рейтингов в Post 
 p1.like()  
@@ -101,7 +102,20 @@ comments_rating = Comment.objects.filter(user=u3).aggregate(result=Sum('comment_
 
 
 
-  #  comment_post = Comment.objects.filter(post__author__user=self.user).aggregate(result=Sum('rating')).get('result')
+#  была ошибка, так и не понял причину  AttributeError: 'Post' object has no attribute 'rating' 
+posts = Post.objects.filter(author=self)  # публикации по текущему автору self-автор
+    for p in posts:
+        posts_rating += p.rating
+
+comments = Comment.objects.filter(user=self.user)     # список комментариев текущего автора
+   for c in comments:
+       comments_rating += c.rating
+
+post_comment = Comment.objects.filter(post_author=self)
+   for pc in post_comment:
+       post_comment_rating += pc.comments_rating
+
+
 
 
 
