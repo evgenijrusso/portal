@@ -96,11 +96,11 @@ posts_rating = Post.objects.filter(author=a2).aggregate(result=Sum('rate_new')).
 result: posts_rating = 1
 
 u1 = User.objects.get(pk=1) <User: rasen>
-comments_rating = Comment.objects.filter(user=u1).aggregate(result=Sum('comment_rate')).get('result')   res: 6
+comments_rating = Comment.objects.filter(user=a1.user).aggregate(result=Sum('comment_rate')).get('result')   res: 6
 u2 = User.objects.get(pk=2)  <User: john>
-comments_rating = Comment.objects.filter(user=u2).aggregate(result=Sum('comment_rate')).get('result')   res: 2
+comments_rating = Comment.objects.filter(user=a2.user).aggregate(result=Sum('comment_rate')).get('result')   res: 2
 u3 = User.objects.get(pk=3)  <User: peter>
-comments_rating = Comment.objects.filter(user=u3).aggregate(result=Sum('comment_rate')).get('result')   res: -3
+comments_rating = Comment.objects.filter(user=a3.user).aggregate(result=Sum('comment_rate')).get('result')   res: -3
 
 =============================
 from django.contrib.auth.models import User

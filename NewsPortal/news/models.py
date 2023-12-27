@@ -15,7 +15,7 @@ class Author(models.Model):
         # коммертарии автора
         comments_rating = Comment.objects.filter(user=self.user).aggregate(result=Sum('comment_rate')).get('result')
         #  все комментарий к постам автора
-        post_comment_rating = 0 #Comment.objects.filter(post__author=self.user).aggregate(result=Sum('comment_rate')).get('result') # ?
+        post_comment_rating = Comment.objects.filter(post__author=self).aggregate(result=Sum('comment_rate')).get('result')
 
         print('pr: ', posts_rating)
         print('---------')
@@ -24,7 +24,7 @@ class Author(models.Model):
         print('pcr: ', post_comment_rating)
 
         self.rating = 3 * posts_rating + comments_rating  + post_comment_rating
-     #   self.save()
+        self.save()
 
 
 class Category(models.Model):
