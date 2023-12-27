@@ -13,7 +13,7 @@ class Author(models.Model):
         posts_rating = Post.objects.filter(author=self).aggregate(result=Sum('rate_new')).get('result')
 
         # коммертарии автора
-        comments_rating = 0 #Comment.objects.filter(user=self).aggregate(result=Sum('comment_rate')).get('result')
+        comments_rating = Comment.objects.filter(user=self).aggregate(result=Sum('comment_rate')).get('result')
         #  все комментарий к постам автора
         post_comment_rating = 0 #Comment.objects.filter(post__author=self.user).aggregate(result=Sum('comment_rate')).get('result') # ?
 
