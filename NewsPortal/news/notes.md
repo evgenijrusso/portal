@@ -1,8 +1,9 @@
 Замечания по приложению `news`
 ------------------------------
-from news.models import Author, Post, Comment, Category, PostCategory  
+# from news.models import Author, Post, Comment, Category, PostCategory  
 from django.contrib.auth.models import User
 from django.db.models import Max, Sum
+from news.models import *
 
 - u1.get_username -- `rasen` 
 - u1 = User.objects.get(username='rasen')
@@ -15,7 +16,9 @@ u3 = User.objects.create_user('peter')
 > 
 > Создал два объекта модели 'Author', связанные с пользователями.  
 a1 = Author.objects.create(user=u1)  
-a2 = Author.object.create(user=u2)
+a2 = Author.objects.create(user=u2)
+
+a1 = Author.objects.get(pk=2)
 
 > Добавил 4 категории в модель Category.
 c1 = Category.objects.create(category_name='Спорт')
