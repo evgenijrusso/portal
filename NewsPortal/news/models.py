@@ -11,6 +11,10 @@ class Author(models.Model):
     def update_rating(self):
         # рейтинг всех постов автора
         posts_rating = 0 # Post.objects.filter(author=self).aggregate(result=Sum('rate_new')).get('result')
+        posts = Post.objects.filter(author=self)  # публикации по текущему автору self-автор
+        for p in posts:
+            posts_rating += p.rating
+
         # коммертарии автора
         comments_rating = 0 #Comment.objects.filter(user=self).aggregate(result=Sum('comment_rate')).get('result')
         #  все комментарий к постам автора
