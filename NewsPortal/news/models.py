@@ -10,15 +10,17 @@ class Author(models.Model):
 
     def update_rating(self):
         # рейтинг всех постов автора
-        posts_rating = Post.objects.filter(author=self).aggregate(result=Sum('rate_new')).get('result')
+     #   posts_rating = Post.objects.filter(author=self).aggregate(result=Sum('rate_new')).get('result')
         # коммертарии автора
-        comments_rating = Comment.objects.filter(user=self).aggregate(result=Sum('comment_rate')).get('result')
+      #  comments_rating = Comment.objects.filter(user=self).aggregate(result=Sum('comment_rate')).get('result')
         #  все комментарий к постам автора
-        post_comment_rating = Comment.objects.filter(post__author=self.user).aggregate(result=Sum('comment_rate')).get('result') # ?
+      #  post_comment_rating = Comment.objects.filter(post__author=self.user).aggregate(result=Sum('comment_rate')).get('result') # ?
 
-        print('')
-        print('pr: ', posts_rating)
-        print('cr: ', comments_rating)
+        print('ertertter')
+        print('---------')
+        print('ertertter')
+       # print('pr: ', posts_rating)
+       # print('cr: ', comments_rating)
   #      print('pcr: ', post_comment_rating)
 
         #
@@ -41,7 +43,7 @@ class Post(models.Model):
 
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     choice_types = models.CharField(max_length=2, choices=TYPES, default=news)
-    time_in = models.DateTimeField(default=timezone.now) # time_in = models.DateTimeField(default=timezone.now)
+    time_in = models.DateTimeField(default=timezone.now)
     categories = models.ManyToManyField(Category, through='PostCategory')
     title = models.CharField(max_length=240, default='')
     content = models.TextField(blank=False)
