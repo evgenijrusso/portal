@@ -22,8 +22,8 @@ class Author(models.Model):
         print('---------')
         print('pcr: ', post_comment_rating)
 
-        # self.rating = 3 * posts_rating + comments_rating  #+ post_comment_rating
-        # self.save()
+        self.rating = 3 * posts_rating + comments_rating  + post_comment_rating
+        self.save()
 
 
 class Category(models.Model):
