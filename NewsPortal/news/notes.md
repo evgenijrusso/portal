@@ -1,8 +1,8 @@
 Замечания по приложению `news`
 ------------------------------
-from news.models import Author, Post, Category, PostCategory, Comment
+from news.models import *
 from django.contrib.auth.models import User
-from django.db.models import Max
+from django.db.models import Max, Sum
 
 - u1.get_username -- `rasen` 
 - u1 = User.objects.get(username='rasen')
@@ -82,7 +82,6 @@ Author.objects.order_by('-rating').values_list('rating', flat=True) <QuerySet [5
 
 Author.objects.aggregate(Max('rating')) - {'rating__max': 5}
 Author.objects.order_by('-rating').first() <Author: (<User: rasen>, 5)>
-
 ----------------------------------------------------------------------------------------
 a1=Author.objects.get(pk=2) - <Author: (<User: rasen>, 5)>
 a2=Author.objects.get(pk=3) <Author: (<User: john>, 3)>
@@ -92,11 +91,17 @@ result: posts_rating = 3
 posts_rating = Post.objects.filter(author=a2).aggregate(result=Sum('rate_new')).get('result')
 result: posts_rating = 1
 
+u1 = User.objects.get(pk=1) <User: rasen>
+comments_rating = Comment.objects.filter(user=u1).aggregate(result=Sum('comment_rate')).get('result')   res: 6
+u2 = User.objects.get(pk=2)  <User: john>
+comments_rating = Comment.objects.filter(user=u2).aggregate(result=Sum('comment_rate')).get('result')   res: 2
+u3 = User.objects.get(pk=3)  <User: peter>
+comments_rating = Comment.objects.filter(user=u3).aggregate(result=Sum('comment_rate')).get('result')   res: -3
 
-      # posts_rating = self.post_set.aggregate(sum('rating_new'))['rating_new__sum'] or 0
-      # posts_rating = Post.objects.filter(autor=self).aggregate(result=Sum('rating')).get('result')
-      # comments_rating = self.comment_set.aggregate(sum('comment_rate'))['comment_rate__sum'] or 0
-      #  comment_post = Comment.objects.filter(post__author__user=self.user).aggregate(result=Sum('rating')).get('result')
+
+
+
+  #  comment_post = Comment.objects.filter(post__author__user=self.user).aggregate(result=Sum('rating')).get('result')
 
 
 

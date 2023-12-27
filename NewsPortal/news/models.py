@@ -9,9 +9,34 @@ class Author(models.Model):
     rating = models.IntegerField(default=0)
 
     def update_rating(self):
-        posts_rating = Post.objects.filter(author=self).aggregate(result=Sum('rate_new')).get('result')
-        comments_rating = Comment.objects.filter(author=self).aggregate(result=Sum('comment_rate')).get('result') #| 0
-        self.rating = 3 * posts_rating + comments_rating   #+ comment_post
+        # рейтинг всех постов автора
+        posts_rating = 0 # Post.objects.filter(author=self).aggregate(result=Sum('rate_new')).get('result')
+        # коммертарии автора
+        comments_rating = 0 # Comment.objects.filter(user=self).aggregate(result=Sum('comment_rate')).get('result')
+        #  все комментарий к постам автора
+        post_comment_rating = 0 # Comment.objects.filter(post__author__user=self.user).aggregate(result=Sum('rating')).get('result')
+
+        posts = Post.objects.filter(author=self)  # публикации по текущему автору self-автор
+        for p in posts:
+            posts_rating += p.rating
+
+        comments = Comment.objects.filter(user=self.user)     # список комментариев текущего автора
+        for c in comments:
+            comments_rating += c.rating
+        post_comment = Comment.objects.filter(post_author=self)
+        for pc in post_comment:
+            post_comment_rating += pc.comments_rating
+
+        print('')
+        print('pr: ', posts_rating)
+        print('cr: ', comments_rating)
+        print('pcr: ', post_comment_rating)
+
+
+        self.rating = posts_rating * 3 + comments_rating + post_comment_rating
+        self.save()
+
+        self.rating = 3 * posts_rating + comments_rating + post_comment_rating
         self.save()
 
 
