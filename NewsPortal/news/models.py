@@ -49,7 +49,10 @@ class Post(models.Model):
     rate_new = models.IntegerField(default=0)
 
     def preview(self):
-        return f'{self.content[:174]}...'
+        if len(self.text_post) > 124:
+            return self.text_post[:124] + '...'
+        else:
+            return self.text_post
 
     def like(self):
         self.rate_new += 1

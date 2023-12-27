@@ -96,11 +96,11 @@ posts_rating = Post.objects.filter(author=a2).aggregate(result=Sum('rate_new')).
 result: posts_rating = 1
 
 u1 = User.objects.get(pk=1) <User: rasen>
-comments_rating = Comment.objects.filter(user=a1.user).aggregate(result=Sum('comment_rate')).get('result')   res: 6
+comments_rating = Comment.objects.filter(user=a1.user).aggregate(result=Sum('comment_rate')).get('result')   
 u2 = User.objects.get(pk=2)  <User: john>
-comments_rating = Comment.objects.filter(user=a2.user).aggregate(result=Sum('comment_rate')).get('result')   res: 2
+comments_rating = Comment.objects.filter(user=a2.user).aggregate(result=Sum('comment_rate')).get('result')   
 u3 = User.objects.get(pk=3)  <User: peter>
-comments_rating = Comment.objects.filter(user=a3.user).aggregate(result=Sum('comment_rate')).get('result')   res: -3
+comments_rating = Comment.objects.filter(user=a3.user).aggregate(result=Sum('comment_rate')).get('result')   
 
 =============================
 from django.contrib.auth.models import User
@@ -115,27 +115,6 @@ a1.update_rating()  --   Must be "User" instance.
 ========================
 
 
-#  была ошибка, так и не понял причину  AttributeError: 'Post' object has no attribute 'rating' 
-posts = Post.objects.filter(author=self)  # публикации по текущему автору self-автор
-    for p in posts:
-        posts_rating += p.rating
-
-comments = Comment.objects.filter(user=self.user)     # список комментариев текущего автора
-   for c in comments:
-       comments_rating += c.rating
-
-post_comment = Comment.objects.filter(post_author=self)
-   for pc in post_comment:
-       post_comment_rating += pc.comments_rating
 
 
 
-
-
-
-
-  def preview(self):
-        if len(self.text_post) > 124:
-            return self.text_post[:124] + '...'
-        else:
-            return self.text_post
