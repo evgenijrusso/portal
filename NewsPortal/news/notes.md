@@ -102,7 +102,17 @@ comments_rating = Comment.objects.filter(user=u2).aggregate(result=Sum('comment_
 u3 = User.objects.get(pk=3)  <User: peter>
 comments_rating = Comment.objects.filter(user=u3).aggregate(result=Sum('comment_rate')).get('result')   res: -3
 
+=============================
+from django.contrib.auth.models import User
+from news.models import *
+u1 = User.objects.get(pk=1)
+a1 = Author.objects.get(pk=2)
+p1 = Post.objects.get(pk=1)
+com1 = Comment.objects.get(pk=1)
 
+a1.update_rating()  --   Must be "User" instance.
+
+========================
 
 
 #  была ошибка, так и не понял причину  AttributeError: 'Post' object has no attribute 'rating' 
