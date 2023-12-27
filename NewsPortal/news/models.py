@@ -16,7 +16,6 @@ class Author(models.Model):
         #  все комментарий к постам автора
         post_comment_rating = 0 #Comment.objects.filter(post__author=self.user).aggregate(result=Sum('comment_rate')).get('result') # ?
 
-        print('ertertter')
         print('pr: ', posts_rating)
         print('---------')
         print('cr: ', comments_rating)
