@@ -63,8 +63,9 @@ Author.objects.order_by('-rating').values('rating', 'user').first()
 
 >11. 
 Post.objects.aggregate(Max('rate_new')).values('time_in', 'rate_new', 'title') -- не работает
-Post.objects.order_by('rate_new').values('time_in', 'rate_new', 'title')
+Post.objects.order_by('rate_new').values('time_in', 'rate_new', 'title', '').first()
 
- Cannot resolve keyword 'rating' into field. Choices are: author, author_id, categories, choice_types, comment, content, id, postcategory, rate_new, time_in, title
+ 
+p.s. не удалось вставить 'time_in' в сроковом выражении в теле `queryset`
 
 

@@ -50,14 +50,13 @@ class Post(models.Model):
     rate_new = models.IntegerField(default=0)
 
     def datatostr(self):
-       # date_only = self.time_in.date()
         return self.time_in.strftime('%Y-%m-%d')
 
     def preview(self):
-        if len(self.text_post) > 124:
-            return self.text_post[:124] + '...'
+        if len(self.content_post) > 124:
+            return self.content_post[:124] + '...'
         else:
-            return self.text_post
+            return self.content_post
 
     def like(self):
         self.rate_new += 1
