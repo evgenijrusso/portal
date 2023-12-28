@@ -101,6 +101,11 @@ posts = Post.objects.order_by('-rate_new')
 best_post = posts.values('time_in', 'author__user__username', 'rate_new', 'title').first()
 best_preview = posts.first().preview() 
 
+>9. Вывести username и рейтинг лучшего пользователя (применяя сортировку и возвращая поля первого объекта).
+Author.objects.order_by('-rating').values('rating', 'user').first()
+-- Out[20]: {'rating': 34, 'user': 1}
+
+
 >10. Вывести дату добавления, username автора, рейтинг, заголовок и превью лучшей статьи, 
 основываясь на лайках/дислайках к этой статье.
 
