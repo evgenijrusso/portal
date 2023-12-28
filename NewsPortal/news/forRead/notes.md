@@ -54,12 +54,11 @@ a2.update_rating() - 4
 Author.objects.order_by('-rating').values('rating', 'user').first()
 -- Out[20]: {'rating': 34, 'user': 1}
 
-
-
 >10. Вывести дату добавления, username автора, рейтинг, заголовок и превью лучшей статьи, 
 основываясь на лайках/дислайках к этой статье.
 
-Post.objects.all().order_by('-rate_new').values('time_in', 'author__user__username', 'rate_new', 'title', 'content')[0]
+- 1 вариант
+* Post.objects.all().order_by('-rate_new').values('time_in', 'author__user__username', 'rate_new', 'title', 'content')[0]
 
 Out[15]: 
 {'time_in': datetime.datetime(2023, 12, 24, 14, 19, 6, 197172, tzinfo=datetime.timezone.utc),
@@ -70,8 +69,32 @@ Out[15]:
 Лисица вышла на охоту и чует добычу. Волчица вывела волчат на поляну. Медведица рычит у берлоги. 
 Над цветами летают бабочки и пчелы. Все рады весне.'}
 
->
+- 2 вариант
+* posts = Post.objects.order_by('-rate_new')
+Out[17]: <QuerySet [<Post: Post object (1)>, <Post: Post object (3)>, <Post: Post object (2)>]>
 
-Comment.objects.all().order_by().values('time_in', 'user__username', 'comment_rate', 'comment_text')[0]
+* best_post = posts.values('time_in', 'author__user__username', 'rate_new', 'title').first()  
+Out[15]: 
+{'time_in': datetime.datetime(2023, 12, 24, 14, 19, 6, 197172, tzinfo=datetime.timezone.utc),
+ 'author__user__username': 'rasen',
+ 'rate_new': 8,
+ 'title': 'Весна'}
+
+* best_preview = posts.first().preview()  
+Out[13]: 'Солнце пригрело. Побежал ручьи. Прилетели грачи. Птицы выводят птенцов. 
+Весело скачет по лесу заяц. Лисица вышла на охоту и ...'
+
+* best_time_in = posts.first().datatostr()   
+Out[11]: '2023-12-24'
+
+
+>11. Вывести все комментарии (дата, пользователь, рейтинг, текст) к этой статье
+Comment.objects.all().order_by().values('comment_time_in', 'user__username', 'comment_rate', 'comment_text')[0]
+
+Out[18]: 
+{'comment_time_in': datetime.datetime(2023, 12, 24, 14, 59, 42, 282424, tzinfo=datetime.timezone.utc),
+ 'user__username': 'rasen',
+ 'comment_rate': 5,
+ 'comment_text': 'се ля ви'}
 
 
