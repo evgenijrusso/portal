@@ -46,7 +46,7 @@ class Post(models.Model):
     def datatostr(self):
         return f"{self.time_in.strftime('%Y-%m-%d')}"
 
-    def preview(self):
+    def preview(self, length=124):
         return f"{self.content[:length]}..." if len(self.content) > length else self.content
 
     def like(self):
