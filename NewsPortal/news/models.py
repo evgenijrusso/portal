@@ -53,10 +53,10 @@ class Post(models.Model):
         return self.time_in.strftime('%Y-%m-%d')
 
     def preview(self):
-        if len(self.content_post) > 124:
-            return self.content_post[:124] + '...'
+        if len(self.content) > 124:
+            return self.content[:124] + '...'
         else:
-            return self.content_post
+            return self.content
 
     def like(self):
         self.rate_new += 1

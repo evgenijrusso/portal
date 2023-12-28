@@ -90,3 +90,13 @@ u2 = User.objects.get(pk=2)  <User: john>
 comments_rating = Comment.objects.filter(user=self.user).aggregate(result=Coalesce(Sum('comment_rate'),0)).get('result')
 u3 = User.objects.get(pk=3)  <User: peter>
 post_comment_rating = Comment.objects.filter(post__author=self).aggregate(result=Coalesce(Sum('comment_rate'),0)).get('result')   
+
+Вывод дата обновления, автора статьи,  рейтинг, заголовок и превью лучшей статьи
+-------------------------------------------------------------------------------
+Текст:
+К сожалению, preview - это метод, а не поле, поэтому его не получиться разместить в запросе 
+вместе с полями.
+Можно по отдельности:
+posts = Post.objects.order_by('-rate_new')
+best_post = posts.values('time_in', 'author__user__username', 'rate_new', 'title').first()
+best_preview = posts.first().preview() 

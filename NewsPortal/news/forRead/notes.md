@@ -59,13 +59,20 @@ Author.objects.order_by('-rating').values('rating', 'user').first()
 >10. Вывести дату добавления, username автора, рейтинг, заголовок и превью лучшей статьи, 
 основываясь на лайках/дислайках к этой статье.
 
+posts = Post.objects.order_by('-rate_new') 
+<QuerySet [{'rate_new': 8}, {'rate_new': 2}, {'rate_new': -1}]>
+
+best_post = posts.values('author__user_username', 'rate_new', 'title').first()  
+Out[30]: {'author__user__username': 'rasen', 'rate_new': 8, 'title': 'Весна'}
+
+post_preview = posts.preview().first()
+ 
+
 
 
 >11. 
 Post.objects.aggregate(Max('rate_new')).values('time_in', 'rate_new', 'title') -- не работает
-Post.objects.order_by('rate_new').values('time_in', 'rate_new', 'title', '').first()
 
- 
-p.s. не удалось вставить 'time_in' в сроковом выражении в теле `queryset`
+
 
 
