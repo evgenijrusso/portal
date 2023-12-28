@@ -100,3 +100,18 @@ post_comment_rating = Comment.objects.filter(post__author=self).aggregate(result
 posts = Post.objects.order_by('-rate_new')
 best_post = posts.values('time_in', 'author__user__username', 'rate_new', 'title').first()
 best_preview = posts.first().preview() 
+
+Не получилось доработать:
+
+1. posts = Post.objects.order_by('-rate_new') 
+<QuerySet [{'rate_new': 8}, {'rate_new': 2}, {'rate_new': -1}]>
+
+2. best_post = posts.values('author__user_username', 'rate_new', 'title', 'id').first()  
+Out[30]: {'author__user__username': 'rasen', 'rate_new': 8, 'title': 'Весна', 'id': 1 }}
+
+3. post_id = best_post['id]  
+Out[28]: 1
+
+post_preview = post_id.preview() ?   
+
+p.s. Не доработал по `preview` и `datatostr`

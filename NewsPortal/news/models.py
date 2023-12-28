@@ -18,12 +18,6 @@ class Author(models.Model):
         #  все комментарий к постам автора
         post_comment_rating = Comment.objects.filter(post__author=self).aggregate(result=Coalesce(Sum('comment_rate'),0)).get('result')
 
-        print('pr: ', posts_rating)
-        print('---------')
-        print('cr: ', comments_rating)
-        print('---------')
-        print('pcr: ', post_comment_rating)
-
         self.rating = 3 * posts_rating + comments_rating  + post_comment_rating
         self.save()
 
@@ -50,13 +44,10 @@ class Post(models.Model):
     rate_new = models.IntegerField(default=0)
 
     def datatostr(self):
-        return self.time_in.strftime('%Y-%m-%d')
+        return f"{self.time_in.strftime('%Y-%m-%d')}"
 
     def preview(self):
-        if len(self.content) > 124:
-            return self.content[:124] + '...'
-        else:
-            return self.content
+        return f"{self.content[:length]}..." if len(self.content) > length else self.content
 
     def like(self):
         self.rate_new += 1

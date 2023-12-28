@@ -59,20 +59,19 @@ Author.objects.order_by('-rating').values('rating', 'user').first()
 >10. Вывести дату добавления, username автора, рейтинг, заголовок и превью лучшей статьи, 
 основываясь на лайках/дислайках к этой статье.
 
-posts = Post.objects.order_by('-rate_new') 
-<QuerySet [{'rate_new': 8}, {'rate_new': 2}, {'rate_new': -1}]>
+Post.objects.all().order_by('-rate_new').values('time_in', 'author__user__username', 'rate_new', 'title', 'content')[0]
 
-best_post = posts.values('author__user_username', 'rate_new', 'title').first()  
-Out[30]: {'author__user__username': 'rasen', 'rate_new': 8, 'title': 'Весна'}
+Out[15]: 
+{'time_in': datetime.datetime(2023, 12, 24, 14, 19, 6, 197172, tzinfo=datetime.timezone.utc),
+ 'author__user__username': 'rasen',
+ 'rate_new': 8,
+ 'title': 'Весна',
+ 'content': 'Солнце пригрело. Побежал ручьи. Прилетели грачи. Птицы выводят птенцов. Весело скачет по лесу заяц. 
+Лисица вышла на охоту и чует добычу. Волчица вывела волчат на поляну. Медведица рычит у берлоги. 
+Над цветами летают бабочки и пчелы. Все рады весне.'}
 
-post_preview = posts.preview().first()
- 
+>
 
-
-
->11. 
-Post.objects.aggregate(Max('rate_new')).values('time_in', 'rate_new', 'title') -- не работает
-
-
+Comment.objects.all().order_by().values('time_in', 'user__username', 'comment_rate', 'comment_text')[0]
 
 
