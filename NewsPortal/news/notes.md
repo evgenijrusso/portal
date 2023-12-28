@@ -36,15 +36,13 @@ p3 = Post.objects.create(author=a2, choice_types='NE')
 pc1 = PostCategory.objects.create(category=c1, post=p1)  
 pc2 = PostCategory.objects.create(category=c2, post=p2)  
 pc3 = PostCategory.objects.create(category=c3, post=p3)     
-pc4 = PostCategory.objects.create(category=c4, post=p3)
 
 > Создать как минимум 4 комментария к разным объектам  
 модели Post (в каждом объекте должен быть как минимум один комментарий).     
 com1 = Comment.objects.create(post=p1, user=a1.user, comment_text='се ля ви')  
 com2 = Comment.objects.create(post=p2, user=a2.user, comment_text='все возможно')  
 com3 = Comment.objects.create(post=p3, user=a2.user, comment_text='волейбол')  
-com4 = Comment.objects.create(post=p1, user=a1.user,  comment_text='насморк')  
-
+ 
 
 >Коррекция рейтингов в Post 
 p1.like()  
@@ -58,8 +56,8 @@ com1.like()
 com2.like()
 com2.dislike()
 com3.dislike()
-com4.dislike()
-com4.like()
+
+
 
 >Обновить рейтинги пользователей.
 a1.rating = 5 a1.save()
@@ -106,11 +104,17 @@ comments_rating = Comment.objects.filter(user=a3.user).aggregate(result=Sum('com
 from django.contrib.auth.models import User
 from news.models import *
 u1 = User.objects.get(pk=1)
+u2 = User.objects.get(pk=2)
 a1 = Author.objects.get(pk=2)
+a2 = Author.objects.get(pk=3)
 p1 = Post.objects.get(pk=1)
+p2 = Post.objects.get(pk=2)
+p3 = Post.objects.get(pk=3)
 com1 = Comment.objects.get(pk=1)
-
-a1.update_rating()  --   Must be "User" instance.
+com2 = Comment.objects.get(pk=2)
+com3 = Comment.objects.get(pk=3)
+a1.update_rating()  
+a2.update_rating()
 
 ========================
 
