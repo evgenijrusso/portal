@@ -49,6 +49,10 @@ class Post(models.Model):
     content = models.TextField(blank=False)
     rate_new = models.IntegerField(default=0)
 
+    def datatostr(self):
+       # date_only = self.time_in.date()
+        return self.time_in.strftime('%Y-%m-%d')
+
     def preview(self):
         if len(self.text_post) > 124:
             return self.text_post[:124] + '...'
