@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 from django.db.models import Sum
+from django.db.models.functions import Coalesce
 
 
 class Author(models.Model):
@@ -10,12 +11,12 @@ class Author(models.Model):
 
     def update_rating(self):
         # рейтинг всех постов автора
-        posts_rating = Post.objects.filter(author=self).aggregate(result=Sum('rate_new')).get('result')
+        posts_rating = Post.objects.filter(author=self).aggregate(result=Coalesce(Sum('rate_new'),0)).get('result')
 
         # коммертарии автора
-        comments_rating = Comment.objects.filter(user=self.user).aggregate(result=Sum('comment_rate')).get('result')
+        comments_rating = Comment.objects.filter(user=self.user).aggregate(result=Coalesce(Sum('comment_rate'),0)).get('result')
         #  все комментарий к постам автора
-        post_comment_rating = Comment.objects.filter(post__author=self).aggregate(result=Sum('comment_rate')).get('result')
+        post_comment_rating = Comment.objects.filter(post__author=self).aggregate(result=Coalesce(Sum('comment_rate'),0)).get('result')
 
         print('pr: ', posts_rating)
         print('---------')
