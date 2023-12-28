@@ -103,6 +103,8 @@ comments_rating = Comment.objects.filter(user=a3.user).aggregate(result=Sum('com
 =============================
 from django.contrib.auth.models import User
 from news.models import *
+from django.db.models.functions import Coalesce
+from django.db.models import Sum
 u1 = User.objects.get(pk=1)
 u2 = User.objects.get(pk=2)
 a1 = Author.objects.get(pk=2)
