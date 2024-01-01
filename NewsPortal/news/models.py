@@ -9,6 +9,9 @@ class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0)
 
+    def __str__(self):
+        return f'{self.user} : {self.rating}'
+
     def update_rating(self):
         # рейтинг всех постов автора
         posts_rating = Post.objects.filter(author=self).aggregate(result=Coalesce(Sum('rate_new'),0)).get('result')
@@ -24,6 +27,9 @@ class Author(models.Model):
 
 class Category(models.Model):
     category_name = models.CharField(max_length=200, unique=True)
+
+    def __str__(self):
+        return f'{self.category_name}'
 
 
 class Post(models.Model):
@@ -42,6 +48,9 @@ class Post(models.Model):
     title = models.CharField(max_length=240, default='')
     content = models.TextField(blank=False)
     rate_new = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'{self.author} : {self.title} - {self.rate_new}'
 
     def datatostr(self):
         return f"{self.time_in.strftime('%Y-%m-%d')}"
@@ -69,6 +78,9 @@ class Comment(models.Model):
     comment_text = models.TextField(blank=False)
     comment_time_in = models.DateTimeField(default=timezone.now)
     comment_rate = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'{self.user}: {self.comment_rate}'
 
     def like(self):
         self.comment_rate += 1
