@@ -10,7 +10,7 @@ class Author(models.Model):
     rating = models.IntegerField(default=0)
 
     def __str__(self):
-        return f'{self.user} : {self.rating}'
+        return f'{self.user}'
 
     def update_rating(self):
         # рейтинг всех постов автора
@@ -50,7 +50,7 @@ class Post(models.Model):
     rate_new = models.IntegerField(default=0)
 
     def __str__(self):
-        return f'{self.author} : {self.title} - {self.rate_new}'
+        return f'{self.title}'
 
     def datatostr(self):
         return f"{self.time_in.strftime('%Y-%m-%d')}"
@@ -80,7 +80,7 @@ class Comment(models.Model):
     comment_rate = models.IntegerField(default=0)
 
     def __str__(self):
-        return f'{self.user}: {self.comment_rate}'
+        return f'{self.comment_text}'
 
     def like(self):
         self.comment_rate += 1
