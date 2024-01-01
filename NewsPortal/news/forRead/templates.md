@@ -34,3 +34,8 @@ def default(request):
 -------------------------------------
 'DIRS': [BASE_DIR / 'news' / 'templates'],
 То же самое, что в 1-ом варианте
+
+3-й вариант  `settings.py`  
+-------------------------------------
+'DIRS': [BASE_DIR / 'news' / 'templates' / 'news'],
+Во `views.py` можно удалить app = 'news/'

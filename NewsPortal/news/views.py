@@ -2,12 +2,11 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import *
 
-app = 'news/'
 
 class AuthorList(ListView):
     model = Author
     ordering = '-rating'
-    template_name = app + 'authors.html'
+    template_name = 'authors.html'
     context_object_name = 'authors'
 
 
@@ -58,4 +57,4 @@ class CommentDetail(DetailView):
 
 
 def default(request):
-    return render(request, app + "default.html")
+    return render(request, "default.html")
