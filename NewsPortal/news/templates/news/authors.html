@@ -1,16 +1,12 @@
-<!DOCTYPE html>
+{% extends "default.html" %}
 <html lang="en">
-<!--{% block title %} Authors {% endblock title %}-->
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+{% block title %} Authors {% endblock title %}
 <body>
-<h3>Авторы</h3>
-<!--{% block content %}-->
-<!--    <b><h4>Все авторы</h4></b>-->
-<!--    <hr>-->
-<!--    <b>{{ authors }}</b>-->
-<!--{% endblock content %}-->
+
+{% block content %}
+    <b><h4>Все авторы</h4></b>
+    <hr>
+    <b>{{ authors }}</b>
+{% endblock content %}
 </body>
 </html>

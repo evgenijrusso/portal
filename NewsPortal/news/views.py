@@ -2,11 +2,13 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import *
 
+app = 'news/'
+
 
 class AuthorList(ListView):
     model = Author
     ordering = '-rating'
-    template_name = 'authors.html'
+    template_name = app + 'authors.html'
     context_object_name = 'authors'
 
 
@@ -19,7 +21,7 @@ class AuthorDetail(DetailView):
 class CategoryList(models.Model):
     model = Category
     ordering = 'category_name'
-    template_name = 'categories.html'
+    template_name = app + 'categories.html'
     context_object_name = 'categories'
 
 
@@ -47,13 +49,6 @@ class CommentDetail(DetailView):
     model = Comment
     template_name = 'comment.html'
     context_object_name = 'comment'
-
-
-# class Proba(View):
-#     def get(self, request, cat_slug):
-#         categories = Category.objects.all()
-#         context = {'categories': categories, 'title': 'Главная страница'}
-#         return render(request, "news/about.html")
 
 
 def default(request):
