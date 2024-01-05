@@ -1,12 +1,17 @@
-{% extends "default.html" %}
-<html lang="en">
+{% extends 'default.html' %}
+
 {% block title %} Authors {% endblock title %}
-<body>
 
 {% block content %}
-    <b><h4>Все авторы</h4></b>
-    <hr>
-    <b>{{ authors }}</b>
+
+<b><h3>Список авторов:</h3></b>
+<ul>
+{% for author in authors %}
+   <li>
+       <h5>Автор: <span>{{ author.user }}</span>, Рейтинг: {{ author.rating }}</h5>
+   </li>
+
+{% endfor %}
+</ul>
+
 {% endblock content %}
-</body>
-</html>

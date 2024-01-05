@@ -1,55 +1,58 @@
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import *
 
-app = 'news/'
+APP = 'news/'
 
 
 class AuthorList(ListView):
     model = Author
     ordering = '-rating'
-    template_name = app + 'authors.html'
+    template_name = APP + 'authors.html'
     context_object_name = 'authors'
 
 
-class AuthorDetail(DetailView):
-    model = Author
-    template_name = 'author.html'
-    context_object_name = 'author'
-
-
-class CategoryList(models.Model):
+class CategoryList(ListView):
     model = Category
     ordering = 'category_name'
-    template_name = app + 'categories.html'
+    template_name = APP + 'categories.html'
     context_object_name = 'categories'
 
 
 class PostList(ListView):
     model = Post
-    ordering = 'time_in'
-    template_name = 'posts.html'
+    ordering = '-time_in'
+    template_name = APP + 'posts.html'
     context_object_name = 'posts'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get_queryset(self):
+        return Post.objects.filter(choice_types='NE').order_by('-time_in')
+
+    # def get_ordering(self):
+    #     ordering = self.request.GET.get('ordering', '-time_in')
+    #     return ordering
 
 
 class PostDetail(DetailView):
     model = Post
-    template_name = 'post.html'
+    template_name = APP + 'post.html'
     context_object_name = 'post'
+    pk_url_kwarg = 'id'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context["now"] = timezone.now()
+        return context
 
 
 class CommentList(ListView):
     model = Comment
     ordering = 'comment_time_in'
-    template_name = 'comments.html'
+    template_name = APP + 'comments.html'
     context_object_name = 'comments'
 
 
-class CommentDetail(DetailView):
-    model = Comment
-    template_name = 'comment.html'
-    context_object_name = 'comment'
 
-
-def default(request):
-    return render(request, "default.html")

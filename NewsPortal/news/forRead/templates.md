@@ -1,7 +1,7 @@
 Вопросы по templates
 ---------------------
 
-1-й вариант  `settings.py`  
+`settings.py`  
 -------------------------------------
 'DIRS': [os.path.join(BASE_DIR, 'templates')],
 
@@ -9,36 +9,10 @@
 ```
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('news/', include('news.urls'))
+    path('/', include('news.urls'))
 ]
 ```
-`news/urls.py`
-```
-from django.urls import path
-from .views import AuthorList, AuthorDetail, default
 
-urlpatterns = [
-    path('authors/', AuthorList.as_view()),  #name='authors'
-    path('<int:pk>', AuthorDetail.as_view()),
-    path('about/', default, name='default'),
-]
-```
-`views.py`
-```
-app = 'news/' 
-def default(request):
-    return render(request, app + "default.html")
-```
-
-2-й вариант  `settings.py`  
--------------------------------------
-'DIRS': [BASE_DIR / 'news' / 'templates'],
-То же самое, что в 1-ом варианте
-
-3-й вариант  `settings.py`  
--------------------------------------
-'DIRS': [BASE_DIR / 'news' / 'templates' / 'news'],
-Во `views.py` можно удалить app = 'news/'
 
 Подключение статических файлов
 ------------------------------
@@ -50,9 +24,15 @@ def default(request):
 
 STATICFILES_DIRS = [BASE_DIR / 'news' / 'static'] - список дополнительных 
 (нестандартных) путей к статическим файлам, используемых для сбора и для режима отладки.
+p.s. Пока гн стал устанавливать
 
-Есть проблема с основным url. Оказывается, что нужно разместить еще один `templates` в 
-корне проекта. И там разместить дефолтный шаблон html.
 
-`news/urls.py`
-Надо было так! `path('news/', default),  # http://127.0.0.1:8004`
+default.html
+-------------
+Оказывается, что нужно разместить еще один `templates` в корне проекта. И там разместить 
+дефолтный шаблон html.
+
+Следует обратить внимание на идентичность записи href="":
+<li class="nav-item"><a class="nav-link" href="/categories/">Categories</a></li>
+<li class="nav-item"><a class="nav-link" href="{% url 'main' %}">News</a></li>
+p.s. Только в 1-ой записи обязательно должно быть 2 слеша ! ("/categories/")

@@ -1,0 +1,18 @@
+{% extends 'default.html' %}
+
+{% block title %} categories {% endblock title %}
+
+{% block content %}
+
+<b><h3>Список категорий:</h3></b>
+<ul>
+{% for cat in categories %}
+   <li>
+       <h4>{{ cat.category_name }}</h4>
+   </li>
+
+{% endfor %}
+</ul>
+
+{% endblock content %}
+

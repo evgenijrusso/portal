@@ -91,4 +91,4 @@ class Comment(models.Model):
         self.save()
 
     def datatostr(self):
-        return f"{self.time_in.strftime('%Y-%m-%d')}"
+        return f"{self.comment_time_in.strftime('%Y-%m-%d')}"
