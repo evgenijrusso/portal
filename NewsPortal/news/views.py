@@ -40,7 +40,7 @@ class PostDetail(DetailView):
     model = Post
     template_name = APP + 'post.html'
     context_object_name = 'post'
-    pk_url_kwarg = 'id'
+#    pk_url_kwarg = 'pk'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
