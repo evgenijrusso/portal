@@ -1,4 +1,5 @@
 from django.views.generic import ListView, DetailView
+from django.shortcuts import render
 from .models import *
 
 APP = 'news/'
@@ -53,6 +54,10 @@ class CommentList(ListView):
     ordering = 'comment_time_in'
     template_name = APP + 'comments.html'
     context_object_name = 'comments'
+
+
+def index(request):
+    return render(request, APP + 'index.html')
 
 
 
