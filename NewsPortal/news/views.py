@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render
 from .models import *
+from .filters import PostFilter
 
 APP = 'news/'
 
@@ -26,12 +27,17 @@ class PostList(ListView):
     context_object_name = 'posts'
     paginate_by = 4
 
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.filterset = PostFilter(self.request.GET, queryset)
+        return self.filterset.qs    # Возвращаем из функции отфильтрованный список товаров
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['filterset'] = self.filterset
         return context
 
-    # def get_queryset(self):
-    #     return Post.objects.filter(choice_types='NE').order_by('-time_in')
 
     # def get_ordering(self):
     #     ordering = self.request.GET.get('ordering', '-time_in')

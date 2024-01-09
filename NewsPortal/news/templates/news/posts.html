@@ -2,6 +2,12 @@
 {% block title %} posts {% endblock title %}
 
 {% block content %}
+
+   <form action="" method="get">
+       {{ filterset.form.as_p }}
+       <input type="submit" value="Найти" />
+   </form>
+
 <h4>Все новости: {{ posts|length }}</h4>
 <ul>
 {% if posts %}
