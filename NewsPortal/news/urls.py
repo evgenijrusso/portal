@@ -5,6 +5,7 @@ from .views import AuthorList, CategoryList, PostList, PostDetail, CommentList, 
 urlpatterns = [
     path('', index),  # http://127.0.0.1:8004
     path('news/', PostList.as_view(), name='posts'),
+   # path('news/search')
     path('news/<int:pk>', PostDetail.as_view(), name='post_detail'),
     path('authors/', AuthorList.as_view(), name='authors'),
     path('comments/', CommentList.as_view(), name='comments'),

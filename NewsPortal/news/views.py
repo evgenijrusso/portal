@@ -24,13 +24,14 @@ class PostList(ListView):
     ordering = '-time_in'
     template_name = APP + 'posts.html'
     context_object_name = 'posts'
+    paginate_by = 4
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
 
-    def get_queryset(self):
-        return Post.objects.filter(choice_types='NE').order_by('-time_in')
+    # def get_queryset(self):
+    #     return Post.objects.filter(choice_types='NE').order_by('-time_in')
 
     # def get_ordering(self):
     #     ordering = self.request.GET.get('ordering', '-time_in')
@@ -41,7 +42,7 @@ class PostDetail(DetailView):
     model = Post
     template_name = APP + 'post.html'
     context_object_name = 'post'
-#    pk_url_kwarg = 'pk'
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
