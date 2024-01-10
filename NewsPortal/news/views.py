@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render
 from .models import *
-# from .filters import PostFilter
+from .filters import PostFilter
 
 APP = 'news/'
 
@@ -68,3 +68,18 @@ def index(request):
 
 
 
+class PostSearch(ListView):
+    model = Post
+    ordering = '-time_in'
+    template_name = APP + 'search.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.filterset = PostFilter(self.request.GET, queryset)
+        return self.filterset.qs    # Возвращаем из функции отфильтрованный список товаров
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filterset'] = self.filterset
+        return context
