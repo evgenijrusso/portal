@@ -3,7 +3,6 @@ from .views import AuthorList, CategoryList, PostList, PostDetail, \
     CommentList, index, PostSearch
 
 
-
 urlpatterns = [
     path('', index),  # http://127.0.0.1:8004
     path('news/', PostList.as_view(), name='posts'),
