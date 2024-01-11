@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.db.models import Sum
 from django.db.models.functions import Coalesce
@@ -51,6 +52,9 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.title}'
+
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[str(self.id)])
 
     def datatostr(self):
         return f"{self.time_in.strftime('%Y-%m-%d')}"

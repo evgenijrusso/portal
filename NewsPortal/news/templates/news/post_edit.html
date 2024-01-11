@@ -1,0 +1,13 @@
+{% extends 'default.html' %}
+{% block title %} post_edit {% endblock title %}
+
+{% block content %}
+<h3>Пост</h3>
+<hr>
+<form action="" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="save" />
+</form>
+
+{% endblock content %}
