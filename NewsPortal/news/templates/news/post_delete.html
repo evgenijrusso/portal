@@ -4,18 +4,18 @@
 
 <h3 class="text-center">Удалить пост</h3>
     <br>
-<!--    <form class="text-center" action="" method="post">-->
-<!--        {% csrf_token %}-->
-<!--        <p>Вы действительно хотите удалить этот пост?</p>-->
-<!--        <input class="btn btn-lg btn-dark" type="submit" value="Удалить">-->
-<!--        <a style="text-decoration: none" href="/news/{{ post.pk }}">-->
-<!--            <input class="btn btn-lg btn-dark" type="button" value="Отмена" />-->
-<!--        </a>-->
-<!--    </form>-->
+    <form class="text-center" action="" method="post">
+        {% csrf_token %}
+        <p>Вы действительно хотите удалить этот пост?</p>
+        <input class="btn btn-lg btn-dark" type="submit" value="Удалить">
+        <a style="text-decoration: none" href="/news/{{ post.pk }}">
+            <input class="btn btn-lg btn-dark" type="button" value="Отмена" />
+        </a>
+    </form>
 
-<form action="" method="post">
-    {% csrf_token %}
-        <p>Удаляем "{{ object.name }}"?</p>
-    <input type="submit" value="Delete" />
-</form>
+<!--<form action="" method="post">-->
+<!--    {% csrf_token %}-->
+<!--        <p>Удаляем "{{ object.name }}"?</p>-->
+<!--    <input type="submit" value="Delete" />-->
+<!--</form>-->
 

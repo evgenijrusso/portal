@@ -45,9 +45,13 @@ class PostUpdate(UpdateView):
 class PostDelete(DeleteView):
     model = Post
     template_name = APP + 'post_delete.html'
-    success_url = reverse_lazy('news:posts')
+    success_url = reverse_lazy('posts')
 
+    # def get_queryset(self):
+    #     owner = self.request.author.user
+    #     return self.model.objects.filter(owner=owner)
 # ------------------------------------------------------------------
+
 
 def index(request):
     return render(request, APP + 'index.html')
