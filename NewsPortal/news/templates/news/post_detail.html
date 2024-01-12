@@ -4,6 +4,7 @@
 {% block title %} Post detail {% endblock title %}
 
 {% block content %}
+<a class="btn btn-secondary" href="{{ post.pk }}/update/" role="button">Update</a>
 <a class="btn btn-primary" href="{{ post.pk }}/delete/" role="button">Delete</a>
 <h4>{{ post.title|censor }}</h4>
 <h6>{{ post.time_in|date:'d M Y' }}</h6>

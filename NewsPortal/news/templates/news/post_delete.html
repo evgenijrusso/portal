@@ -2,6 +2,7 @@
 
 {% block title %} Delete post {% endblock title %}
 
+{% block content %}
 <h3 class="text-center">Удалить пост</h3>
     <br>
     <form class="text-center" action="" method="post">
@@ -12,10 +13,6 @@
             <input class="btn btn-lg btn-dark" type="button" value="Отмена" />
         </a>
     </form>
+{% endblock content %}
 
-<!--<form action="" method="post">-->
-<!--    {% csrf_token %}-->
-<!--        <p>Удаляем "{{ object.name }}"?</p>-->
-<!--    <input type="submit" value="Delete" />-->
-<!--</form>-->
 

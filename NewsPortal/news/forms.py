@@ -4,8 +4,8 @@ from django.core.exceptions import ValidationError
 
 
 class PostForm(forms.ModelForm):
-    # title: forms.CharField(min_length=4, widget=forms.TextInput(attrs={'required': True}))
-    # content: forms.CharField(min_length=20, widget=forms.Textarea({'cols': 50, 'rows': 5}))
+    title: forms.CharField(min_length=4, widget=forms.TextInput(attrs={'required': True}))
+    content: forms.CharField(min_length=20, widget=forms.Textarea({'cols': 50, 'rows': 5}))
 
     class Meta:
         model = Post
