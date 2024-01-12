@@ -15,24 +15,48 @@ class PostList(ListView):
     context_object_name = 'posts'
     paginate_by = 4
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Список постов'
+        # context['post_case'] = get_type_create(self)[2]
+        return context
+
 
 class PostDetail(DetailView):
     model = Post
     template_name = APP + 'post_detail.html'
     context_object_name = 'post'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Пост'
+        # context['post_case'] = self.get_type_create()[2]
+        return context
 
-class PostNewsCreate(CreateView):
+
+class PostCreate(CreateView):
     form_class = PostForm
     model = Post
     template_name = APP + 'post_edit.html'
 
     def form_valid(self, form):
         post = form.save(commit=False)
-        if self.request.path == '/news/create/':
-            post.type = 'NE'
+        if self.request.path == '/news/articles/create/':
+            post.type = 'AR'
         post.save()
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['get_title'] = self.get_type_create()[0]
+        context['get_create_update'] = self.get_type_create()[1]
+        return context
+
+    def get_type_create(self):
+        if self.request.path == '/news/articles/create/':
+            return ['Create article', 'Добавить статью', 'Статья']
+        else:
+            return ['Create news', 'Добавить новость', 'Новость']
 
 
 class PostUpdate(UpdateView):
@@ -41,15 +65,24 @@ class PostUpdate(UpdateView):
     template_name = APP + 'post_edit.html'
     success_url = reverse_lazy('posts')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['get_title'] = self.get_type_update()[0]
+        context['get_create_update'] = self.get_type_update()[1]
+        return context
+
+    def get_type_update(self):
+        if self.request.path == '/news/articles/update/':
+            return ['Edit article', 'Редактировать статью']
+        else:
+            return ['Edit news', 'Редактировать новость']
+
 
 class PostDelete(DeleteView):
     model = Post
     template_name = APP + 'post_delete.html'
     success_url = reverse_lazy('posts')
 
-    # def get_queryset(self):
-    #     owner = self.request.author.user
-    #     return self.model.objects.filter(owner=owner)
 # ------------------------------------------------------------------
 
 

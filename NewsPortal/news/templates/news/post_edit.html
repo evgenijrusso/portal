@@ -1,13 +1,14 @@
 {% extends 'default.html' %}
-{% block title %} post_edit {% endblock title %}
+{% block title %} {{ get_title }} {% endblock title %}
 
 {% block content %}
 <h3>Пост</h3>
+<p>{{ get_create_update }}</p>
 <hr>
 <form action="" method="post">
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="submit" value="save" />
+  <input class="btn btn-lg btn-primary" type="submit" value="save" />
 </form>
 
 {% endblock content %}
