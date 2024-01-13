@@ -15,6 +15,7 @@ class PostList(ListView):
     context_object_name = 'posts'
     paginate_by = 4
 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Список постов'
@@ -41,7 +42,7 @@ class PostCreate(CreateView):
     def form_valid(self, form):
         post = form.save(commit=False)
         if self.request.path == '/news/articles/create/':
-            post.type = 'AR'
+            post.choice_types = 'AR'
         post.save()
         return super().form_valid(form)
 
@@ -126,3 +127,4 @@ class PostSearch(ListView):
         context = super().get_context_data(**kwargs)
         context['filterset'] = self.filterset
         return context
+
