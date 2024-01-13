@@ -72,7 +72,7 @@ class PostUpdate(UpdateView):
         return context
 
     def get_type_update(self):
-        if 'articles' in self.request.path:
+        if 'articles' in self.request.path:      # здесь появляется неверный адрес
             return ['Edit article', 'Редактировать статью']
         else:
             return ['Edit news', 'Редактировать новость']
