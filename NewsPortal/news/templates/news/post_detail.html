@@ -4,14 +4,24 @@
 {% block title %} {{ title }} {% endblock title %}
 
 {% block content %}
-<a class="btn btn-secondary" href="{{ post.pk }}/update/" role="button">Update</a>
-<a class="btn btn-primary" href="{{ post.pk }}/delete/" role="button">Delete</a>
+<!--<a class="btn btn-secondary" href="{{ post.pk }}/update/" role="button">Update</a>-->
+<!--<a class="btn btn-primary" href="{{ post.pk }}/delete/" role="button">Delete</a>-->
 <br>
 
 <h4>{{ post.title|censor }}</h4>
 <h6>{{ post.time_in|date:'d M Y' }}</h6>
-<!--выбор поста: новость или статья-->
-<h6>{{  post.get_choice_types_display }}</h6>
+<h6>Автор: {{ post.author.user }}</h6>
+<h6>{{ post.get_choice_types_display }}</h6>
+<br>
+<p style="white-space: break-spaces;">{{ post.content|censor }}</p>
+<div class="text-center">
+    {% if post.get_choice_types_display == 'NE' %}
+    <a class="btn btn-secondary" href="news/{{ post.pk }}/edit/" role="button">Update</a>
+    <a class="btn btn-primary" href="{{ post.pk }}/delete/" role="button">Delete</a>
+    {% else %}
+    <a class="btn btn-secondary" href="articles/{{ post.pk }}/edit/" role="button">Update</a>
+    <a class="btn btn-primary" href="{{ post.pk }}/delete/" role="button">Delete</a>
+    {% endif %}
+</div>
 
-<p>{{ post.content|censor }}</p>
 {% endblock content %}

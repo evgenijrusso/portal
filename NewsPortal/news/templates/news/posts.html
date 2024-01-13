@@ -3,24 +3,19 @@
 
 {% block content %}
 <br>
-<a class="btn btn-primary" href="create/" role="button">Create New</a>
-<a class="btn btn-primary" href="articles/create/" role="button">Create Article</a>
+<!--<a class="btn btn-primary" href="create/" role="button">Create New</a>-->
+<!--<a class="btn btn-primary" href="articles/create/" role="button">Create Article</a>-->
 <br>
-<h4>Количество постов: {{ page_obj.paginator.count }}</h4>
+<h3>Количество постов: {{ page_obj.paginator.count }}</h3>
 <br>
-<ul>
 {% if posts %}
     {% for post in posts %}
-   <li>
       <h5><b class="text-center"><a href={{ post.pk }} class="btn btn-secondary">{{ post.title|truncatechars:30 }}</a></b></h5>
-<!--      <h6>{{ post.get_choice_types_display }}</h6>-->
+      <h6>{{ post.get_choice_types_display }}</h6>
       <h6>Дата публикации: {{ post.time_in|date:'d M Y' }} </h6>
       <p>Текст: {{ post.content|truncatechars:20 }}</p>
-
-      <hr>
-   </li>
-{% endfor %}
-</ul>
+      <br><br>
+    {% endfor %}
 {% else %}
 <h3>Новостей нет!</h3>
 {% endif %}

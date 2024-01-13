@@ -18,7 +18,6 @@ class PostList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Список постов'
-        # context['post_case'] = get_type_create(self)[2]
         return context
 
 
@@ -30,7 +29,6 @@ class PostDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Пост'
-        # context['post_case'] = self.get_type_create()[2]
         return context
 
 
@@ -38,6 +36,7 @@ class PostCreate(CreateView):
     form_class = PostForm
     model = Post
     template_name = APP + 'post_edit.html'
+    success_url = '/news/'
 
     def form_valid(self, form):
         post = form.save(commit=False)
@@ -54,9 +53,9 @@ class PostCreate(CreateView):
 
     def get_type_create(self):
         if self.request.path == '/news/articles/create/':
-            return ['Create article', 'Добавить статью', 'Статья']
+            return ['Create article', 'Добавить статью']
         else:
-            return ['Create news', 'Добавить новость', 'Новость']
+            return ['Create news', 'Добавить новость']
 
 
 class PostUpdate(UpdateView):
@@ -72,7 +71,7 @@ class PostUpdate(UpdateView):
         return context
 
     def get_type_update(self):
-        if self.request.path == '/news/articles/update/':
+        if 'articles' in self.request.path:
             return ['Edit article', 'Редактировать статью']
         else:
             return ['Edit news', 'Редактировать новость']
