@@ -4,24 +4,29 @@
 {% block title %} {{ title }} {% endblock title %}
 
 {% block content %}
-<a class="btn btn-secondary" href="{{ post.pk }}/edit/" role="button">Update</a>
-<a class="btn btn-primary" href="{{ post.pk }}/delete/" role="button">Delete</a>
-<br>
+<div class="container">
+    <div class="mb-2">
+    {% if post.choice_types == 'AR' %}
+    <a class="btn btn-secondary" href="/news/articles/{{ post.pk }}/edit/" role="button">Update Article</a>
+    {% else %}
+    <a class="btn btn-secondary" href="/news/{{ post.pk }}/edit/" role="button">Update News</a>
+    {% endif %}
+    <a class="btn btn-primary" href="{{ post.pk }}/delete/" role="button">Delete</a>
 
-<h4>{{ post.title|censor }}</h4>
-<h6>{{ post.time_in|date:'d M Y' }}</h6>
-<h6>Автор: {{ post.author.user }}</h6>
-<h6>{{ post.get_choice_types_display }}</h6>
+    </div>
 <br>
-<p style="white-space: break-spaces;">{{ post.content|censor }}</p>
-<!--<div class="text-center">-->
-<!--    {% if post.get_choice_types_display == 'NE' %}-->
-<!--    <a class="btn btn-secondary" href="news/{{ post.pk }}/edit/" role="button">Update</a>-->
-<!--    <a class="btn btn-primary" href="{{ post.pk }}/delete/" role="button">Delete</a>-->
-<!--    {% else %}-->
-<!--    <a class="btn btn-secondary" href="{{ post.pk }}/edit/" role="button">Update</a>-->
-<!--    <a class="btn btn-primary" href="{{ post.pk }}/delete/" role="button">Delete</a>-->
-<!--    {% endif %}-->
-<!--</div>-->
-
+    <div class="mb-3">
+        <div class="row justify-content-center">
+            <div class="col-md-5 d-flex">
+                <div  class="mx-auto">
+                <h4 class="text-lg-left">Заголовок: {{ post.title|censor }}</h4>
+                <h6 class="text-lg-left">Дата публикации: {{ post.time_in|date:'d M Y' }}</h6>
+                <h6 class="text-lg-left">Автор: {{ post.author.user }}</h6>
+                <h6 class="text-lg-left">{{ post.get_choice_types_display }}</h6>
+                <h6 class="text-lg-left">{{ post.content|censor }}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

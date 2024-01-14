@@ -2,10 +2,10 @@
 {% block title %} {{ get_title }} {% endblock title %}
 
 {% block content %}
-<br>
-<h6 class="text-left">{{ get_create_update }}</h6>
+
+<h5 class="text-center">{{ get_create_update }}</h5>
 <hr>
-<form action="" method="post">
+<form class="text-center" action="" method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <input class="btn btn-lg btn-primary" type="submit" value="save" />

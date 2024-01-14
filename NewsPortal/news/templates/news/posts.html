@@ -2,24 +2,28 @@
 {% block title %} {{ title }} {% endblock title %}
 
 {% block content %}
-<br>
-<!--<a class="btn btn-primary" href="create/" role="button">Create New</a>-->
-<a class="btn btn-primary" href="/news/articles/create/" role="button">Create Article</a>
-<br>
-<h3>Количество постов: {{ page_obj.paginator.count }}</h3>
-<br>
+ <div class="container px-lg-3 text-center">
+
+</div>
+    <a class="btn btn-primary" href="/news/create/" role="button">Create New</a>
+    <a class="btn btn-primary" href="/news/articles/create/" role="button">Create Article</a>
+    <br>
+    <h3>Количество постов: {{ page_obj.paginator.count }}</h3>
+    <br>
 {% if posts %}
     {% for post in posts %}
-      <h5><b class="text-center"><a href={{ post.pk }} class="btn btn-secondary">{{ post.title|truncatechars:30 }}</a></b></h5>
+      <div class="mb-3">
+      <h5><b class="text-center"><a href={{ post.pk }} class="btn btn-secondary">{{ post.title|truncatechars:100 }}</a></b></h5>
       <h6>Тип публикации: {{ post.get_choice_types_display }}</h6>
       <h6>Дата публикации: {{ post.time_in|date:'d M Y' }} </h6>
-      <p>Публикация: {{ post.content|truncatechars:20 }}</p>
-      <br><br>
+      <span>Публикация: {{ post.content|truncatechars:100 }}</span>
+      </div>
     {% endfor %}
 {% else %}
-<h3>Новостей нет!</h3>
+    <h3>Новостей нет!</h3>
 {% endif %}
 
+</div>
 <!-- Добавляем пагинацию на страницу -->
 
 <div class="pagination">    <!-- Информация о предыдущих страницах -->

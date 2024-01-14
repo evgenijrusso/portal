@@ -14,12 +14,6 @@ class PostFilter(FilterSet):
         label='Автор',
         empty_label='Все авторы',
     )
-    # choice_types = ChoiceFilter(
-    #     choices=TYPES
-    #     label='пост',
-    #     empty_label='Все посты',
-    # )
-
     time_in = DateFilter(
         label='Опубликованы после',
         lookup_expr='gt',
