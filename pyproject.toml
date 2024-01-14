@@ -10,6 +10,8 @@ python = "^3.11"
 django = "^5.0"
 ipython = "^8.19.0"
 django-filter = "^23.5"
+django-crispy-forms = "^2.1"
+crispy-bootstrap5 = "^2023.10"
 
 
 [build-system]
