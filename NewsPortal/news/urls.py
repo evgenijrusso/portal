@@ -1,7 +1,11 @@
 from django.urls import path
-from .views import AuthorList, CategoryList, PostList, PostDetail, PostCreate, \
-    PostDelete, PostUpdate, CommentList, index, PostSearch
+from news.views.post import PostList, PostDetail, PostCreate, \
+    PostDelete, PostUpdate, PostSearch
 
+from news.views.author import AuthorList
+from news.views.category import CategoryList
+from news.views.comment import CommentList
+from news.views.index import index
 
 urlpatterns = [
     path('', index),  # http://127.0.0.1:8004

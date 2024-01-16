@@ -1,9 +1,12 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from .models import *
-from .forms import PostForm
-from .filters import PostFilter
+from django.views.generic import ListView, DetailView, CreateView, \
+    UpdateView, DeleteView, TemplateView
+
+from news.models import *
+from news.forms import PostForm
+from news.filters import PostFilter
 
 APP = 'news/'
 
@@ -59,11 +62,18 @@ class PostCreate(CreateView):
             return ['Create news', 'Добавить новость']
 
 
-class PostUpdate(UpdateView):
+class PostUpdate(LoginRequiredMixin,UpdateView):
     form_class = PostForm
     model = Post
     template_name = APP + 'post_edit.html'
     success_url = reverse_lazy('posts')
+#    login_url = '/login/'
+    redirect_field_name = '/'    #'redirect_to'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_autenticated:
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -86,29 +96,7 @@ class PostDelete(DeleteView):
 # ------------------------------------------------------------------
 
 
-def index(request):
-    return render(request, APP + 'index.html')
 
-
-class AuthorList(ListView):
-    model = Author
-    ordering = '-rating'
-    template_name = APP + 'authors.html'
-    context_object_name = 'authors'
-
-
-class CategoryList(ListView):
-    model = Category
-    ordering = 'category_name'
-    template_name = APP + 'categories.html'
-    context_object_name = 'categories'
-
-
-class CommentList(ListView):
-    model = Comment
-    ordering = 'comment_time_in'
-    template_name = APP + 'comments.html'
-    context_object_name = 'comments'
 
 
 # ----------------------------  post  search ------------------------

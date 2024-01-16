@@ -12,6 +12,7 @@ ipython = "^8.19.0"
 django-filter = "^23.5"
 django-crispy-forms = "^2.1"
 crispy-bootstrap5 = "^2023.10"
+django-allauth = "^0.60.1"
 
 
 [build-system]
