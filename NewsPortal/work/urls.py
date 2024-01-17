@@ -21,5 +21,13 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('news.urls')),
+  #  path('sign/', include('sign.urls')),
     path('accounts/', include('allauth.urls')),
 ]
+
+# handler403 = 'news.views.handler403'
+
+admin.site.site_header = "Администрирование News Portal"
+admin.site.site_title = "Админка"
+admin.site.index_title = 'Новостной портал'
+

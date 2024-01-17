@@ -38,10 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+
     'django_filters',
     'crispy_forms',
     "crispy_bootstrap5",
@@ -145,8 +147,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # После проверки, вошел ли пользователь в систему,
 # укажите адрес перенаправления пользователя, который не вошел в систему
 LOGIN_URL = '/accounts/login/'
-ACCOUNT_LOGOUT_REDIRECT_URL ='/accounts/login/'
 SITE_ID = 1
 
-LOGOUT_REDIRECT_URL = '/news/'
-#LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/profile/'
+LOGIN_REDIRECT_URL = '/'
+
+ACCOUNT_FORM = 'news.forms.CustomSignupForm'
+#ACCOUNT_FORMS = {'signup': 'sign.models.BasicSignupForm'}
+
+#test_basic_user@example.com

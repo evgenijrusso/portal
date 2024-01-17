@@ -93,12 +93,6 @@ class PostDelete(DeleteView):
     template_name = APP + 'post_delete.html'
     success_url = reverse_lazy('posts')
 
-# ------------------------------------------------------------------
-
-
-
-
-
 # ----------------------------  post  search ------------------------
 class PostSearch(ListView):
     model = Post

@@ -36,3 +36,38 @@ default.html
 <li class="nav-item"><a class="nav-link" href="/categories/">Categories</a></li>
 <li class="nav-item"><a class="nav-link" href="{% url 'main' %}">News</a></li>
 p.s. Только в 1-ой записи обязательно должно быть 2 слеша ! ("/categories/")
+
+Временная проверка:
+```
+<li class="nav-item active">
+    {% if user.is_authenticated %}
+        <a class="nav-link">{{ request.user.username }}</a>
+    {% endif %}
+</li>
+<li class="nav-item active">
+    {% if not user.is_authenticated %}
+        <a class="nav-link" href='{% url "account_login" %}'>Войти</a>
+    {% endif %}
+</li>
+<li class="nav-item active">
+    {% if not user.is_authenticated %}
+        <a class="nav-link" href='{% url "account_signup" %}'>Регистрация</a>
+    {% endif %}
+</li>
+<li class="nav-item active">
+    {% if user.is_authenticated %}
+        <a class="nav-link" href='{% url "account_logout" %}'>Выйти</a>
+    {% endif %}
+</li>
+```
+first_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'placeholder': ('First name')}))
+last_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'placeholder': _'Last name')}))
+    
+
+ def custom_signup(self, request, user):
+        # Ensure you call the parent class's save. Save() returns a User object.
+        user = super(CustomSignupForm, self).save(request)
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.save()
+

@@ -1,5 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from allauth.account.forms import SignupForm
+from django.contrib.auth.models import Group
 
 from .models import Post
 
@@ -22,3 +24,13 @@ class PostForm(forms.ModelForm):
             )
 
         return cleaned_data
+
+
+class CustomSignupForm(SignupForm):
+
+    def save(self, request):
+        # Ensure you call the parent class's save. Save() returns a User object.
+        user = super(CustomSignupForm, self).save(request)
+        basic_group = Group.objects.get(name='basic')
+        basic_group.user_set.add(user)
+        return user
