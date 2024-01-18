@@ -6,7 +6,7 @@ from news.views.author import AuthorList
 from news.views.category import CategoryList
 from news.views.comment import CommentList
 from news.views.index import index
-from news.views.profile import ProfileView, upgrade_profile
+from news.views.profile import ProfileView, upgrade_to_author
 
 urlpatterns = [
     path('', index),  # http://127.0.0.1:8004
@@ -21,7 +21,7 @@ urlpatterns = [
     path('news/articles/<int:pk>/edit/', PostUpdate.as_view(), name='posts_articles_edit'),
 
     path('profile/', ProfileView.as_view(), name='profile'),
-    path('profile/upgrade/', upgrade_profile, name='upgrade'),
+    path('profile/upgrade/', upgrade_to_author, name='upgrade_to_author'),
 
     path('authors/', AuthorList.as_view(), name='authors'),
     path('comments/', CommentList.as_view(), name='comments'),

@@ -26,11 +26,11 @@ class PostForm(forms.ModelForm):
         return cleaned_data
 
 
-class CustomSignupForm(SignupForm):
+class CommonSignupForm(SignupForm):
 
     def save(self, request):
         # Ensure you call the parent class's save. Save() returns a User object.
-        user = super(CustomSignupForm, self).save(request)
-        basic_group = Group.objects.get(name='basic')
+        user = super(CommonSignupForm, self).save(request)
+        basic_group = Group.objects.get(name='common')
         basic_group.user_set.add(user)
         return user

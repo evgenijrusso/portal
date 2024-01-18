@@ -152,7 +152,16 @@ SITE_ID = 1
 LOGOUT_REDIRECT_URL = '/profile/'
 LOGIN_REDIRECT_URL = '/'
 
-ACCOUNT_FORM = 'news.forms.CustomSignupForm'
-#ACCOUNT_FORMS = {'signup': 'sign.models.BasicSignupForm'}
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-#test_basic_user@example.com
+#ACCOUNT_FORM = 'news.forms.CommonSignupForm'
+ACCOUNT_FORMS = {'signup': 'news.forms.CommonSignupForm'}
+
+LANGUAGES = [
+    ('en', 'English'),
+    ('ru', 'Русский'),
+]

@@ -2,17 +2,25 @@
 {% load i18n %}
 
 {% block title %}
-   {% trans Profile %}
+   {{ 403 }}
 {% endblock title %}
 
 {% block content %}
-    <h3>{% trans Access closed %}</h3>
+    <h3>Доступ закрыт</h3>
+    <h5>Пользователь: {{ request.user.username }} </h5>
     <br>
-    <h5>{% trans You are not the author and cannot create or edit news and articles %}</h5>
+    <h5>Вы не являетесь автором и не можете создавать и редактировать новости и статьи</h5>
     <br><br>
     <hr>
-    <div class="text-center" >
-        <button class="btn btn-lg btn-dark"><a style="text-decoration: none; color: white" href="/news/profile/upgrade/">{%  trans Become an author %}</a></button>
-        <button class="btn btn-lg btn-dark"><a style="text-decoration: none; color: white" href="/news/">{% trans To main %}</a></button>
+    <div class="text-center">
+    {% if is_not_author %}
+        <button class="btn btn-lg btn-dark"><a style="text-decoration: none; color: white" href="/news/profile/upgrade/">Стать автором</a></button>
+    {% endif %}
+        <button class="btn btn-lg btn-dark"><a style="text-decoration: none; color: white" href="/news/">На главную страницу</a></button>
     </div>
 {% endblock content %}
+
+<!--<h3>{% trans 'Access closed' %}</h3>-->
+<!--<h5>{% trans 'You are not the author and cannot create or edit news and articles' %}</h5>-->
+<!--{%  trans 'Become an author' %}-->
+<!--{% trans 'To main' %}-->

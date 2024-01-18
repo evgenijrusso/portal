@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, \
     UpdateView, DeleteView, TemplateView
@@ -36,11 +36,12 @@ class PostDetail(DetailView):
         return context
 
 
-class PostCreate(CreateView):
+class PostCreate(PermissionRequiredMixin, CreateView):
     form_class = PostForm
     model = Post
     template_name = APP + 'post_edit.html'
     success_url = '/news/'
+    permission_required = ('news.add_post',)
 
     def form_valid(self, form):
         post = form.save(commit=False)
@@ -62,18 +63,18 @@ class PostCreate(CreateView):
             return ['Create news', 'Добавить новость']
 
 
-class PostUpdate(LoginRequiredMixin,UpdateView):
+class PostUpdate(PermissionRequiredMixin, UpdateView):
     form_class = PostForm
     model = Post
     template_name = APP + 'post_edit.html'
     success_url = reverse_lazy('posts')
-#    login_url = '/login/'
-    redirect_field_name = '/'    #'redirect_to'
+    permission_required = ('news.change_post',)
+  #  redirect_field_name = '/'
 
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_autenticated:
-            return self.handle_no_permission()
-        return super().dispatch(request, *args, **kwargs)
+    # def dispatch(self, request, *args, **kwargs):
+    #     if not request.user.is_autenticated:
+    #         return self.handle_no_permission()
+    #     return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -88,10 +89,11 @@ class PostUpdate(LoginRequiredMixin,UpdateView):
             return ['Edit news', 'Редактировать новость']
 
 
-class PostDelete(DeleteView):
+class PostDelete(PermissionRequiredMixin, DeleteView):
     model = Post
     template_name = APP + 'post_delete.html'
     success_url = reverse_lazy('posts')
+    permission_required = ('news.delete_post',)
 
 # ----------------------------  post  search ------------------------
 class PostSearch(ListView):
