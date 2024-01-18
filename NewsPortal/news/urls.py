@@ -1,12 +1,26 @@
 from django.urls import path
 from news.views.post import PostList, PostDetail, PostCreate, \
     PostDelete, PostUpdate, PostSearch
+from allauth.account.views import SignupView, LoginView, LogoutView
 
 from news.views.author import AuthorList
 from news.views.category import CategoryList
 from news.views.comment import CommentList
 from news.views.index import index
 from news.views.profile import ProfileView, upgrade_to_author
+
+
+class MySignupView(SignupView):
+    template_name = 'signup.html'
+
+
+class MyLoginView(LoginView):
+    template_name = 'login.html'
+
+
+class MyLogoutView(LogoutView):
+    template_name = 'logout.html'
+
 
 urlpatterns = [
     path('', index),  # http://127.0.0.1:8004
@@ -23,11 +37,12 @@ urlpatterns = [
     path('profile/', ProfileView.as_view(), name='profile'),
     path('profile/upgrade/', upgrade_to_author, name='upgrade_to_author'),
 
+    path('accounts/signup/', MySignupView.as_view(), name='signup'),
+    path('accounts/login/', MyLoginView.as_view(), name='login'),
+    path('accounts/logout/', MyLogoutView.as_view(), name='logout'),
+
     path('authors/', AuthorList.as_view(), name='authors'),
     path('comments/', CommentList.as_view(), name='comments'),
     path('categories/', CategoryList.as_view(), name='categories'),
 ]
 
-# handler403 = 'news.views.handler403'
-# handler404 = 'news.views.handler404'
-# handler500 = 'news.views.handler500'

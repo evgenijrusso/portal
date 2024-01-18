@@ -71,3 +71,18 @@ last_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'placeh
         user.last_name = self.cleaned_data['last_name']
         user.save()
 
+base.html
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--    <head>-->
+<!--        <title>{% block head_title %}{% endblock head_title %}</title>-->
+<!--    </head>-->
+<!--    <body>-->
+<!--        {% block body %}-->
+<!--        {% block content %}-->
+<!--        {% endblock content %}-->
+<!--        {% endblock body %}-->
+<!--        {% block extra_body %}-->
+<!--        {% endblock extra_body %}-->
+<!--    </body>-->
+<!--</html>-->
