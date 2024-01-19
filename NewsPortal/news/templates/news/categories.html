@@ -4,15 +4,21 @@
 
 {% block content %}
 
-<b><h3>Список категорий:</h3></b>
-<ul>
-{% for cat in categories %}
-   <li>
-       <h4>{{ cat.category_name }}</h4>
-   </li>
+<div class="container d-grid gap-3">
+    <div class="p-3 bg-light border">
+<!--    Subscribe-->
+    <a class="btn btn-secondary" href="#" role="button">Подписаться</a>
 
-{% endfor %}
-</ul>
+    <b><h3>Список категорий:</h3></b>
+        <ul>
+            {% for cat in categories %}
+        <li>
+           <h4>{{ cat.category_name }}</h4>
+        </li>
+    {% endfor %}
+     </ul>
+    </div>
+</div>
 
 {% endblock content %}
 

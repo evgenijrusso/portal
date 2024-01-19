@@ -33,6 +33,7 @@ urlpatterns = [
     path('news/<int:pk>/delete/', PostDelete.as_view(), name='post_delete'),
     path('news/<int:pk>/edit/', PostUpdate.as_view(), name='post_edit'),
     path('news/articles/<int:pk>/edit/', PostUpdate.as_view(), name='posts_articles_edit'),
+    #path('news/categories/<int:pk>')
 
     path('profile/', ProfileView.as_view(), name='profile'),
     path('profile/upgrade/', upgrade_to_author, name='upgrade_to_author'),

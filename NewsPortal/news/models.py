@@ -15,19 +15,24 @@ class Author(models.Model):
 
     def update_rating(self):
         # рейтинг всех постов автора
-        posts_rating = Post.objects.filter(author=self).aggregate(result=Coalesce(Sum('rate_new'),0)).get('result')
+        posts_rating = Post.objects.filter(author=self)\
+            .aggregate(result=Coalesce(Sum('rate_new'),0)).get('result')
 
         # коммертарии автора
-        comments_rating = Comment.objects.filter(user=self.user).aggregate(result=Coalesce(Sum('comment_rate'),0)).get('result')
-        #  все комментарий к постам автора
-        post_comment_rating = Comment.objects.filter(post__author=self).aggregate(result=Coalesce(Sum('comment_rate'),0)).get('result')
+        comments_rating = Comment.objects.filter(user=self.user)\
+            .aggregate(result=Coalesce(Sum('comment_rate'),0)).get('result')
 
-        self.rating = 3 * posts_rating + comments_rating  + post_comment_rating
+        #  все комментарий к постам автора
+        post_comment_rating = Comment.objects.filter(post__author=self)\
+            .aggregate(result=Coalesce(Sum('comment_rate'), 0)).get('result')
+
+        self.rating = 3 * posts_rating + comments_rating + post_comment_rating
         self.save()
 
 
 class Category(models.Model):
     category_name = models.CharField(max_length=200, unique=True)
+    subscribers = models.ManyToManyField(User, blank=True, null=True, related_name='categories' )
 
     def __str__(self):
         return f'{self.category_name}'
