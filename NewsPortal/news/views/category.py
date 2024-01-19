@@ -15,26 +15,26 @@ class CategoryList(ListView):
     template_name = APP + 'categories.html'
     context_object_name = 'category_list'
 
-#     def get_queryset(self):
-#         self.category = get_object_or_404(Category, id=self.kwargs['pk'])
-#         # self.category = Category.obgects.filter(pk ='pk').only('id').first().id
-#         queryset = PostList.objects.filter(category=self.category).order_by('-time_in')
-#         return queryset
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['is_not_subcriber'] = self.request.user not in self.category.subscribers.all()
-#         context['category'] = self.category
-#         return context
-#
-# @login_required
-# def subscribe(request, pk):
-#     user = request.user
-#     category = Category.objects.get(id=pk)
-#     category.subscribers.add(user)
-#
-#     messsage = 'Вы успешно подписались на рассылку новостей категории'
-#     return render(request, 'news/subscribe.html', {'category': category, 'messsage': messsage})
+    def get_queryset(self):
+        self.category = get_object_or_404(Category, id=self.kwargs['pk'])
+        # self.category = Category.obgects.filter(pk ='pk').only('id').first().id
+        queryset = PostList.objects.filter(category=self.category).order_by('-time_in')
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_not_subcriber'] = self.request.user not in self.category.subscribers.all()
+        context['category'] = self.category
+        return context
+
+@login_required
+def subscribe(request, pk):
+    user = request.user
+    category = Category.objects.get(id=pk)
+    category.subscribers.add(user)
+
+    messsage = 'Вы успешно подписались на рассылку новостей категории'
+    return render(request, 'news/subscribe.html', {'category': category, 'messsage': messsage})
 
 
 # category.html
