@@ -1,30 +1,35 @@
 from django.contrib.auth.decorators import login_required
-#from django.shortcuts import get_object_or_404
-from django.views.generic import ListView
+from django.shortcuts import get_object_or_404
+from django.views.generic import ListView, DetailView
 from django.shortcuts import render
 
-from news.models import Category
-from .post import PostList
+from news.models import Category, Post
+from news.views.post import PostList
 
 
 APP = 'news/'
 
 
-class CategoryList(ListView):
+class CategoryListView(ListView):
     model = Category
-    template_name = APP + 'categories.html'
-    context_object_name = 'category_list'
+    template_name = APP + "categories.html"
+    context_object_name = "categories_list"
+
+
+class CategoryDetailView(ListView):
+    model = Post
+    template_name = APP + "category_detail.html"
+    context_object_name = "category_list"
 
     def get_queryset(self):
-        self.category = get_object_or_404(Category, id=self.kwargs['pk'])
-        # self.category = Category.obgects.filter(pk ='pk').only('id').first().id
-        queryset = PostList.objects.filter(category=self.category).order_by('-time_in')
+        self.category = get_object_or_404(Category, id=self.kwargs["pk"])
+        queryset = Post.objects.filter(categories_post=self.category).order_by('-time_in')
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['is_not_subcriber'] = self.request.user not in self.category.subscribers.all()
-        context['category'] = self.category
+        context['category_post_detail'] = self.category
         return context
 
 @login_required
@@ -33,8 +38,8 @@ def subscribe(request, pk):
     category = Category.objects.get(id=pk)
     category.subscribers.add(user)
 
-    messsage = 'Вы успешно подписались на рассылку новостей категории'
-    return render(request, 'news/subscribe.html', {'category': category, 'messsage': messsage})
+    message = 'Вы успешно подписались на рассылку новостей категории'
+    return render(request, 'news/subscribe.html', {'category': category, 'message': message})
 
 
 # category.html

@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'django.contrib.sites',
+    'appointment',
 
     'allauth',
     'allauth.account',
@@ -85,8 +87,8 @@ TEMPLATES = [
 ]
 
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',            # Needed to login by username in Django admin, regardless of `allauth`
+    'allauth.account.auth_backends.AuthenticationBackend', # `allauth` specific authentication methods, such as login by e-mail
 )
 
 WSGI_APPLICATION = 'work.wsgi.application'
@@ -147,18 +149,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # После проверки, вошел ли пользователь в систему,
 # укажите адрес перенаправления пользователя, который не вошел в систему
 LOGIN_URL = '/accounts/login/'
-SITE_ID = 1
-
 LOGOUT_REDIRECT_URL = '/profile/'
 LOGIN_REDIRECT_URL = '/'
 
+SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
-#ACCOUNT_FORM = 'news.forms.CommonSignupForm'
+DEFAULT_FROM_EMAIL = 'preobrazhensky.evgenii@yandex.ru '  # здесь указываем уже свою ПОЛНУЮ почту, с которой будут отправляться письма
+
 ACCOUNT_FORMS = {'signup': 'news.forms.CommonSignupForm'}
 
 LANGUAGES = [

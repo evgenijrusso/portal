@@ -4,8 +4,7 @@ from news.views.post import PostList, PostDetail, PostCreate, \
 from allauth.account.views import SignupView, LoginView, LogoutView
 
 from news.views.author import AuthorList
-from news.views.category import CategoryList
-#subscribe
+from news.views.category import CategoryListView, CategoryDetailView, subscribe
 from news.views.comment import CommentList
 from news.views.index import index
 from news.views.profile import ProfileView, upgrade_to_author
@@ -45,6 +44,10 @@ urlpatterns = [
 
     path('authors/', AuthorList.as_view(), name='authors'),
     path('comments/', CommentList.as_view(), name='comments'),
-    path('categories/', CategoryList.as_view(), name='category_list'),
+    path('categories/', CategoryListView.as_view(), name='category_list'),
+    path('categories/<int:pk>', CategoryDetailView.as_view(), name='category_detail'),
+    path('categories/<int:pk>/subscribe/', subscribe, name='subscribe'),
+
+
 ]
 

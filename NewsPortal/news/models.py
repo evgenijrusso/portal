@@ -37,6 +37,8 @@ class Category(models.Model):
     def __str__(self):
         return f'{self.category_name}'
 
+    def get_absolute_url(self):
+        return reverse('category_detail', args=[str(self.id)])
 
 class Post(models.Model):
     news = 'NE'

@@ -71,7 +71,3 @@ last_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'placeh
         user.last_name = self.cleaned_data['last_name']
         user.save()
 
-post_detail.html
-<!--     {% for category in post.category.all %}-->
-<!--        <a href="{% url 'categories' category.id %}">{{ category }}</a>-->
-<!--     {% endfor %}-->
