@@ -159,7 +159,7 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
-DEFAULT_FROM_EMAIL = 'preobrazhensky.evgenii@yandex.ru '  # здесь указываем уже свою ПОЛНУЮ почту, с которой будут отправляться письма
+DEFAULT_FROM_EMAIL = 'preobrazhensky.evgenii@yandex.ru'  # здесь указываем уже свою ПОЛНУЮ почту, с которой будут отправляться письма
 
 ACCOUNT_FORMS = {'signup': 'news.forms.CommonSignupForm'}
 
