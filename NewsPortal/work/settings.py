@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django.contrib.sites',
-    'appointment',
+    'appointment.apps.AppointmentConfig',
 
     'allauth',
     'allauth.account',

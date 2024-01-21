@@ -22,10 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('news.urls')),
     path('accounts/', include('allauth.urls')),
- #   path('appointments/', include(('appointment.urls', 'appointments'), namespace='appointments')),
 ]
-
-# handler403 = 'news.views.handler403'
 
 admin.site.site_header = "Администрирование News Portal"
 admin.site.site_title = "Админка"
