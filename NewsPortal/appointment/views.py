@@ -7,14 +7,12 @@ from datetime import datetime
 from django.core.mail import EmailMultiAlternatives  # импортируем класс для создание объекта письма с html
 from django.template.loader import render_to_string  # импортируем функцию, которая срендерит наш html в текст
 from .models import Appointment
-from django.views.generic import ListView
 
 
 class AppointmentView(View):
-   # template_name = 'appointment/make_appointment.html'
 
     def get(self, request, *args, **kwargs):
-        return render(request, 'appointment/make_appointment.html')
+        return render(request, 'appointment/make_appointment.html', {})
 
     def post(self, request, *args, **kwargs):
         appointment = Appointment(
@@ -26,7 +24,7 @@ class AppointmentView(View):
 
         # получаем наш html
         html_content = render_to_string(
-            'appointment_created.html',
+            'appointment/appointment_created.html',
             {
                 'appointment': appointment,
             }
@@ -40,4 +38,28 @@ class AppointmentView(View):
         )
         msg.attach_alternative(html_content, "text/html")  # добавляем html
         msg.send()  # отсылаем
-        return redirect('appointment/make_appointment')
+        return redirect('make_appointment')
+
+
+# ---------------   пробная версия --------------------
+class AppointProba(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'appointment/make_appointment.html', {})
+
+    def post(self, request, *args, **kwargs):
+        appointment = Appointment(
+            date=datetime.strptime(request.POST['date'], '%Y-%m-%d'),
+            client_name=request.POST['client_name'],
+            message=request.POST['message'],
+        )
+        appointment.save()
+
+        # отправляем письмо
+        send_mail(
+            subject=f'{appointment.client_name} {appointment.date.strftime("%Y-%M-%d")}',
+            message=appointment.message,  # сообщение с кратким описанием проблемы
+            from_email='preobrazhensky.evgenii@yandex.ru',  # здесь указываете почту, с которой будете отправлять (об этом попозже)
+            recipient_list=['tar800@gmail.com']  # здесь список получателей. Например, секретарь, сам врач и т. д.
+        )
+
+        return redirect('make_appointment')

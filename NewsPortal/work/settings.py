@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os.path
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -156,10 +159,22 @@ SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email' # метод входа (вы можете войти, выбрав имя пользователя или адрес электронной почты)
+ACCOUNT_LOGOUT_ON_GET = False # Пользователь выходит из системы (требуется подтверждение)
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
+
+
+EMAIL_HOST = 'smtp.yandex.ru'  # адрес сервера Яндекс-почты для всех один и тот же
+EMAIL_PORT = 465  # порт smtp сервера тоже одинаковый
+EMAIL_HOST_USER =  os.getenv("EMAIL_HOST_USER")  # ваше имя пользователя, например, если ваша почта user@yandex.ru, то сюда надо писать user, иными словами, это всё то что идёт до собаки
+EMAIL_HOST_PASSWORD =  os.getenv("EMAIL_HOST_PASSWORD")  # пароль от почты
+EMAIL_USE_SSL = True  # Яндекс использует ssl, подробнее о том, что это, почитайте в дополнительных источниках, но включать его здесь обязательно
 DEFAULT_FROM_EMAIL = 'preobrazhensky.evgenii@yandex.ru'  # здесь указываем уже свою ПОЛНУЮ почту, с которой будут отправляться письма
+
+
+
+
 
 ACCOUNT_FORMS = {'signup': 'news.forms.CommonSignupForm'}
 

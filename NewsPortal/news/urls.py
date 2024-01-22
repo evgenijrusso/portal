@@ -1,7 +1,7 @@
 from django.urls import path
 from news.views.post import PostList, PostDetail, PostCreate, \
     PostDelete, PostUpdate, PostSearch
-from allauth.account.views import SignupView, LoginView, LogoutView
+from allauth.account.views import SignupView, LoginView, LogoutView, ConfirmEmailView, EmailVerificationSentView
 
 from news.views.author import AuthorList
 from news.views.category import CategoryListView, CategoryDetailView, subscribe
@@ -20,6 +20,16 @@ class MyLoginView(LoginView):
 
 class MyLogoutView(LogoutView):
     template_name = 'logout.html'
+
+
+class MyConfirmEmailView(ConfirmEmailView):
+    template_name = 'email_confirm.html'
+
+
+class MyEmailVerificationSentView(EmailVerificationSentView):
+    template_name = 'verification_sent.html'
+
+    #template_name = 'email_confirmation_sent.html'
 
 
 urlpatterns = [
@@ -41,6 +51,9 @@ urlpatterns = [
     path('accounts/signup/', MySignupView.as_view(), name='signup'),
     path('accounts/login/', MyLoginView.as_view(), name='login'),
     path('accounts/logout/', MyLogoutView.as_view(), name='logout'),
+    # path('accounts/confirm_email/', MyConfirmEmailView.as_view(), name='confirm_email'),
+    path('accounts/verification_sent/', MyEmailVerificationSentView.as_view(), name='verification_sent'),
+
 
     path('authors/', AuthorList.as_view(), name='authors'),
     path('comments/', CommentList.as_view(), name='comments'),

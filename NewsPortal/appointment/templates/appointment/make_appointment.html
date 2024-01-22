@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Назначить встречу</h1>
+    <h1>Make an appointment(Назначить встречу)</h1>
     <form action="{% url 'make_appointment' %}" method="POST" encrypte="multipart/form-data">
         {% csrf_token %}
         <label for='client_name'>ваше имя</label>
