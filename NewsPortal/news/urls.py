@@ -29,8 +29,6 @@ class MyConfirmEmailView(ConfirmEmailView):
 class MyEmailVerificationSentView(EmailVerificationSentView):
     template_name = 'verification_sent.html'
 
-    #template_name = 'email_confirmation_sent.html'
-
 
 urlpatterns = [
     path('', index),  # http://127.0.0.1:8004
@@ -48,10 +46,11 @@ urlpatterns = [
     path('profile/', ProfileView.as_view(), name='profile'),
     path('profile/upgrade/', upgrade_to_author, name='upgrade_to_author'),
 
+    path('accounts/', index), # http://127.0.0.1:8004/accounts
     path('accounts/signup/', MySignupView.as_view(), name='signup'),
     path('accounts/login/', MyLoginView.as_view(), name='login'),
     path('accounts/logout/', MyLogoutView.as_view(), name='logout'),
-    # path('accounts/confirm_email/', MyConfirmEmailView.as_view(), name='confirm_email'),
+    path('accounts/confirm_email/', MyConfirmEmailView.as_view(), name='confirm_email'),
     path('accounts/verification_sent/', MyEmailVerificationSentView.as_view(), name='verification_sent'),
 
 

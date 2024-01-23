@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+{% extends 'default.html' %}
+
+{% block content %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +9,7 @@
     <title>Document</title>
 </head>
 <body>
+  <div class="p-3">
     <h1>Make an appointment(Назначить встречу)</h1>
     <form action="{% url 'make_appointment' %}" method="POST" encrypte="multipart/form-data">
         {% csrf_token %}
@@ -17,5 +21,8 @@
         <input type="text" name="date">.<br>
         <input type="submit">
     </form>
+   </div>
 </body>
 </html>
+
+{% endblock content %}
