@@ -34,10 +34,8 @@ class AppointmentView(View):
             subject=f'{appointment.client_name} {appointment.date.strftime("%Y-%M-%d")}',
             body=appointment.message,  # это то же, что и message
             from_email='preobrazhensky.evgenii@yandex.ru',
-            to=['tar800@gmail.com'],  # это то же, что и recipients_list
+            to=[request.user.email],
         )
         msg.attach_alternative(html_content, "text/html")  # добавляем html
         msg.send()  # отсылаем
-        return redirect('/')  #'make_appointment'
-
-
+        return redirect('/')  # 'make_appointment'

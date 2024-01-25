@@ -22,3 +22,13 @@ def upgrade_to_author(request):
     if not request.user.groups.filter(name='authors').exists():
         author_group.user_set.add(user)
     return redirect('/profile/')
+
+
+''' # проверить 
+    user = request.user
+    premium_group = Group.objects.get(name='authors')
+    if not request.user.groups.filter(name='authors').exists():
+        premium_group.user_set.add(user)       
+    return redirect('news')
+
+'''

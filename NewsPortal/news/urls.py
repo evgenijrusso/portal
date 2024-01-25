@@ -1,7 +1,7 @@
 from django.urls import path
 from news.views.post import PostList, PostDetail, PostCreate, \
     PostDelete, PostUpdate, PostSearch
-from allauth.account.views import SignupView, LoginView, LogoutView, ConfirmEmailView, EmailVerificationSentView
+from allauth.account.views import SignupView, LoginView, LogoutView
 
 from news.views.author import AuthorList
 from news.views.category import CategoryListView, CategoryDetailView, subscribe
@@ -10,25 +10,17 @@ from news.views.index import index
 from news.views.profile import ProfileView, upgrade_to_author
 
 
-class MySignupView(SignupView):
-    template_name = 'signup.html'
-
-
-class MyLoginView(LoginView):
-    template_name = 'login.html'
-
-
-class MyLogoutView(LogoutView):
-    template_name = 'logout.html'
-
-
-class MyConfirmEmailView(ConfirmEmailView):
-    template_name = 'email_confirm.html'
-
-
-class MyEmailVerificationSentView(EmailVerificationSentView):
-    template_name = 'verification_sent.html'
-
+# class MySignupView(SignupView):
+#     template_name = 'signup.html'
+#
+#
+# class MyLoginView(LoginView):
+#     template_name = 'login.html'
+#
+#
+# class MyLogoutView(LogoutView):
+#     template_name = 'logout.html'
+#
 
 urlpatterns = [
     path('', index),  # http://127.0.0.1:8004
@@ -47,11 +39,10 @@ urlpatterns = [
     path('profile/upgrade/', upgrade_to_author, name='upgrade_to_author'),
 
     path('accounts/', index), # http://127.0.0.1:8004/accounts
-    path('accounts/signup/', MySignupView.as_view(), name='signup'),
-    path('accounts/login/', MyLoginView.as_view(), name='login'),
-    path('accounts/logout/', MyLogoutView.as_view(), name='logout'),
-    path('accounts/confirm_email/', MyConfirmEmailView.as_view(), name='confirm_email'),
-    path('accounts/verification_sent/', MyEmailVerificationSentView.as_view(), name='verification_sent'),
+    path('accounts/google', index), # http://127.0.0.1:8004/accounts
+    # path('accounts/account/signup/', MySignupView.as_view(), name='signup'),
+    # path('accounts/account/login/', MyLoginView.as_view(), name='login'),
+    # path('accounts/account/logout/', MyLogoutView.as_view(), name='logout'),
 
 
     path('authors/', AuthorList.as_view(), name='authors'),
