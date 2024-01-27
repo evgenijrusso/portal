@@ -1,3 +1,4 @@
+from datetime import date
 from django import forms
 from django.core.exceptions import ValidationError
 from allauth.account.forms import SignupForm
@@ -22,6 +23,12 @@ class PostForm(forms.ModelForm):
             raise ValidationError(
                 'Текст не должен совпадать с заголовком.'
             )
+        # не отрабатывает ошибку после 3-х попыток
+        # author = cleaned_data.get('author')
+        # today = date.today()  # текущий день
+        # post_limit = Post.objects.filter(author=author, time_in__date=today).count()  # число возможных авторов
+        # if post_limit >= 3:
+        #     raise ValidationError('Нельзя публиковать больше 3-х постов в сутки')
 
         return cleaned_data
 

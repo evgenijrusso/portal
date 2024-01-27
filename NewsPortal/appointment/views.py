@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 from django.shortcuts import render, reverse, redirect
 from django.views import View
 from django.core.mail import send_mail
@@ -39,3 +37,7 @@ class AppointmentView(View):
         msg.attach_alternative(html_content, "text/html")  # добавляем html
         msg.send()  # отсылаем
         return redirect('/')  # 'make_appointment'
+
+
+
+

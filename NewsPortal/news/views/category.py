@@ -1,3 +1,4 @@
+import requests_toolbelt.utils.user_agent
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
@@ -42,11 +43,11 @@ def subscribe(request, pk):
     return render(request, 'news/subscribe.html', {'category': category, 'message': message})
 
 
-# category.html
-#  for post in category_new_list
-#   <a href="{% url "post_detail" post.id %}> {{ post.title}}</a>
-#   <a href="{% url "post_update" post.id %}> Редактировать</a>
-#   <a href="{% url "post_delete" post.id %}> Удалить</a>
+@login_required
+def unsubscribe(request, pk):
+    user  = request.user
+    category = Category.objects.get(id=pk)
+    category.subscribers.remove(user)
 
-# {% for category in post.category.all %}
-# <a href="{%  url "categories" category.id  %}"> {{ category}<a/>
+    message = 'Вы отписались от рассылки новостей категории'
+    return render(request, 'news/unsubscribe.html', {'category': category, 'message': message})

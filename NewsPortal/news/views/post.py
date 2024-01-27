@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
+from datetime import date
 from django.views.generic import ListView, DetailView, CreateView, \
     UpdateView, DeleteView, TemplateView
 
@@ -56,6 +57,13 @@ class PostCreate(PermissionRequiredMixin, CreateView):
         post = form.save(commit=False)
         if self.request.path == '/news/articles/create/':
             post.choice_types = 'AR'
+
+        today = date.today()  # текущий день
+        post_limit = Post.objects.filter(author=post.author, time_in__date=today).count()  # число возможных авторов
+        if post_limit >= 3:
+            return render(self.request, template_name=APP + 'post_limit.html', context= {'author': post.author})
+            raise ValidationError('Нельзя публиковать больше 3-х постов в сутки')
+
         post.save()
         return super().form_valid(form)
 

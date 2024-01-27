@@ -3,41 +3,32 @@
 
 {% block content %}
  <div class="container px-lg-3 text-center">
-
 </div>
-    {% if not is_not_subscriber %}
-        <a class="btn btn-primary" href="{{ category_post_detail.id }}/subscribe/" role="button">Подписаться</a>
+    {% if is_not_subscriber %}
+        <a class="btn btn-primary" href="{{ category_post_detail.id }}/subscribe/" role="button">Подписаться на рассылку данной категории новостей</a>
+
+        {% for post in category_list %}
+          <div class="mb-3">
+                <h5>  {{ post.title|truncatechars:100 }} </h5>
+                <h6>Категория: {{ category_post_detail }} </h6>
+                <h6>Тип публикации: {{ post.get_choice_types_display }}</h6>
+                <h6>Дата публикации: {{ post.time_in|date:'d M Y' }} </h6>
+                <h6>Автор публикации: {{ post.author.user }} </h6>
+                <span>Публикация: {{ post.content|truncatechars:100 }}</span>
+          </div>
+        {% endfor %}
+
+    {% else %}
+        <div class="p-3">
+            <h4> Вы уже подписаны
+                <a class="btn btn-primary" href="{{ category_post_detail.id }}/unsubscribe/" role="button">Отписаться от рассылки данной категории новостей</a>
+<!--                <a class="btn btn-primary" href="{{ category_post_detail.id }}/history/" role="button">Subscription History</a>-->
+            </h4>
+        </div>
     {% endif %}
 
-<!--    {% if not is_not_author %}-->
-<!--        <a class="btn btn-primary" href="{{ category_post_detail.id }}/subscribe/" role="button">Стать автором</a>-->
-<!--        <button><a href="{% url 'upgrade_to_author'%}"></a>Стать автором</button>-->
-<!--    {% endif %}-->
-
-<!--{% if category_list %}-->
-<!--    <form method="GET">-->
-<!--        {{ category_list.form}}  ??-->
-<!--        <input type="submit" value="Найти">-->
-<!--    </form>-->
-
-    {% for post in category_list %}
-      <div class="mb-3">
-<!--      <h5><b class="text-center"><a href={{ post.pk }} class="btn btn-secondary">{{ post.title|truncatechars:100 }}</a></b></h5>-->
-      <h5>  {{ post.title|truncatechars:100 }} </h5>
-      <h6>Категория: {{ category_post_detail }} </h6>
-      <h6>Тип публикации: {{ post.get_choice_types_display }}</h6>
-      <h6>Дата публикации: {{ post.time_in|date:'d M Y' }} </h6>
-      <h6>Автор публикации: {{ post.author.user }} </h6>
-      <span>Публикация: {{ post.content|truncatechars:100 }}</span>
-      </div>
-    {% endfor %}
-{% else %}
-    <h3>Новостей нет!</h3>
-{% endif %}
-
 </div>
 </div>
-
 
 
 {% endblock content %}

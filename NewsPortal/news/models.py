@@ -69,6 +69,10 @@ class Post(models.Model):
     def preview(self, length=124):
         return f"{self.content[:length]}..." if len(self.content) > length else self.content
 
+    def get_categories(self):
+        cat_qs = self.categories_post.all()
+        return cat_qs
+
     def like(self):
         self.rate_new += 1
         self.save()

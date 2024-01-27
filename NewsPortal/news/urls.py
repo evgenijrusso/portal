@@ -1,26 +1,13 @@
 from django.urls import path
 from news.views.post import PostList, PostDetail, PostCreate, \
     PostDelete, PostUpdate, PostSearch
-from allauth.account.views import SignupView, LoginView, LogoutView
 
 from news.views.author import AuthorList
-from news.views.category import CategoryListView, CategoryDetailView, subscribe
+from news.views.category import CategoryListView, CategoryDetailView, subscribe, unsubscribe
 from news.views.comment import CommentList
 from news.views.index import index
 from news.views.profile import ProfileView, upgrade_to_author
 
-
-# class MySignupView(SignupView):
-#     template_name = 'signup.html'
-#
-#
-# class MyLoginView(LoginView):
-#     template_name = 'login.html'
-#
-#
-# class MyLogoutView(LogoutView):
-#     template_name = 'logout.html'
-#
 
 urlpatterns = [
     path('', index),  # http://127.0.0.1:8004
@@ -40,9 +27,6 @@ urlpatterns = [
 
     path('accounts/', index), # http://127.0.0.1:8004/accounts
     path('accounts/google', index), # http://127.0.0.1:8004/accounts
-    # path('accounts/account/signup/', MySignupView.as_view(), name='signup'),
-    # path('accounts/account/login/', MyLoginView.as_view(), name='login'),
-    # path('accounts/account/logout/', MyLogoutView.as_view(), name='logout'),
 
 
     path('authors/', AuthorList.as_view(), name='authors'),
@@ -50,6 +34,7 @@ urlpatterns = [
     path('categories/', CategoryListView.as_view(), name='category_list'),
     path('categories/<int:pk>', CategoryDetailView.as_view(), name='category_detail'),
     path('categories/<int:pk>/subscribe/', subscribe, name='subscribe'),
+    path('categories/<int:pk>/unsubscribe/', unsubscribe, name='unsubscribe'),
 
 
 ]
