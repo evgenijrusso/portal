@@ -5,19 +5,18 @@ from django.dispatch import receiver
 from django.shortcuts import redirect
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
-from django.db.models.signals import m2m_changed, pre_save
+from django.db.models.signals import m2m_changed
 from django.conf import settings
-from .models import PostCategory, Post
-
-SITE_URL = 'http://localhost:8004'
+from .models import PostCategory
 
 
+# отправка сообщений пользователю об создании нового поста с подписанной категорией
 def send_notify(post, subscribers):
     html_content = render_to_string(
         'account/email/post_email.html',
         {
             'text': post.preview(),
-            'link': f'{SITE_URL}/news/{post.pk}'
+            'link': f'{settings.SITE_URL}/news/{post.pk}'
         }
     )
     msg = EmailMultiAlternatives(

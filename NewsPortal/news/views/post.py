@@ -30,15 +30,7 @@ class PostDetail(DetailView):
     model = Post
     template_name = APP + 'post_detail.html'
     context_object_name = 'post'
-#    queryset = Post.objects.all()
 
-    # def get_object(self, *args, **kwargs):
-    #     print(self.user.id)
-    #     obj = cache.get(f'post- {self.kwargs["pk"]}', None)
-    #     if not obj:
-    #         obj = super().get_queryset(queryset=self.queryset)
-    #         cache.set(f'post- {self.kwargs["pk"]}', obj)
-    #     return obj
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
