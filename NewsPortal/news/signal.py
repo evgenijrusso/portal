@@ -6,11 +6,10 @@ from django.shortcuts import redirect
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.db.models.signals import m2m_changed, pre_save
-
-from NewsPortal.work.settings import DEFAULT_FROM_EMAIL
+from django.conf import settings
 from .models import PostCategory, Post
 
-LOCAL_URL = 'http://localhost:8004'
+SITE_URL = 'http://localhost:8004'
 
 
 def send_notify(post, subscribers):
@@ -18,12 +17,12 @@ def send_notify(post, subscribers):
         'account/email/post_email.html',
         {
             'text': post.preview(),
-            'link': f'{LOCAL_URL}/news/{post.pk}'
+            'link': f'{SITE_URL}/news/{post.pk}'
         }
     )
     msg = EmailMultiAlternatives(
         subject=post.title,
-        from_email=DEFAULT_FROM_EMAIL,
+        from_email=settings.DEFAULT_FROM_EMAIL,
         to=subscribers
     )
     msg.attach_alternative(html_content, "text/html")
