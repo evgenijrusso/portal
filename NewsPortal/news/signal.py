@@ -37,11 +37,35 @@ def notify_new_post(sender, instance, **kwargs):
 
         for cat in categories:
             subscribers = cat.subscribers.all()
-            subscribers_emails += [s.email for s in subscribers]
+            subscribers_emails += [s.email for s in subscribers]  # можно просто s (без email)
             # for subscriber in subscribers:
             #     subscribers_emails += [subscriber.email]
 
         send_notify(instance, subscribers_emails)
+
+
+# ---------------------------------------------------------------------------
+'''
+send_notify(preview, pk, title, subscribers):
+    for subscfriber in subscfriber:
+    
+    html_content = render_to_string(
+        'account/email/post_email2.html',
+        {
+            'username': subscfriber.username 
+            'text': post.preview(),
+            'link': f'{settings.SITE_URL}/news/{pk}'
+        }
+    )
+        msg = EmailMultiAlternatives(
+        subject=title,
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        to=[subscriber.email],
+    )
+
+subscribers_emails += [s.email for s in subscribers]  
+можно просто s (без email) и тогда получить имя пользователя
+'''
 
 
 # @receiver(pre_save, sender=Post)
