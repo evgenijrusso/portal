@@ -13,7 +13,7 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'print_every_5_seconds': {
         'task': 'news.tasks.hello',
-        'schedule': 5,
+        'schedule': 15,
     },
 }
 
@@ -23,6 +23,16 @@ app.conf.beat_schedule = {
         'schedule': crontab(),
     },
 }
+
+app.conf.beat_schedule = {
+    'action_every_monday8am': {
+        'task': 'news.tasks.send_mail_every_monday8am',
+        'schedule': crontab(),   # crontab(hour=8, minute=0, day_of_week='monday'),
+        'args': ()
+    }
+}
+
+app.conf.timezone = 'UTC'
 
 # celery -A work worker -l INFO --pool=solo
 # celery -A work beat -l INFO
