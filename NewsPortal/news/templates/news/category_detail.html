@@ -4,9 +4,10 @@
 {% block content %}
  <div class="container px-lg-3 text-center">
 </div>
-    {% if is_not_subscriber %}
+    {% if not is_not_subscriber %}
+    <div class="p-3">
         <a class="btn btn-primary" href="{{ category_post_detail.id }}/subscribe/" role="button">Подписаться на рассылку данной категории новостей</a>
-
+    </div>
         {% for post in category_list %}
           <div class="mb-3">
                 <h5>  {{ post.title|truncatechars:100 }} </h5>
@@ -22,7 +23,6 @@
         <div class="p-3">
             <h4> Вы уже подписаны
                 <a class="btn btn-primary" href="{{ category_post_detail.id }}/unsubscribe/" role="button">Отписаться от рассылки данной категории новостей</a>
-<!--                <a class="btn btn-primary" href="{{ category_post_detail.id }}/history/" role="button">Subscription History</a>-->
             </h4>
         </div>
     {% endif %}

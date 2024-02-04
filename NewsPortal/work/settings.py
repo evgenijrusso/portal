@@ -182,6 +182,7 @@ EMAIL_PORT = 465  # порт smtp сервера тоже одинаковый
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_USE_SSL = True  # Яндекс использует ssl, включать его здесь обязательно
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'   # для работы в консоле
 
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL') # pr указываем свою ПОЛНУЮ почту,с которой будут отправляться письма
 

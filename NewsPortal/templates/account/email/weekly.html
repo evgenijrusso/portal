@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Уведомление</title>
+    <title>Еженедельная расылка</title>
 </head>
 <body>
   <h3>Здравствуйте! Новые статьи за последнюю неделю.</h3>
- <ul>
+    <div class="p-3">
         {% for post in posts %}
-        <l1><a href="{{ link }}">{{ post.title }}</a> </l1>
+        <div class="mb-3"></div><a href="{{ link }}{{ post.id }}">{{ post.title }}</a> </div>
         {% endfor %}
-    </ul>
+    </div>
 </body>
 </html>
+
