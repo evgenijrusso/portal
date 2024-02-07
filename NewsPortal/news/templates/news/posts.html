@@ -1,5 +1,8 @@
 {% extends 'default.html' %}
 {% block title %} {{ title }} {% endblock title %}
+{% load cache %} <!-- Загружаем кэширование -->
+
+{% cache 300 content %}
 
 {% block content %}
  <div class="container px-lg-3 text-center">
@@ -47,6 +50,6 @@
 </div>
 
 
-
 {% endblock content %}
 
+{% endcache %}

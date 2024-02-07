@@ -5,6 +5,7 @@ from datetime import date
 from django.views.generic import ListView, DetailView, CreateView, \
     UpdateView, DeleteView, TemplateView
 
+from django.core.cache import cache # импортируем наш кэш
 from news.models import *
 from news.forms import PostForm
 from news.filters import PostFilter
@@ -30,7 +31,15 @@ class PostDetail(DetailView):
     model = Post
     template_name = APP + 'post_detail.html'
     context_object_name = 'post'
+    queryset = Post.objects.all()
 
+    def get_object(self, *args, **kwargs):  # переопределение метода получения объекта
+        obj = cache.get(f'post-{self.kwargs["pk"]}', None)  # кэш очень похож на словарь, и метод get действует так же.
+                                                    #  Он забирает значение по ключу, если его нет, то забирает None.
+        if not obj:
+            obj = super().get_object(queryset=self.queryset)
+            cache.set(f'post-{self.kwargs["pk"]}', obj)
+        return obj
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
