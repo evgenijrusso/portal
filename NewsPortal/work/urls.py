@@ -14,8 +14,8 @@ Including another URLconf
     1. Import the includes() function: from django.urls import includes, path
     2. Add a URL to urlpatterns:  path('blog/', includes('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path, include
+from django.contrib import admin
 
 
 urlpatterns = [
@@ -28,4 +28,3 @@ urlpatterns = [
 admin.site.site_header = "Администрирование News Portal"
 admin.site.site_title = "Админка"
 admin.site.index_title = 'Новостной портал'
-

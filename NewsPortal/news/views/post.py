@@ -2,13 +2,14 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
 from datetime import date
-from django.views.generic import ListView, DetailView, CreateView, \
-    UpdateView, DeleteView, TemplateView
-
 from django.core.cache import cache # импортируем наш кэш
-from news.models import *
+
+from django.views.generic import ListView, DetailView, CreateView, \
+    UpdateView, DeleteView
+
 from news.forms import PostForm
 from news.filters import PostFilter
+from news.models import *
 
 APP = 'news/'
 

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os.path
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -90,16 +91,18 @@ TEMPLATES = [
     },
 ]
 
+#  Needed to login by username in Django admin, regardless of `allauth`
+# `allauth` specific authentication methods, such as login by e-mail
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',            # Needed to login by username in Django admin, regardless of `allauth`
-    'allauth.account.auth_backends.AuthenticationBackend', # `allauth` specific authentication methods, such as login by e-mail
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 CACHES = {
     'default': {
-        'TIMEOUT': 60, # добавляем стандартное время ожидания в минуту (по умолчанию это 5 минут — 300 секунд)
+        'TIMEOUT': 60, # добавляем стандартное время ожидания в минуту (по умолчанию это 5 минут)
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': os.path.join(BASE_DIR, 'cache_files'), # Указываем, куда будем сохранять кэшируемые файлы! Не забываем создать папку cache_files внутри папки с manage.py!
+        'LOCATION': os.path.join(BASE_DIR, 'cache_files'),
     }
 }
 
@@ -179,7 +182,7 @@ SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email' # метод входа (вы можете войти, выбрав имя user или адрес почты)
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email' # вы можете войти, выбрав имя user или адрес почты
 ACCOUNT_LOGOUT_ON_GET = False # Пользователь выходит из системы (требуется подтверждение)
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_FORMS = {'signup': 'news.forms.CommonSignupForm'}
@@ -192,7 +195,8 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_USE_SSL = True  # Яндекс использует ssl, включать его здесь обязательно
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'   # для работы в консоле
 
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL') # pr указываем свою ПОЛНУЮ почту,с которой будут отправляться письма
+# pr указываем свою ПОЛНУЮ почту,с которой будут отправляться письма
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
 MANAGERS = [('Tars', 'tar800@gmail.com')]
 
