@@ -4,6 +4,7 @@ from django.urls import reverse
 
 from .models import Post
 
+
 class NewsTests(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(

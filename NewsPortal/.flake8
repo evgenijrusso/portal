@@ -1,5 +1,6 @@
 [flake8]
 max-line-length = 100
 max-complexity = 8
-exclude = .git,__init__.py,cache_files,.pytest_cache,
-extend-ignore = W391, I100, I201
+exclude = .git,__init__.py,cache_files,.pytest_cache, *\migrations\*,
+extend-ignore = W391, I100, I101, I201, W292, W291, F405, F401, F403,
+    E201, A003, VNE003,

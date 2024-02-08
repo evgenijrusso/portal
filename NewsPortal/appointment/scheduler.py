@@ -1,5 +1,5 @@
 from apscheduler.schedulers.background import BackgroundScheduler
-#from .tasks import send_mails
+# from .tasks import send_mails
 
 appointment_scheduler = BackgroundScheduler()
 appointment_scheduler.add_job(

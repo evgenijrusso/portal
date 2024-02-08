@@ -8,8 +8,8 @@ from .models import Post
 
 
 class PostForm(forms.ModelForm):
-    title: forms.CharField(min_length=4, widget=forms.TextInput(attrs={'required': True}))
-    content: forms.CharField(min_length=20, widget=forms.Textarea(attrs={'cols': 150, 'rows': 15}))
+    title = forms.CharField(min_length=4, widget=forms.TextInput({'required': True}))
+    content = forms.CharField(min_length=20, widget=forms.Textarea({'cols': 150, 'rows': 15}))
 
     class Meta:
         model = Post
@@ -26,7 +26,7 @@ class PostForm(forms.ModelForm):
         # не отрабатывает ошибку после 3-х попыток
         # author = cleaned_data.get('author')
         # today = date.today()  # текущий день
-        # post_limit = Post.objects.filter(author=author, time_in__date=today).count()  # число возможных авторов
+        # post_limit = Post.objects.filter(author=author, time_in__date=today).count()
         # if post_limit >= 3:
         #     raise ValidationError('Нельзя публиковать больше 3-х постов в сутки')
 

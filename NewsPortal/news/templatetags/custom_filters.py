@@ -9,6 +9,6 @@ bad_words = [
 
 @register.filter()
 def censor(value):
-    for val in bad_words:
-        value = value.replace(val, '***')
+    for name in bad_words:
+        value = value.replace(name, '***')
     return value

@@ -1,6 +1,3 @@
-from datetime import date
-
-from django.core.exceptions import ValidationError
 from django.dispatch import receiver
 from django.shortcuts import redirect
 from django.core.mail import EmailMultiAlternatives
@@ -10,7 +7,7 @@ from django.conf import settings
 from .models import PostCategory
 
 
-# отправка сообщений пользователю об создании нового поста с подписанной категорией
+#  отправка сообщений пользователю об создании нового поста с подписанной категорией
 def send_notify(post, subscribers):
     html_content = render_to_string(
         'account/email/post_email.html',
@@ -48,7 +45,7 @@ def notify_new_post(sender, instance, **kwargs):
 '''
 send_notify(preview, pk, title, subscribers):
     for subscfriber in subscfriber:
-    
+
     html_content = render_to_string(
         'account/email/post_email2.html',
         {
@@ -71,6 +68,6 @@ subscribers_emails += [s.email for s in subscribers]
 # @receiver(pre_save, sender=Post)
 # def notify_limit3_post(sender, instance, **kwargs):
 #     today = date.today()   # текущий день
-#     post_limit = Post.objects.filter(author=instance.author, time_in__date=today).count()  # число возможных авторов
+#     post_limit = Post.objects.filter(author=instance.author, time_in__date=today).count()
 #     if post_limit >= 3:
 #         raise ValidationError('Нельзя публиковать больше 3-х постов в сутки')

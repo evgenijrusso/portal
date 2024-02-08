@@ -2,8 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import Group
 from django.views.generic import TemplateView
-from django.shortcuts import redirect, render
-from django.contrib import auth
+from django.shortcuts import redirect
 
 
 class ProfileView(LoginRequiredMixin, TemplateView):
@@ -24,11 +23,11 @@ def upgrade_to_author(request):
     return redirect('/profile/')
 
 
-''' # проверить 
+'''
+    #  проверить
     user = request.user
     premium_group = Group.objects.get(name='authors')
     if not request.user.groups.filter(name='authors').exists():
-        premium_group.user_set.add(user)       
+        premium_group.user_set.add(user)
     return redirect('news')
-
 '''

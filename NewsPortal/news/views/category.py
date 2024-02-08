@@ -33,6 +33,7 @@ class CategoryDetailView(ListView):
         context['category_post_detail'] = self.category
         return context
 
+
 @login_required
 def subscribe(request, pk):
     user = request.user
@@ -45,7 +46,7 @@ def subscribe(request, pk):
 
 @login_required
 def unsubscribe(request, pk):
-    user  = request.user
+    user = request.user
     category = Category.objects.get(id=pk)
     category.subscribers.remove(user)
 

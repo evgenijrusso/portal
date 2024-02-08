@@ -100,7 +100,7 @@ AUTHENTICATION_BACKENDS = (
 
 CACHES = {
     'default': {
-        'TIMEOUT': 60, # добавляем стандартное время ожидания в минуту (по умолчанию это 5 минут)
+        'TIMEOUT': 60,  # добавляем стандартное время ожидания в минуту (по умолчанию это 5 минут)
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
         'LOCATION': os.path.join(BASE_DIR, 'cache_files'),
     }
@@ -146,7 +146,7 @@ LANGUAGES = [
     ('en', 'English'),
     ('ru', 'Русский'),
 ]
-#LANGUAGE_CODE = 'ru'
+# LANGUAGE_CODE = 'ru'
 
 LANGUAGE_CODE = 'en-us'
 
@@ -182,8 +182,8 @@ SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email' # вы можете войти, выбрав имя user или адрес почты
-ACCOUNT_LOGOUT_ON_GET = False # Пользователь выходит из системы (требуется подтверждение)
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'  # вы можете войти, выбрав имя user или адрес почты
+ACCOUNT_LOGOUT_ON_GET = False  # Пользователь выходит из системы (требуется подтверждение)
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_FORMS = {'signup': 'news.forms.CommonSignupForm'}
 
@@ -193,22 +193,22 @@ EMAIL_PORT = 465  # порт smtp сервера тоже одинаковый
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_USE_SSL = True  # Яндекс использует ssl, включать его здесь обязательно
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'   # для работы в консоле
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'   # для работы в консоле
 
 # pr указываем свою ПОЛНУЮ почту,с которой будут отправляться письма
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
 MANAGERS = [('Tars', 'tar800@gmail.com')]
 
-ADMINS = [('Tars', 'tar800@gmail.com'),] # список всех админов в формате ('имя', 'их почта')
+ADMINS = [('Tars', 'tar800@gmail.com'),]  # список всех админов в формате ('имя', 'их почта')
 
 SERVER_EMAIL = os.getenv('SERVER_EMAIL')  # pr
 
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
-#CELERY_TASK_TRACK_STARTED = True
-#CELERY_TASK_TIME_LIMIT = 30 * 60
+# CELERY_TASK_TRACK_STARTED = True
+# CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'

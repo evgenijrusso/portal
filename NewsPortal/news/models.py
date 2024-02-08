@@ -16,11 +16,11 @@ class Author(models.Model):
     def update_rating(self):
         # рейтинг всех постов автора
         posts_rating = Post.objects.filter(author=self)\
-            .aggregate(result=Coalesce(Sum('rate_new'),0)).get('result')
+            .aggregate(result=Coalesce(Sum('rate_new'), 0)).get('result')
 
         # коммертарии автора
         comments_rating = Comment.objects.filter(user=self.user)\
-            .aggregate(result=Coalesce(Sum('comment_rate'),0)).get('result')
+            .aggregate(result=Coalesce(Sum('comment_rate'), 0)).get('result')
 
         #  все комментарий к постам автора
         post_comment_rating = Comment.objects.filter(post__author=self)\
@@ -32,13 +32,14 @@ class Author(models.Model):
 
 class Category(models.Model):
     category_name = models.CharField(max_length=200, unique=True)
-    subscribers = models.ManyToManyField(User, related_name='categories' )
+    subscribers = models.ManyToManyField(User, related_name='categories')
 
     def __str__(self):
         return f'{self.category_name}'
 
     def get_absolute_url(self):
         return reverse('category_detail', args=[str(self.id)])
+
 
 class Post(models.Model):
     news = 'NE'

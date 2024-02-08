@@ -1,7 +1,6 @@
 from django.urls import path
-from news.views.post import PostList, PostDetail, PostCreate, \
-    PostDelete, PostUpdate, PostSearch
 
+from news.views.post import PostList, PostDetail, PostCreate, PostDelete, PostUpdate, PostSearch
 from news.views.author import AuthorList
 from news.views.category import CategoryListView, CategoryDetailView, subscribe, unsubscribe
 from news.views.comment import CommentList
@@ -24,9 +23,8 @@ urlpatterns = [
 
     path('profile/', ProfileView.as_view(), name='profile'),
     path('profile/upgrade/', upgrade_to_author, name='upgrade_to_author'),
-
-    path('accounts/', index), # http://127.0.0.1:8004/accounts
-    path('accounts/google', index), # http://127.0.0.1:8004/accounts
+    path('accounts/', index),  # http://127.0.0.1:8004/accounts
+    path('accounts/google', index),  # http://127.0.0.1:8004/accounts
 
 
     path('authors/', AuthorList.as_view(), name='authors'),

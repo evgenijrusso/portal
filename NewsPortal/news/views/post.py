@@ -2,8 +2,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
 from datetime import date
-from django.core.cache import cache # импортируем наш кэш
-
+from django.core.cache import cache  # импортируем наш кэш
 from django.views.generic import ListView, DetailView, CreateView, \
     UpdateView, DeleteView
 
@@ -21,7 +20,6 @@ class PostList(ListView):
     context_object_name = 'posts'
     paginate_by = 4
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Список постов'
@@ -35,8 +33,8 @@ class PostDetail(DetailView):
     queryset = Post.objects.all()
 
     def get_object(self, *args, **kwargs):  # переопределение метода получения объекта
-        obj = cache.get(f'post-{self.kwargs["pk"]}', None)  # кэш очень похож на словарь, и метод get действует так же.
-                                                    #  Он забирает значение по ключу, если его нет, то забирает None.
+        obj = cache.get(f'post-{self.kwargs["pk"]}', None)
+
         if not obj:
             obj = super().get_object(queryset=self.queryset)
             cache.set(f'post-{self.kwargs["pk"]}', obj)
@@ -61,9 +59,13 @@ class PostCreate(PermissionRequiredMixin, CreateView):
             post.choice_types = 'AR'
 
         today = date.today()  # текущий день
-        post_limit = Post.objects.filter(author=post.author, time_in__date=today).count()  # число возможных авторов
+        post_limit = Post.objects.filter(author=post.author,
+                                         time_in__date=today).count()  # число возможных авторов
         if post_limit >= 3:
-            return render(self.request, template_name=APP + 'post_limit.html', context= {'author': post.author})
+            return render(self.request,
+                          template_name=APP + 'post_limit.html',
+                          context={'author': post.author}
+                          )
             raise ValidationError('Нельзя публиковать больше 3-х постов в сутки')
 
         post.save()
@@ -89,7 +91,6 @@ class PostUpdate(PermissionRequiredMixin, UpdateView):
     success_url = reverse_lazy('posts')
     permission_required = ('news.change_post',)
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['get_title'] = self.get_type_update()[0]
@@ -110,6 +111,8 @@ class PostDelete(PermissionRequiredMixin, DeleteView):
     permission_required = ('news.delete_post',)
 
 # ----------------------------  post  search ------------------------
+
+
 class PostSearch(ListView):
     model = Post
     ordering = '-time_in'

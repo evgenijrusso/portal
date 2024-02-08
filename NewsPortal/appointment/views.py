@@ -1,9 +1,9 @@
-from django.shortcuts import render, reverse, redirect
+from django.shortcuts import render, redirect
 from django.views import View
 from django.core.mail import send_mail
 from datetime import datetime
-from django.core.mail import EmailMultiAlternatives  # импортируем класс для создание объекта письма с html
-from django.template.loader import render_to_string  # импортируем функцию, которая срендерит наш html в текст
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
 from .models import Appointment
 
 
