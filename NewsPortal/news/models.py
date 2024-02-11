@@ -38,8 +38,7 @@ class Category(models.Model):
         return f'{self.category_name}'
 
     def get_absolute_url(self):
-        return reverse('category_detail', args=[str(self.id)])
-      #  return reverse('category_detail', kwargs={'id': self.id})
+        return reverse('category_detail', kwargs={'pk': self.id})
 
 class Post(models.Model):
     news = 'NE'
@@ -61,9 +60,9 @@ class Post(models.Model):
     def __str__(self):
         return f'{self.title}'
 
-    def get_absolute_url(self):
-        return reverse('post_detail', kwargs={'id': self.id})
-       # return reverse('post_detail', args=[str(self.id)])
+    def get_absolute_url(self):  # 'pk' как в url.py, иначе не работает
+        return reverse('post_detail', kwargs={'pk': self.id})
+
 
     def datatostr(self):
         return f"{self.time_in.strftime('%Y-%m-%d')}"
