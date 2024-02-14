@@ -74,4 +74,4 @@ last_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'placeh
 #  одинаковые решения
 <h5><b class="text-center"><a href={{ post.pk }} class="btn btn-secondary">{{ post.title|truncatechars:100 }}</a></b></h5>
 <h5><b class="text-center"><a href="{% url 'post_detail' post.id %}" class="btn btn-secondary">{{ post.title|truncatechars:100 }}</a></b></h5>-->
-
+<h5><b class="text-center"><a href={{ post.get_absolute_url }} class="btn btn-secondary">{{ post.title|truncatechars:100 }}</a></b></h5>
