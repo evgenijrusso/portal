@@ -20,7 +20,7 @@
 <!--      <h5><b class="text-center"><a href="{% url 'post_detail' post.id %}" class="btn btn-secondary">{{ post.title|truncatechars:100 }}</a></b></h5>-->
       <h6>Тип публикации: {{ post.get_choice_types_display }}</h6>
       <h6>Дата публикации: {{ post.time_in|date:'d M Y' }} </h6>
-      <h6>Автор публикации: {{ post.author.user }} </h6>
+      <h6>Автор публикации: {{ post.author__user }} </h6>
       <span>Публикация: {{ post.content|truncatechars:100 }}</span>
       </div>
     {% endfor %}

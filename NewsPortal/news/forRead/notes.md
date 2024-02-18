@@ -67,3 +67,16 @@ best_time_in = posts.first().datatostr()
 Comment.objects.all().order_by().values('comment_time_in', 'user__username', 'comment_rate', 'comment_text')[0]
 
 
+
+class ArticleDetailView(DetailView):
+ 
+    queryset = Article.objects.all().order_by("-pub_date")
+    template_name = 'blog/article_detail.html'
+    context_object_name = 'article'
+ 
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset=queryset)
+        if obj.author != self.request.user:
+            raise Http404()
+        return obj
+ 

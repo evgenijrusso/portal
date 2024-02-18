@@ -50,3 +50,5 @@ rate a long and random value, otherwise many of Django's security-critical featu
 ork traffic sniffers to steal the CSRF token.
 ?: (security.W018) You should not have DEBUG set to True in deployment.
 ?: (security.W020) ALLOWED_HOSTS must not be empty in deployment.
+
+

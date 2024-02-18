@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('news.urls')),
     path('accounts/', include('allauth.urls')),
     path('', include('appointment.urls')),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
 
 admin.site.site_header = "Администрирование News Portal"

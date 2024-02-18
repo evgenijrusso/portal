@@ -11,7 +11,7 @@ class Author(models.Model):
     rating = models.IntegerField(default=0)
 
     def __str__(self):
-        return f'{self.user}'
+        return f'{self.user.username}'
 
     def update_rating(self):
         # рейтинг всех постов автора
@@ -52,7 +52,7 @@ class Post(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     choice_types = models.CharField(max_length=2, choices=TYPES, default=news)
     time_in = models.DateTimeField(default=timezone.now)
-    categories_post = models.ManyToManyField(Category, through='PostCategory', related_name='cat_by_posts')
+    categories_post = models.ManyToManyField(Category, through='PostCategory')
     title = models.CharField(max_length=240, default='')
     content = models.TextField(blank=False)
     rate_new = models.IntegerField(default=0)
