@@ -29,7 +29,7 @@ def send_notify(post, subscribers):
 @receiver(m2m_changed, sender=PostCategory)
 def notify_new_post(sender, instance, **kwargs):
     if kwargs['action'] == 'post_add':
-        categories = instance.get_categories()
+        categories = instance.get_categories_all()
         subscribers_emails = []
 
         for cat in categories:

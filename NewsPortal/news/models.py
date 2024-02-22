@@ -13,6 +13,12 @@ class Author(models.Model):
     def __str__(self):
         return f'{self.user.username}'
 
+    def get_user_categories(self):
+        return list(self.user.categories.values_list("category_name"))
+        # или self.user.categories.all()
+
+
+
     def update_rating(self):
         # рейтинг всех постов автора
         posts_rating = Post.objects.filter(author=self)\
@@ -39,6 +45,9 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return reverse('category_detail', kwargs={'pk': self.id})
+
+    def get_subscribers(self):
+        return list(self.subscribers.values_list("username"))
 
 class Post(models.Model):
     news = 'NE'
@@ -71,8 +80,11 @@ class Post(models.Model):
         return f"{self.content[:length]}..." if len(self.content) > length else self.content
 
     def get_categories(self):
-        cat_qs = self.categories_post.all()
-        return cat_qs
+        return self.categories_post.values_list('category_name', flat=True).first()
+
+    def get_categories_all(self):    # для signal.py
+        return self.categories_post.all()
+
 
     def like(self):
         self.rate_new += 1
