@@ -1,6 +1,6 @@
 from django.views.generic import ListView
 
-from news.models import Author, User
+from news.models import Author
 
 
 APP = 'news/'
@@ -11,9 +11,5 @@ class AuthorList(ListView):
     ordering = '-rating'
     template_name = APP + 'authors.html'
     context_object_name = 'authors'
-    queryset = Author.objects.all().select_related('user')
+    queryset = Author.objects.all()        #. select_related('author')
 
-
-class UserList(ListView):
-    model = User
-    queryset = User.objects.all()

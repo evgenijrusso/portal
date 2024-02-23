@@ -1,6 +1,6 @@
 {% extends 'default.html' %}
 {% block title %} {{ title }} {% endblock title %}
-<!--{% load cache %} -->
+{% load cache %}
 
 {% cache 300 content %}
 
@@ -20,7 +20,7 @@
 <!--      <h5><b class="text-center"><a href="{% url 'post_detail' post.id %}" class="btn btn-secondary">{{ post.title|truncatechars:100 }}</a></b></h5>-->
       <h6>Тип публикации: {{ post.get_choice_types_display }}</h6>
       <h6>Дата публикации: {{ post.time_in|date:'d M Y' }} </h6>
-      <h6>Автор публикации: {{ post.author.user.username }} </h6>
+      <h6>Автор публикации: {{ post.author }} </h6>
       <h6> Категория публикации: {{ post.get_categories_post }} </h6>
       <span>Публикация: {{ post.content|truncatechars:100 }}</span>
       </div>
@@ -52,6 +52,6 @@
 </div>
 
 
-<!--{% endblock content %}-->
+{% endblock content %}
 
 {% endcache %}

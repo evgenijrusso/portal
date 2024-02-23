@@ -88,6 +88,9 @@ class Post(models.Model):
     def get_categories_post(self):    # для posts.html (вывод категории)
         return self.categories_post.all()[0]
 
+    def get_post_author_user(self):
+        return self.author.userall.username
+
     def like(self):
         self.rate_new += 1
         self.save()
