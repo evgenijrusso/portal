@@ -1,6 +1,6 @@
 {% extends 'default.html' %}
 {% block title %} {{ title }} {% endblock title %}
-{% load cache %} <!-- Загружаем кэширование -->
+<!--{% load cache %} -->
 
 {% cache 300 content %}
 
@@ -21,11 +21,7 @@
       <h6>Тип публикации: {{ post.get_choice_types_display }}</h6>
       <h6>Дата публикации: {{ post.time_in|date:'d M Y' }} </h6>
       <h6>Автор публикации: {{ post.author.user.username }} </h6>
-      <h6>Категория публикации:
-<!--          {% for category in post.get_categories %}-->
-<!--                {{ category }}-->
-<!--          {% endfor %}-->
-      </h6>
+      <h6> Категория публикации: {{ post.get_categories_post }} </h6>
       <span>Публикация: {{ post.content|truncatechars:100 }}</span>
       </div>
     {% endfor %}
@@ -56,6 +52,6 @@
 </div>
 
 
-{% endblock content %}
+<!--{% endblock content %}-->
 
 {% endcache %}

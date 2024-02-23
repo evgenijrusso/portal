@@ -10,7 +10,7 @@ clear_rate_new.short_description = 'Обнулить рейтинг'
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'choice_types', 'time_in', 'rate_new', 'get_categories',)
+    list_display = ('title', 'author', 'choice_types', 'time_in', 'rate_new', 'get_categories_admin',)
     list_filter = ('title', 'rate_new',)
     search_fields = ('title', 'categories_post__category_name')
     actions = [clear_rate_new]  # добавляем действия в список

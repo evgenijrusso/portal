@@ -19,7 +19,8 @@ class PostList(ListView):
     template_name = APP + 'posts.html'
     context_object_name = 'posts'
     paginate_by = 4
-    queryset = Post.objects.all()   #.select_related('author')  # с ним - 2 запроса, без него 4
+   # queryset = Post.objects.all().select_related('author')  # с ним - 2 запроса, без него 4
+    queryset = Post.objects.prefetch_related('categories_post')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

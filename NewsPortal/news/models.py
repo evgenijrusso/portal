@@ -79,12 +79,14 @@ class Post(models.Model):
     def preview(self, length=124):
         return f"{self.content[:length]}..." if len(self.content) > length else self.content
 
-    def get_categories(self):
-        return self.categories_post.values_list('category_name', flat=True).first()
+    def get_categories_admin(self):
+        return self.categories_post.values_list('category_name', flat=True).first() # для admin
 
     def get_categories_all(self):    # для signal.py
-        return self.categories_post.all()
+        return list(self.categories_post.all())
 
+    def get_categories_post(self):    # для posts.html (вывод категории)
+        return self.categories_post.all()[0]
 
     def like(self):
         self.rate_new += 1
