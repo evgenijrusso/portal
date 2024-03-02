@@ -108,7 +108,7 @@ class PostCategory(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    comment_text = models.TextField(blank=False)
+    comment_text = models.TextField(blank=True)
     comment_time_in = models.DateTimeField(default=timezone.now)
     comment_rate = models.IntegerField(default=0)
 

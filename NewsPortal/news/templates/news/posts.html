@@ -13,7 +13,7 @@
     <br>
     <h3>Количество постов: {{ page_obj.paginator.count }}</h3>
     <br>
-{% if posts %}
+
     {% for post in posts %}
       <div class="mb-3">
       <h5><b class="text-center"><a href={{ post.pk }} class="btn btn-secondary">{{ post.title|truncatechars:100 }}</a></b></h5>
@@ -24,10 +24,10 @@
       <h6> Категория публикации: {{ post.get_categories_post }} </h6>
       <span>Публикация: {{ post.content|truncatechars:100 }}</span>
       </div>
+    {% empty %}
+        <h3>Новостей нет!</h3>
     {% endfor %}
-{% else %}
-    <h3>Новостей нет!</h3>
-{% endif %}
+
 
 </div>
 <!-- Добавляем пагинацию на страницу -->
