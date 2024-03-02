@@ -13,11 +13,10 @@
     <br>
     <h3>Количество постов: {{ page_obj.paginator.count }}</h3>
     <br>
-
     {% for post in posts %}
       <div class="mb-3">
       <h5><b class="text-center"><a href={{ post.pk }} class="btn btn-secondary">{{ post.title|truncatechars:100 }}</a></b></h5>
-<!--      <h5><b class="text-center"><a href="{% url 'post_detail' post.id %}" class="btn btn-secondary">{{ post.title|truncatechars:100 }}</a></b></h5>-->
+{% comment "Comment" %} <h5><b class="text-center"><a href="{% url 'post_detail' post.id %}" class="btn btn-secondary">{{ post.title|truncatechars:100 }}</a></b></h5> {% endcomment %}
       <h6>Тип публикации: {{ post.get_choice_types_display }}</h6>
       <h6>Дата публикации: {{ post.time_in|date:'d M Y' }} </h6>
       <h6>Автор публикации: {{ post.author }} </h6>
