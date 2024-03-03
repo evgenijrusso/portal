@@ -3,3 +3,4 @@
 venv
 .cache_files/
 .pytest_cache/
+*.log

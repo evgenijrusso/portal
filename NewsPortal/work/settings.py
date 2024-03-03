@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os.path
 from pathlib import Path
+import logging
 
 from dotenv import load_dotenv
 
@@ -18,7 +19,6 @@ load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 INTERNAL_IPS = ['127.0.0.1']
 
 # Application definition
@@ -230,3 +230,123 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
+
+# -----------------------    логирование (шаблон) -----------------------------
+
+logger = logging.getLogger('django')
+
+LOGS_DIR = os.path.join(str(BASE_DIR) + '/logs')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'style' : '{',
+    'formatters': { # запись информации согласно определенному формату
+        'skill_debug': {
+            'format': 'Skill_debug: %(asctime)s %(levelname)s %(message)s %(module)s %(process)d',
+            'datefmt':"%d.%m.%Y %H-%M-%S"
+        },
+        'skill_warming': {
+            'format': 'Skill_warming %(asctime)s %(levelname)s %(message)s %(pahtname)s'
+        },
+        'skill_error': {
+            'format': 'Skill_error: %(asctime)s %(levelname)s %(message)s %(exc_info)s' # стэк ошибки
+        },
+        'general': {
+            'format': '%(asctime)s %(levelname)s %(message)s %(module)s', # сообщения уровня INFO
+            'datefmt':"%d.%m.%Y %H-%M-%S"
+        },
+        'errors': {
+            'format': '%(asctime)s %(levelname)s %(message)s %(pahtname)s %(exc_info)s',  # сообщения уровня ERROR, CRITICAL.
+            'datefmt':"%d.%m.%Y %H-%M-%S"
+        },
+        'email': {  # сообщения на почту
+            'format': '%(asctime)s %(levelname)s %(message)s %(pahtname)s',
+            'datefmt':"%d.%m.%Y %H-%M-%S"
+        },
+        'security': {  # безопасность
+            'format': '%(asctime)s %(levelname)s %(message)s %(module)s',
+            'datefmt':"%d.%m.%Y %H-%M-%S"
+        },
+    },
+    'filters': { # определяют, какая информация должна записываться
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        }
+    },
+    'handlers': {  # обработчики: отправляют записи журнала в файл, почта или консоль...
+        'console_debug': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'skill_debug'
+        },
+        'console_warming': {
+            'level': 'WARNING',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'skill_warming'
+        },
+        'console_error': {
+            'level': 'ERROR',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'skill_error'
+        },
+        'general': {
+            'level': 'INFO',
+            'filters': ['require_debug_false'],
+            'class': 'logging.FileHandler',
+            'filename': 'logs/general.log',
+            'formatter': 'general'
+        },
+    # в этот файл errors.log попадают сообщения из логгеров dango.request,
+    # django.server, django.template, django.db.backends.
+        'errors': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/errors.log',
+            'formatter': 'errors'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'email'
+        },
+        'security': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/security.log',
+            'formatter': 'security'
+        },
+    },
+    'loggers': { #  регистраторы
+        'django': {
+            'handlers': ['console_debug', 'console_warming', 'console_error', 'general'],
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['errors', 'mail_admins'],
+            'propagate': True,
+        },
+        'django.server': {
+            'handlers': ['errors', 'mail_admins'],
+            'propagate': True,
+        },
+        'django.template': {
+            'handlers': ['errors'],
+            'propagate': True,
+        },
+        'django.db_backends': {
+            'handlers': ['errors'],
+            'propagate': True,
+        },
+        'django.security': {
+            'handlers': ['security'],
+            'propagate': True,
+        },
+    }
+}
