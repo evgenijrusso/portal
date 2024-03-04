@@ -254,19 +254,19 @@ LOGGING = {
         },
         'general': {
             'format': '%(asctime)s %(levelname)s %(message)s %(module)s', # сообщения уровня INFO
-            'datefmt':"%d.%m.%Y %H-%M-%S"
+            'datefmt': "%d.%m.%Y %H-%M-%S"
         },
         'errors': {
-            'format': '%(asctime)s %(levelname)s %(message)s %(pahtname)s %(exc_info)s',  # сообщения уровня ERROR, CRITICAL.
-            'datefmt':"%d.%m.%Y %H-%M-%S"
+            'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s %(exc_info)s',
+            'datefmt': "%d.%m.%Y %H-%M-%S"
         },
         'email': {  # сообщения на почту
-            'format': '%(asctime)s %(levelname)s %(message)s %(pahtname)s',
-            'datefmt':"%d.%m.%Y %H-%M-%S"
+            'format': '%(asctime)s %(levelname)s %(message)s %(pathname)s',
+            'datefmt': "%d.%m.%Y %H-%M-%S"
         },
         'security': {  # безопасность
             'format': '%(asctime)s %(levelname)s %(message)s %(module)s',
-            'datefmt':"%d.%m.%Y %H-%M-%S"
+            'datefmt': "%d.%m.%Y %H-%M-%S"
         },
     },
     'filters': { # определяют, какая информация должна записываться
@@ -303,8 +303,6 @@ LOGGING = {
             'filename': 'logs/general.log',
             'formatter': 'general'
         },
-    # в этот файл errors.log попадают сообщения из логгеров dango.request,
-    # django.server, django.template, django.db.backends.
         'errors': {
             'level': 'ERROR',
             'class': 'logging.FileHandler',
@@ -313,7 +311,9 @@ LOGGING = {
         },
         'mail_admins': {
             'level': 'ERROR',
+            'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
             'formatter': 'email'
         },
         'security': {
