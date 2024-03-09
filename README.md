@@ -24,3 +24,4 @@
 для полной информации о статье (post.html)
 17. Загрузил пакет allauth.
 18. Добавил новое приложение `appointment` (встреча) 
+19.  Locale `pip install python-gettext`

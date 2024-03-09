@@ -18,7 +18,6 @@ class Author(models.Model):
         # или self.user.categories.all()
 
 
-
     def update_rating(self):
         # рейтинг всех постов автора
         posts_rating = Post.objects.filter(author=self)\
@@ -35,9 +34,12 @@ class Author(models.Model):
         self.rating = 3 * posts_rating + comments_rating + post_comment_rating
         self.save()
 
+    class Meta:
+        verbose_name = 'Author'
+        verbose_name_plural = 'Authors'
 
 class Category(models.Model):
-    category_name = models.CharField(max_length=200, unique=True)
+    category_name = models.CharField(max_length=200, unique=True, verbose_name='Category')
     subscribers = models.ManyToManyField(User, related_name='categories')
 
     def __str__(self):
@@ -48,6 +50,12 @@ class Category(models.Model):
 
     def get_subscribers(self):
         return list(self.subscribers.values_list("username"))
+
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
+
 
 class Post(models.Model):
     news = 'NE'
@@ -99,6 +107,9 @@ class Post(models.Model):
         self.rate_new -= 1
         self.save()
 
+    class Meta:
+        verbose_name = 'Post'
+        verbose_name_plural = 'Posts'
 
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -125,3 +136,7 @@ class Comment(models.Model):
 
     def datatostr(self):
         return f"{self.comment_time_in.strftime('%Y-%m-%d')}"
+
+    class Meta:
+        verbose_name = 'Comment'
+        verbose_name_plural = 'Comments'

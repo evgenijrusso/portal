@@ -26,11 +26,7 @@ class PostList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Список постов'
-   #     logger.error('Проверка списка новостей (error)')
         return context
-
-
-
 
 
 class PostDetail(DetailView):
