@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.utils.translation import gettext as _
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -7,8 +8,8 @@ from django.db.models.functions import Coalesce
 
 
 class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    rating = models.IntegerField(default=0)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name=_('User'))
+    rating = models.IntegerField(_('Ratiing'), default=0)
 
     def __str__(self):
         return f'{self.user.username}'
@@ -35,12 +36,12 @@ class Author(models.Model):
         self.save()
 
     class Meta:
-        verbose_name = 'Author'
-        verbose_name_plural = 'Authors'
+        verbose_name = _('Author')
+        verbose_name_plural = _('Authors')
 
 class Category(models.Model):
-    category_name = models.CharField(max_length=200, unique=True, verbose_name='Category')
-    subscribers = models.ManyToManyField(User, related_name='categories')
+    category_name = models.CharField(_('Category'), max_length=200, unique=True)
+    subscribers = models.ManyToManyField(User, related_name='categories', verbose_name=_('Subscribers'))
 
     def __str__(self):
         return f'{self.category_name}'
@@ -52,8 +53,8 @@ class Category(models.Model):
         return list(self.subscribers.values_list("username"))
 
     class Meta:
-        verbose_name = 'Category'
-        verbose_name_plural = 'Categories'
+        verbose_name = _('Category')
+        verbose_name_plural = _('Categories')
 
 
 
@@ -66,13 +67,13 @@ class Post(models.Model):
         (articles, 'Статьи')
     ]
 
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    choice_types = models.CharField(max_length=2, choices=TYPES, default=news)
-    time_in = models.DateTimeField(default=timezone.now)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name=_('Author'))
+    choice_types = models.CharField(_('Choice of Types'), max_length=2, choices=TYPES, default=news)
+    time_in = models.DateTimeField(_('Time zone'), default=timezone.now)
     categories_post = models.ManyToManyField(Category, through='PostCategory')
-    title = models.CharField(max_length=240, default='')
-    content = models.TextField(blank=False)
-    rate_new = models.IntegerField(default=0)
+    title = models.CharField(_('Title'), max_length=240, default='')
+    content = models.TextField(_('Context'), blank=False)
+    rate_new = models.IntegerField(_('New rate'), default=0)
 
     def __str__(self):
         return f'{self.title}'
@@ -108,8 +109,8 @@ class Post(models.Model):
         self.save()
 
     class Meta:
-        verbose_name = 'Post'
-        verbose_name_plural = 'Posts'
+        verbose_name = _('Post')
+        verbose_name_plural = _('Posts')
 
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -117,11 +118,11 @@ class PostCategory(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    comment_text = models.TextField(blank=True)
-    comment_time_in = models.DateTimeField(default=timezone.now)
-    comment_rate = models.IntegerField(default=0)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name=_('Post'))
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('User'))
+    comment_text = models.TextField(_('Comment text'), blank=True)
+    comment_time_in = models.DateTimeField(_('Comment time'), default=timezone.now)
+    comment_rate = models.IntegerField(_('Comment rate'), default=0)
 
     def __str__(self):
         return f'{self.comment_text}'
@@ -138,5 +139,5 @@ class Comment(models.Model):
         return f"{self.comment_time_in.strftime('%Y-%m-%d')}"
 
     class Meta:
-        verbose_name = 'Comment'
-        verbose_name_plural = 'Comments'
+        verbose_name = _('Comment')
+        verbose_name_plural = _('Comments')
