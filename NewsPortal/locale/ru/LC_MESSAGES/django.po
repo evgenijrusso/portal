@@ -487,8 +487,11 @@ msgstr ""
 #~ msgid "Post"
 #~ msgstr "Пост"
 
-#~ msgid "List of categories"
-#~ msgstr "Список категорий"
+msgid "List of categories"
+msgstr "Список категорий"
+
+msgid "Name of category"
+msgstr "Имя категории"
 
 #~ msgid "Comment"
 #~ msgstr "Коммертарий"

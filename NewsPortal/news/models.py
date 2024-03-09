@@ -40,7 +40,7 @@ class Author(models.Model):
         verbose_name_plural = _('Authors')
 
 class Category(models.Model):
-    category_name = models.CharField(_('Category'), max_length=200, unique=True)
+    category_name = models.CharField(_('Name of category'), max_length=200, unique=True)
     subscribers = models.ManyToManyField(User, related_name='categories', verbose_name=_('Subscribers'))
 
     def __str__(self):
