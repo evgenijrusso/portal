@@ -1,4 +1,5 @@
 from django.utils.translation import gettext as _
+from django.utils.translation import activate, get_supported_language_variant
 import requests_toolbelt.utils.user_agent
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404

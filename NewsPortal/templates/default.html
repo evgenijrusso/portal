@@ -32,26 +32,26 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                    <ul class="navbar-nav ms-auto mb-2  mb-2 mb-lg-0">
-                        <li class="nav-item active"><a class="nav-link active" aria-current="page" href="../">Главная</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/profile/">Profile</a></li>
+                        <li class="nav-item active"><a class="nav-link active" aria-current="page" href="../">{% translate "Main" %}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/profile/">{% trans "Profile" %}</a></li>
 
                         <li class="nav-item">{% if user.is_authenticated %}<a class="nav-link active)">| {{ request.user.username }} |</a>{% endif %}</li>
-                        <li class="nav-item"> {% if not user.is_authenticated %} <a class="nav-link" href='{% url "account_login" %}'>Войти</a>{% endif %}</li>
-                        <li class="nav-item"> {% if not user.is_authenticated %} <a class="nav-link" href='{% url "account_signup" %}'>Регистрация</a>{% endif %}</li>
-                        <li class="nav-item">{% if user.is_authenticated %}<a class="nav-link" href='{% url "account_logout" %}'>Выйти</a>{% endif %}</li>
+                        <li class="nav-item"> {% if not user.is_authenticated %} <a class="nav-link" href='{% url "account_login" %}'>{% trans "To come in" %}</a>{% endif %}</li>
+                        <li class="nav-item"> {% if not user.is_authenticated %} <a class="nav-link" href='{% url "account_signup" %}'>{% trans "Registration" %}</a>{% endif %}</li>
+                        <li class="nav-item">{% if user.is_authenticated %}<a class="nav-link" href='{% url "account_logout" %}'>{% trans "Go out" %}</a>{% endif %}</li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Models</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">{% translate "Models" %}</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 <!--                                <li><hr class="dropdown-divider"></li>-->
-                       <li><a class="dropdown-item" href="/news/">Posts</a></li>
-                       <li><a class="dropdown-item" href="/authors/">{% translate Authors %}</a></li>
-                       <li><a class="dropdown-item" href="/categories/">Categories</a></li>
-                       <li><a class="dropdown-item" href="/comments/">{% translate Comments %}</a></li>
+                       <li><a class="dropdown-item" href="/news/">{% translate "Posts" %}</a></li>
+                       <li><a class="dropdown-item" href="/authors/">{% translate "Authors" %}</a></li>
+                       <li><a class="dropdown-item" href="/categories/">{% translate "Categories" %}</a></li>
+                       <li><a class="dropdown-item" href="/comments/">{% translate "Comments" %}</a></li>
                             </ul>
                         </li>
-                       <li class="nav-item"><a class="nav-link" href="/news/search/">{% translate Search %}</a></li>
-                       <li class="nav-item"><a class="nav-link" href="/admin/">{% translate Admin %}</a></li>
+                       <li class="nav-item"><a class="nav-link" href="/news/search/">{% trans "Search" %}</a></li>
+                       <li class="nav-item"><a class="nav-link" href="/admin/">{% trans "Admin" %}</a></li>
                    </ul>
                 </div>
             </div>
@@ -60,9 +60,24 @@
 {% endcache %}
 <!-- Begin page content -->
     <main class="flex-shrink-0">
+        <div class="flex-auto">
+        <form action="{% url 'set_language' %}" method="POST"> {% csrf_token %}
+            <input type="hidden" name="next" value="{{ redirect_to }}">
+            <select name="language" id="">
+               {% get_available_languages as LANGUAGES %} <!-- получаем языки -->
+               {% get_language_info_list for LANGUAGES as languages %} <!-- Помещаем их в список languages -->
+
+               {% for language in languages %} <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                    {{ language.name_local }} - {{ language.code }}
+                </option>
+              {% endfor %}
+                <input type="submit" value="set">
+            </select>
+        </form>
+        </div>
         <div class="container">
            {% block content %}
-
 
            {% endblock %}
         </div>

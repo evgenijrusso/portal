@@ -9,13 +9,13 @@
 <div class="container d-grid gap-3">
     <div class="p-3 bg-light border">
 <!--    Subscribe-->
-    <h2><b>List of categories:</b></h2>
+    <h2><b>{% trans "List of categories" %}:</b></h2>
         <div class="p-3">
             {% for cat in categories_list %}
-            <a class="btn btn-secondary" href="{{ cat.id }}" role="button">{{ cat.category_name }}</a>
+            <a class="btn btn-secondary" href="{{ cat.id }}" role="button">{{ cat }}</a>
             {% endfor %}
         </div>
     </div>
 </div>
-
+<!--{% blocktrans %}{% endblocktrans %}-->
 {% endblock content %}

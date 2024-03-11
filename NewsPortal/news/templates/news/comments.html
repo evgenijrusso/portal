@@ -1,15 +1,16 @@
 {% extends 'default.html' %}
+{% load i18n %}
 
 {% block title %} Comments {% endblock title %}
 
 {% block content %}
 
-<b><h3>Список:</h3></b>
+<b><h3>{% trans "List" %}:</h3></b>
 <ul>
 {% for com in comments %}
    <li>
-      <h4>Пользователь: {{ com.user }}</h4>
-      <h5>Дата создания: {{ com.datatostr }}, Рейтинг: {{ com.comment_rate }}</h5>
+      <h4>{% trans "User" %}: {{ com.user }}</h4>
+      <h5>{% trans "Date of creation" %}: {{ com.datatostr }}, {% trans "Rating" %}: {{ com.comment_rate }}</h5>
       <p>{{ com.comment_text|truncatechars:8 }}</p>
 
    </li>

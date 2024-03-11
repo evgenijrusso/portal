@@ -1,14 +1,15 @@
 {% extends 'default.html' %}
+{% load i18n %}
 
 {% block title %} Authors {% endblock title %}
 
 {% block content %}
 
-<b><h3>Список авторов:</h3></b>
+<b><h3>{% trans "List of authors" %}:</h3></b>
 <ul>
 {% for author in authors %}
    <li>
-       <h5>Автор: <span>{{ author.user }}</span>, Рейтинг: {{ author.rating }}</h5>
+       <h5>{% trans "Author" %}: <span>{{ author.user }}</span>, {% trans "Rating" %}: {{ author.rating }}</h5>
    </li>
 
 {% endfor %}

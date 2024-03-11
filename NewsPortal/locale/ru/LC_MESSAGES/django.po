@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#: .\news\templates\news\categories.html:21
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-09 11:46+0600\n"
+"POT-Creation-Date: 2024-03-11 10:11+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +20,112 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\news\models.py:11 .\news\models.py:122
+#: .\news\templates\news\comments.html:12
+msgid "User"
+msgstr "Пользователь"
+
+#: .\news\models.py:12
+msgid "Ratiing"
+msgstr "Рейтинг"
+
+#: .\news\models.py:39 .\news\models.py:70
+#: .\news\templates\news\authors.html:12
+msgid "Author"
+msgstr "Автор"
+
+#: .\news\models.py:40 .\templates\default.html:48
+msgid "Authors"
+msgstr "Авторы"
+
+#: .\news\models.py:43
+msgid "Name of category"
+msgstr "Имя категории"
+
+#: .\news\models.py:44
+msgid "Subscribers"
+msgstr "Подписчики"
+
+#: .\news\models.py:56
+msgid "Category"
+msgstr "Категория"
+
+#: .\news\models.py:57 .\templates\default.html:49
+msgid "Categories"
+msgstr "Категории"
+
+#: .\news\models.py:71
+msgid "Choice of Types"
+msgstr "Выбор типа"
+
+#: .\news\models.py:72
+msgid "Time zone"
+msgstr "Часовой пояс"
+
+#: .\news\models.py:74
+msgid "Title"
+msgstr "Заголовок"
+
+#: .\news\models.py:75
+msgid "Context"
+msgstr "Контекст"
+
+#: .\news\models.py:76
+msgid "New rate"
+msgstr "Новый рейтинг"
+
+#: .\news\models.py:112 .\news\models.py:121
+msgid "Post"
+msgstr "Пост"
+
+#: .\news\models.py:113 .\templates\default.html:47
+msgid "Posts"
+msgstr "Посты"
+
+#: .\news\models.py:123
+msgid "Comment text"
+msgstr "Текст комментария"
+
+#: .\news\models.py:124
+msgid "Comment time"
+msgstr "Время комментария"
+
+#: .\news\models.py:125
+msgid "Comment rate"
+msgstr "Рейтинг коммертария"
+
+#: .\news\models.py:142
+msgid "Comment"
+msgstr "Коммертарий"
+
+#: .\news\models.py:143 .\templates\default.html:50
+msgid "Comments"
+msgstr "Комментарии"
+
+#: .\news\templates\news\authors.html:8
+msgid "List of authors"
+msgstr "Список авторов"
+
+#: .\news\templates\news\authors.html:12 .\news\templates\news\comments.html:13
+msgid "Rating"
+msgstr "Рейтинг"
+
+#: .\news\templates\news\categories.html:12
+msgid "List of categories"
+msgstr "Список категорий"
+
+#: .\news\templates\news\comments.html:8
+msgid "List"
+msgstr "Список"
+
+#: .\news\templates\news\comments.html:13
+msgid "Date of creation"
+msgstr "Дата создания"
+
+#: .\news\templates\news\index.html:7
+msgid "My name is John"
+msgstr "Мое имя Евгений"
 
 #: .\templates\403.html:23
 msgid "Access closed"
@@ -34,7 +141,7 @@ msgstr ""
 
 #: .\templates\403.html:26
 msgid "To main"
-msgstr ""
+msgstr "На главную страницу"
 
 #: .\templates\account\account_inactive.html:5
 #: .\templates\account\account_inactive.html:9
@@ -60,7 +167,7 @@ msgstr ""
 
 #: .\templates\account\email.html:4 .\templates\account\email.html:8
 msgid "Email Addresses"
-msgstr ""
+msgstr "Почтовый адрес"
 
 #: .\templates\account\email.html:11
 msgid "The following email addresses are associated with your account:"
@@ -80,27 +187,27 @@ msgstr ""
 
 #: .\templates\account\email.html:42
 msgid "Make Primary"
-msgstr ""
+msgstr "Сделать начальное"
 
 #: .\templates\account\email.html:45 .\templates\account\email_change.html:37
 msgid "Re-send Verification"
-msgstr ""
+msgstr "Отправить подтверждение"
 
 #: .\templates\account\email.html:48
 msgid "Remove"
-msgstr ""
+msgstr "Удалить"
 
 #: .\templates\account\email.html:57
 msgid "Add Email Address"
-msgstr ""
+msgstr "Добавить адрес электронной почты"
 
 #: .\templates\account\email.html:70
 msgid "Add Email"
-msgstr ""
+msgstr "Добавить адрес электронной почты"
 
 #: .\templates\account\email.html:79
 msgid "Do you really want to remove the selected email address?"
-msgstr ""
+msgstr "Вы действительно хотите удалить выбранный адрес электронной почты?"
 
 #: .\templates\account\email\account_already_exists_message.txt:4
 #, python-format
@@ -122,7 +229,7 @@ msgstr ""
 
 #: .\templates\account\email\account_already_exists_subject.txt:3
 msgid "Account Already Exists"
-msgstr ""
+msgstr "Аккаунт уже существует"
 
 #: .\templates\account\email\base_message.txt:1
 #, python-format
@@ -183,16 +290,16 @@ msgstr ""
 #: .\templates\account\email_change.html:5
 #: .\templates\account\email_change.html:9
 msgid "Email Address"
-msgstr ""
+msgstr "Адрес электронной почты"
 
 #: .\templates\account\email_change.html:21
 #: .\templates\account\email_change.html:29
 msgid "Current email"
-msgstr ""
+msgstr "Текущая электронная почта"
 
 #: .\templates\account\email_change.html:31
 msgid "Changing to"
-msgstr ""
+msgstr "Изменение на"
 
 #: .\templates\account\email_change.html:35
 msgid "Your email address is still pending verification."
@@ -464,40 +571,54 @@ msgstr ""
 
 #: .\templates\allauth\layouts\base.html:26
 msgid "Menu:"
-msgstr ""
+msgstr "Меню"
 
-#~ msgid "Admin"
-#~ msgstr "Админ"
+#: .\templates\default.html:35
+msgid "Main"
+msgstr "Главная"
 
-#~ msgid "Author"
-#~ msgstr "Автор"
+#: .\templates\default.html:36
+msgid "Profile"
+msgstr "Профиль"
 
-#~ msgid "Authors"
-#~ msgstr "Авторы"
+#: .\templates\default.html:39
+msgid "To come in"
+msgstr "Войти"
 
-#~ msgid "Category"
-#~ msgstr "Категория"
+#: .\templates\default.html:40
+msgid "Registration"
+msgstr "Регистрация"
 
-#~ msgid "Categories"
-#~ msgstr "Категории"
+#: .\templates\default.html:41
+msgid "Go out"
+msgstr "Выйти"
 
-#~ msgid "Posts"
-#~ msgstr "Посты"
+#: .\templates\default.html:44
+msgid "Models"
+msgstr "Модели"
 
-#~ msgid "Post"
-#~ msgstr "Пост"
+#: .\templates\default.html:53
+msgid "Search"
+msgstr "Поиск"
 
-msgid "List of categories"
-msgstr "Список категорий"
+#: .\templates\default.html:54
+msgid "Admin"
+msgstr "Админ"
 
-msgid "Name of category"
-msgstr "Имя категории"
+#~ msgid "Miscellaneous"
+#~ msgstr "Разное"
 
-#~ msgid "Comment"
-#~ msgstr "Коммертарий"
+#~ msgid "Policy"
+#~ msgstr "Политика"
 
-#~ msgid "Comments"
-#~ msgstr "Комментарии"
+#~ msgid "Society"
+#~ msgstr "Общество"
+
+#~ msgid "Interesting"
+#~ msgstr "Интересное"
+
+#~ msgid "Temporarily"
+#~ msgstr "Временно"
 
 #~ msgid "You have successfully subscribed to the category newsletter"
 #~ msgstr "Вы успешно подписались на рассылку новостей категории"
