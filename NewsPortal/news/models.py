@@ -72,7 +72,7 @@ class Post(models.Model):
     time_in = models.DateTimeField(_('Time zone'), default=timezone.now)
     categories_post = models.ManyToManyField(Category, through='PostCategory')
     title = models.CharField(_('Title'), max_length=240, default='')
-    content = models.TextField(_('Context'), blank=False)
+    content = models.TextField(_('Content'), blank=False)
     rate_new = models.IntegerField(_('New rate'), default=0)
 
     def __str__(self):

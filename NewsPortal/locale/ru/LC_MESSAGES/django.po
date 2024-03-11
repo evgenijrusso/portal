@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: .\news\templates\news\categories.html:21
+#: .\news\templates\news\categories.html:20
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-11 10:11+0600\n"
+"POT-Creation-Date: 2024-03-11 19:24+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -604,21 +604,6 @@ msgstr "Поиск"
 #: .\templates\default.html:54
 msgid "Admin"
 msgstr "Админ"
-
-#~ msgid "Miscellaneous"
-#~ msgstr "Разное"
-
-#~ msgid "Policy"
-#~ msgstr "Политика"
-
-#~ msgid "Society"
-#~ msgstr "Общество"
-
-#~ msgid "Interesting"
-#~ msgstr "Интересное"
-
-#~ msgid "Temporarily"
-#~ msgstr "Временно"
 
 #~ msgid "You have successfully subscribed to the category newsletter"
 #~ msgstr "Вы успешно подписались на рассылку новостей категории"

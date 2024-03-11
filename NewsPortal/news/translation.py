@@ -1,15 +1,30 @@
-#from modeltranslation.admin import TranslationAdmin
-
+from modeltranslation.admin import TranslationAdmin
 from .models import Author, Category, Post, Comment, PostCategory
-#from modeltranslation.translator import register, TranslationOptions
+from modeltranslation.translator import register, TranslationOptions
 
 
-# class AuthorTranslationOptions(TranslationOptions):
-#     fields = ('user', )  # указываем, какие именно поля надо переводить в виде кортежа
-
-# class CategoryTranslationOptions(TranslationOptions):
-#     fields = ('category_name',)
+@register(Author)
+class AuthorTranslationOptions(TranslationOptions):
+    fields = ('user', )  # не надо было использовать поле OneToOneField
 
 
-# class CategoryAdmin(TranslationAdmin):
-#     model = Category
+class AuthorAdmin(TranslationAdmin):
+    model = Author
+
+
+@register(Category)
+class CategoryTranslationOptions(TranslationOptions):
+    fields = ('category_name',)
+
+
+class CategoryAdmin(TranslationAdmin):
+    model = Category
+
+
+#@register(Post)
+# class PostTranslationOptions(TranslationOptions):
+#     fields = ('title', 'content')  # ?
+
+
+# class PostAdmin(TranslationAdmin):
+#     model = Post
