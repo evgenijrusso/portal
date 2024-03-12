@@ -1,16 +1,17 @@
 {% extends 'default.html' %}
+{% load i18n %}
 
 {% block title %} Delete post {% endblock title %}
 
 {% block content %}
-<h3 class="text-center">Удалить пост</h3>
+<h3 class="text-center">{% trans "Delete post" %}</h3>
     <br>
     <form class="text-center" action="" method="post">
         {% csrf_token %}
-        <p>Вы действительно хотите удалить этот пост?</p>
-        <input class="btn btn-lg btn-dark" type="submit" value="Удалить">
+        <p>{% trans "Are you sure you want to delete this post?" %}</p>
+        <input class="btn btn-lg btn-dark" type="submit" value="Delete">
         <a style="text-decoration: none" href="/news/{{ post.pk }}">
-            <input class="btn btn-lg btn-dark" type="button" value="Отмена" />
+            <input class="btn btn-lg btn-dark" type="button" value="Cancel" />
         </a>
     </form>
 {% endblock content %}

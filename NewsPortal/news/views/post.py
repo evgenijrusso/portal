@@ -82,9 +82,9 @@ class PostCreate(PermissionRequiredMixin, CreateView):
 
     def get_type_create(self):
         if self.request.path == '/news/articles/create/':
-            return ['Create article', 'Добавить статью']
+            return ['Create Article', 'Добавить статью']
         else:
-            return ['Create news', 'Добавить новость']
+            return ['Create News', 'Добавить новость']
 
 
 class PostUpdate(PermissionRequiredMixin, UpdateView):
@@ -102,9 +102,9 @@ class PostUpdate(PermissionRequiredMixin, UpdateView):
 
     def get_type_update(self):
         if 'articles' in self.request.path:      # здесь появляется неверный адрес
-            return ['Edit article', 'Редактировать статью']
+            return ['Edit Article', 'Редактировать статью']
         else:
-            return ['Edit news', 'Редактировать новость']
+            return ['Edit News', 'Редактировать новость']
 
 
 class PostDelete(PermissionRequiredMixin, DeleteView):

@@ -3,13 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: .\news\templates\news\categories.html:20
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-11 19:24+0600\n"
+"POT-Creation-Date: 2024-03-12 10:15+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,6 +31,7 @@ msgstr "Рейтинг"
 
 #: .\news\models.py:39 .\news\models.py:70
 #: .\news\templates\news\authors.html:12
+#: .\news\templates\news\post_detail.html:20
 msgid "Author"
 msgstr "Автор"
 
@@ -68,7 +68,9 @@ msgid "Title"
 msgstr "Заголовок"
 
 #: .\news\models.py:75
-msgid "Context"
+#, fuzzy
+#| msgid "Context"
+msgid "Content"
 msgstr "Контекст"
 
 #: .\news\models.py:76
@@ -126,6 +128,63 @@ msgstr "Дата создания"
 #: .\news\templates\news\index.html:7
 msgid "My name is John"
 msgstr "Мое имя Евгений"
+
+#: .\news\templates\news\post_delete.html:7
+msgid "Delete post"
+msgstr "Удалить пост"
+
+#: .\news\templates\news\post_delete.html:11
+msgid "Are you sure you want to delete this post?"
+msgstr "Вы действительно хотите удалить этот пост?"
+
+#: .\news\templates\news\post_detail.html:11
+msgid "Update Article"
+msgstr "Обновить статью"
+
+#: .\news\templates\news\post_detail.html:13
+msgid "Update News"
+msgstr "Обновить новость"
+
+#: .\news\templates\news\post_detail.html:15
+msgid "Delete"
+msgstr "Удалить"
+
+#: .\news\templates\news\post_detail.html:20
+#: .\news\templates\news\posts.html:22
+msgid "Publication date"
+msgstr "Дата публикации"
+
+#: .\news\templates\news\posts.html:12
+msgid "Create News"
+msgstr "Добавить новость"
+
+#: .\news\templates\news\posts.html:13
+msgid "Create Article"
+msgstr "Добавить статью"
+
+#: .\news\templates\news\posts.html:15
+msgid "Number of posts"
+msgstr "Количество постов"
+
+#: .\news\templates\news\posts.html:21
+msgid "Publication type"
+msgstr "Тип публикации"
+
+#: .\news\templates\news\posts.html:23
+msgid "Author of the publication"
+msgstr "Автор публикации"
+
+#: .\news\templates\news\posts.html:24
+msgid "Publication category"
+msgstr "Категория публикации"
+
+#: .\news\templates\news\posts.html:25
+msgid "Publication"
+msgstr "Публикация"
+
+#: .\news\templates\news\posts.html:28
+msgid "No news!"
+msgstr "Новостей нет!"
 
 #: .\templates\403.html:23
 msgid "Access closed"
@@ -607,3 +666,12 @@ msgstr "Админ"
 
 #~ msgid "You have successfully subscribed to the category newsletter"
 #~ msgstr "Вы успешно подписались на рассылку новостей категории"
+
+#~ msgid "Cancel"
+#~ msgstr "Отмена"
+
+#~ msgid "Edit news"
+#~ msgstr "Редактировать новость"
+
+#~ msgid "Edit Article"
+#~ msgstr "Редактировать статью"

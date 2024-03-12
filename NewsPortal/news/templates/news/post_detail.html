@@ -1,5 +1,6 @@
 {% extends 'default.html' %}
 {% load custom_filters %}
+{% load i18n %}
 
 {% block title %} {{ title }} {% endblock title %}
 
@@ -7,16 +8,16 @@
 <div class="container d-grid gap-3">
     <div class="p-3 bg-light border">
     {% if post.choice_types == 'AR' %}
-    <a class="btn btn-secondary" href="/news/articles/{{ post.pk }}/edit/" role="button">Update Article</a>
+    <a class="btn btn-secondary" href="/news/articles/{{ post.pk }}/edit/" role="button">{% trans "Update Article" %}</a>
     {% else %}
-    <a class="btn btn-secondary" href="/news/{{ post.pk }}/edit/" role="button">Update News</a>
+    <a class="btn btn-secondary" href="/news/{{ post.pk }}/edit/" role="button">{% trans "Update News" %}</a>
     {% endif %}
-    <a class="btn btn-primary" href="{{ post.pk }}/delete/" role="button">Delete</a>
+    <a class="btn btn-primary" href="{{ post.pk }}/delete/" role="button">{% trans "Delete" %}</a>
     </div>
     <div class="p3 border"><h3><strong>{{ post.get_choice_types_display }}</strong></h3></div>
     <div class="p3 border"><h4> {{ post.title|censor }}</h4></div>
 
-    <div class="p3 border"><h4> Дата публикации: {{ post.time_in|date:'d M Y' }}, <em>Автор: {{ post.author.user }}</em></h4></div>
+    <div class="p3 border"><h4> {% trans "Publication date" %}: {{ post.time_in|date:'d M Y' }}, <em>{% trans "Author" %}: {{ post.author.user }}</em></h4></div>
     <div class="p3 border"><h5 class="text-lg-left">{{ post.content|censor }}</h5></div>
 
 </div>

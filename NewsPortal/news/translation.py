@@ -21,10 +21,10 @@ class CategoryAdmin(TranslationAdmin):
     model = Category
 
 
-#@register(Post)
-# class PostTranslationOptions(TranslationOptions):
-#     fields = ('title', 'content')  # ?
+@register(Post)
+class PostTranslationOptions(TranslationOptions):
+    fields = ('title', 'content')
 
 
-# class PostAdmin(TranslationAdmin):
-#     model = Post
+class PostAdmin(TranslationAdmin):
+    model = Post

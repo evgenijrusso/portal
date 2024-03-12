@@ -1,6 +1,7 @@
 {% extends 'default.html' %}
 {% block title %} {{ title }} {% endblock title %}
 {% load cache %}
+{% load i18n %}
 
 {% cache 300 content %}
 
@@ -8,23 +9,23 @@
  <div class="container px-lg-3 text-center">
 
 </div>
-    <a class="btn btn-primary" href="/news/create/" role="button">Create New</a>
-    <a class="btn btn-primary" href="/news/articles/create/" role="button">Create Article</a>
+    <a class="btn btn-primary" href="/news/create/" role="button">{% trans "Create News" %}</a>
+    <a class="btn btn-primary" href="/news/articles/create/" role="button">{% trans "Create Article" %}</a>
     <br>
-    <h3>Количество постов: {{ page_obj.paginator.count }}</h3>
+    <h3>{% trans "Number of posts" %}: {{ page_obj.paginator.count }}</h3>
     <br>
     {% for post in posts %}
       <div class="mb-3">
       <h5><b class="text-center"><a href={{ post.pk }} class="btn btn-secondary">{{ post.title|truncatechars:100 }}</a></b></h5>
 {% comment "Comment" %} <h5><b class="text-center"><a href="{% url 'post_detail' post.id %}" class="btn btn-secondary">{{ post.title|truncatechars:100 }}</a></b></h5> {% endcomment %}
-      <h6>Тип публикации: {{ post.get_choice_types_display }}</h6>
-      <h6>Дата публикации: {{ post.time_in|date:'d M Y' }} </h6>
-      <h6>Автор публикации: {{ post.author }} </h6>
-      <h6> Категория публикации: {{ post.get_categories_post }} </h6>
-      <span>Публикация: {{ post.content|truncatechars:100 }}</span>
+      <h6>{% trans "Publication type" %}: {{ post.get_choice_types_display }}</h6>
+      <h6>{% trans "Publication date" %}: {{ post.time_in|date:'d M Y' }} </h6>
+      <h6>{% trans "Author of the publication" %}: {{ post.author }} </h6>
+      <h6> {% trans "Publication category" %}: {{ post.get_categories_post }} </h6>
+      <span>{% trans "Publication" %}: {{ post.content|truncatechars:100 }}</span>
       </div>
     {% empty %}
-        <h3>Новостей нет!</h3>
+        <h3>{% trans "No news!" %}</h3>
     {% endfor %}
 
 
