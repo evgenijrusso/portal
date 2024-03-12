@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
-from django.utils.translation import gettext as _
+# from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -63,8 +64,8 @@ class Post(models.Model):
     articles = 'AR'
 
     TYPES = [
-        (news, 'Новости'),
-        (articles, 'Статьи')
+        (news, 'News'),
+        (articles, 'Articles')
     ]
 
     author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name=_('Author'))

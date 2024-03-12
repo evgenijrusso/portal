@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-12 10:15+0600\n"
+"POT-Creation-Date: 2024-03-12 20:05+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,88 +20,88 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\news\models.py:11 .\news\models.py:122
+#: .\news\models.py:12 .\news\models.py:123
 #: .\news\templates\news\comments.html:12
 msgid "User"
 msgstr "Пользователь"
 
-#: .\news\models.py:12
+#: .\news\models.py:13
 msgid "Ratiing"
 msgstr "Рейтинг"
 
-#: .\news\models.py:39 .\news\models.py:70
+#: .\news\models.py:40 .\news\models.py:71
 #: .\news\templates\news\authors.html:12
 #: .\news\templates\news\post_detail.html:20
 msgid "Author"
 msgstr "Автор"
 
-#: .\news\models.py:40 .\templates\default.html:48
+#: .\news\models.py:41 .\templates\default.html:48
 msgid "Authors"
 msgstr "Авторы"
 
-#: .\news\models.py:43
+#: .\news\models.py:44
 msgid "Name of category"
 msgstr "Имя категории"
 
-#: .\news\models.py:44
+#: .\news\models.py:45
 msgid "Subscribers"
 msgstr "Подписчики"
 
-#: .\news\models.py:56
+#: .\news\models.py:57
 msgid "Category"
 msgstr "Категория"
 
-#: .\news\models.py:57 .\templates\default.html:49
+#: .\news\models.py:58 .\templates\default.html:49
 msgid "Categories"
 msgstr "Категории"
 
-#: .\news\models.py:71
+#: .\news\models.py:72
 msgid "Choice of Types"
 msgstr "Выбор типа"
 
-#: .\news\models.py:72
+#: .\news\models.py:73
 msgid "Time zone"
 msgstr "Часовой пояс"
 
-#: .\news\models.py:74
+#: .\news\models.py:75
 msgid "Title"
 msgstr "Заголовок"
 
-#: .\news\models.py:75
+#: .\news\models.py:76
 #, fuzzy
 #| msgid "Context"
 msgid "Content"
 msgstr "Контекст"
 
-#: .\news\models.py:76
+#: .\news\models.py:77
 msgid "New rate"
 msgstr "Новый рейтинг"
 
-#: .\news\models.py:112 .\news\models.py:121
+#: .\news\models.py:113 .\news\models.py:122
 msgid "Post"
 msgstr "Пост"
 
-#: .\news\models.py:113 .\templates\default.html:47
+#: .\news\models.py:114 .\templates\default.html:47
 msgid "Posts"
 msgstr "Посты"
 
-#: .\news\models.py:123
+#: .\news\models.py:124
 msgid "Comment text"
 msgstr "Текст комментария"
 
-#: .\news\models.py:124
+#: .\news\models.py:125
 msgid "Comment time"
 msgstr "Время комментария"
 
-#: .\news\models.py:125
+#: .\news\models.py:126
 msgid "Comment rate"
 msgstr "Рейтинг коммертария"
 
-#: .\news\models.py:142
+#: .\news\models.py:143
 msgid "Comment"
 msgstr "Коммертарий"
 
-#: .\news\models.py:143 .\templates\default.html:50
+#: .\news\models.py:144 .\templates\default.html:50
 msgid "Comments"
 msgstr "Комментарии"
 
@@ -675,3 +675,12 @@ msgstr "Админ"
 
 #~ msgid "Edit Article"
 #~ msgstr "Редактировать статью"
+
+#~ msgid "About the config"
+#~ msgstr "О конфиге"
+
+#~ msgid "News"
+#~ msgstr "Новости"
+
+#~ msgid "Articles"
+#~ msgstr "Статьи"
