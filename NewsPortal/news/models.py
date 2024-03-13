@@ -64,8 +64,8 @@ class Post(models.Model):
     articles = 'AR'
 
     TYPES = [
-        (news, 'News'),
-        (articles, 'Articles')
+        (news, _('News')),
+        (articles, _('Articles'))
     ]
 
     author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name=_('Author'))

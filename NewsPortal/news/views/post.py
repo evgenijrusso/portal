@@ -97,7 +97,7 @@ class PostUpdate(PermissionRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['get_title'] = self.get_type_update()[0]
-        context['get_create_update'] = self.get_type_update()[1]
+        context['get_create_update'] = self.get_type_update()[0]
         return context
 
     def get_type_update(self):

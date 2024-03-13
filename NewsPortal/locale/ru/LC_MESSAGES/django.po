@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-12 20:05+0600\n"
+"POT-Creation-Date: 2024-03-13 09:22+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,6 +54,14 @@ msgstr "Категория"
 #: .\news\models.py:58 .\templates\default.html:49
 msgid "Categories"
 msgstr "Категории"
+
+#: .\news\models.py:67
+msgid "News"
+msgstr "Новости"
+
+#: .\news\models.py:68
+msgid "Articles"
+msgstr "Статьи"
 
 #: .\news\models.py:72
 msgid "Choice of Types"
@@ -675,12 +683,3 @@ msgstr "Админ"
 
 #~ msgid "Edit Article"
 #~ msgstr "Редактировать статью"
-
-#~ msgid "About the config"
-#~ msgstr "О конфиге"
-
-#~ msgid "News"
-#~ msgstr "Новости"
-
-#~ msgid "Articles"
-#~ msgstr "Статьи"
