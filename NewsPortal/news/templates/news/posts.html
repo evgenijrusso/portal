@@ -6,11 +6,11 @@
 {% cache 300 content %}
 
 {% block content %}
- <div class="container px-lg-3 text-center">
-<br>
-</div>
-    <a class="btn btn-primary" href="/news/create/" role="button">{% trans "Create News" %}</a>
-    <a class="btn btn-primary" href="/news/articles/create/" role="button">{% trans "Create Article" %}</a>
+ <div class="container px-lg-3">
+    <div class="flex-auto">
+        <a class="btn btn-primary" href="/news/create/" role="button">{% trans "Create News" %}</a>
+        <a class="btn btn-primary" href="/news/articles/create/" role="button">{% trans "Create Article" %}</a>
+    </div>
     <br>
     <h3>{% trans "Number of posts" %}: {{ page_obj.paginator.count }}</h3>
     <br>

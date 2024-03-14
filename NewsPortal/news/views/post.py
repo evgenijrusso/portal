@@ -20,8 +20,7 @@ class PostList(ListView):
     ordering = '-time_in'
     template_name = APP + 'posts.html'
     context_object_name = 'posts'
-    paginate_by = 4
- #   qs = Post.objects.all().select_related('author')  # с ним - 2 запроса, без него 4
+    paginate_by = 3
     queryset = Post.objects.prefetch_related('categories_post')
 
     def get_context_data(self, **kwargs):
@@ -49,7 +48,7 @@ class PostDetail(DetailView):
         context['title'] = 'Пост'
         return context
 
-
+# -----------------  PostCreate --------------------------
 class PostCreate(PermissionRequiredMixin, CreateView):
     form_class = PostForm
     model = Post

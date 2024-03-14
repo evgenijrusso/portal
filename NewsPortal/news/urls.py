@@ -4,12 +4,12 @@ from news.views.post import PostList, PostDetail, PostCreate, PostDelete, PostUp
 from news.views.author import AuthorList
 from news.views.category import CategoryListView, CategoryDetailView, subscribe, unsubscribe
 from news.views.comment import CommentList
-from news.views.index import index
+from news.views.index import Index
 from news.views.profile import ProfileView, upgrade_to_author
 
 
 urlpatterns = [
-    path('', index),  # http://127.0.0.1:8004
+    path('', Index.as_view(), name='index'),  # http://127.0.0.1:8004
     path('news/', PostList.as_view(), name='posts'),
     path('news/articles/', PostList.as_view(), name='articles'),
     path('news/create/', PostCreate.as_view(), name='posts_news_create'),
@@ -23,8 +23,8 @@ urlpatterns = [
 
     path('profile/', ProfileView.as_view(), name='profile'),
     path('profile/upgrade/', upgrade_to_author, name='upgrade_to_author'),
-    path('accounts/', index),  # http://127.0.0.1:8004/accounts
-    path('accounts/google', index),  # http://127.0.0.1:8004/accounts
+    path('accounts/', Index.as_view(), name='index'),  # http://127.0.0.1:8004/accounts
+#    path('accounts/google', index),  # http://127.0.0.1:8004/accounts
 
 
     path('authors/', AuthorList.as_view(), name='authors'),

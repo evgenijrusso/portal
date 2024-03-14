@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-13 15:09+0600\n"
+"POT-Creation-Date: 2024-03-14 16:20+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,102 +20,97 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\news\forms.py:18
-#, fuzzy
-#| msgid "Categories"
-msgid "List_Categories"
-msgstr "Категории"
-
-#: .\news\models.py:12 .\news\models.py:123
+#: .\news\models.py:11 .\news\models.py:122
 #: .\news\templates\news\comments.html:12
 msgid "User"
 msgstr "Пользователь"
 
-#: .\news\models.py:13
+#: .\news\models.py:12
 msgid "Ratiing"
 msgstr "Рейтинг"
 
-#: .\news\models.py:40 .\news\models.py:71
+#: .\news\models.py:39 .\news\models.py:70
 #: .\news\templates\news\authors.html:12
 #: .\news\templates\news\post_detail.html:20
+#: .\news\templates\news\post_edit.html:14
 msgid "Author"
 msgstr "Автор"
 
-#: .\news\models.py:41 .\templates\default.html:48
+#: .\news\models.py:40 .\templates\default.html:45
 msgid "Authors"
 msgstr "Авторы"
 
-#: .\news\models.py:44
+#: .\news\models.py:43
 msgid "Name of category"
 msgstr "Имя категории"
 
-#: .\news\models.py:45
+#: .\news\models.py:44
 msgid "Subscribers"
 msgstr "Подписчики"
 
-#: .\news\models.py:57
+#: .\news\models.py:56
 msgid "Category"
 msgstr "Категория"
 
-#: .\news\models.py:58 .\templates\default.html:49
+#: .\news\models.py:57 .\templates\default.html:46
 msgid "Categories"
 msgstr "Категории"
 
-#: .\news\models.py:67
+#: .\news\models.py:66
 msgid "News"
 msgstr "Новости"
 
-#: .\news\models.py:68
+#: .\news\models.py:67
 msgid "Articles"
 msgstr "Статьи"
 
-#: .\news\models.py:72
+#: .\news\models.py:71
 msgid "Choice of Types"
 msgstr "Выбор типа"
 
-#: .\news\models.py:73
+#: .\news\models.py:72
 msgid "Time zone"
 msgstr "Часовой пояс"
 
-#: .\news\models.py:75
+#: .\news\models.py:74 .\news\templates\news\post_edit.html:17
 msgid "Title"
 msgstr "Заголовок"
 
-#: .\news\models.py:76
+#: .\news\models.py:75 .\news\templates\news\post_edit.html:18
 #, fuzzy
 #| msgid "Context"
 msgid "Content"
 msgstr "Контекст"
 
-#: .\news\models.py:77
+#: .\news\models.py:76 .\news\templates\news\post_edit.html:16
 msgid "New rate"
 msgstr "Новый рейтинг"
 
-#: .\news\models.py:113 .\news\models.py:122
+#: .\news\models.py:112 .\news\models.py:121
 msgid "Post"
 msgstr "Пост"
 
-#: .\news\models.py:114 .\templates\default.html:47
+#: .\news\models.py:113 .\templates\default.html:44
 msgid "Posts"
 msgstr "Посты"
 
-#: .\news\models.py:124
+#: .\news\models.py:123
 msgid "Comment text"
 msgstr "Текст комментария"
 
-#: .\news\models.py:125
+#: .\news\models.py:124
 msgid "Comment time"
 msgstr "Время комментария"
 
-#: .\news\models.py:126
+#: .\news\models.py:125
 msgid "Comment rate"
 msgstr "Рейтинг коммертария"
 
-#: .\news\models.py:143
+#: .\news\models.py:142
 msgid "Comment"
 msgstr "Коммертарий"
 
-#: .\news\models.py:144 .\templates\default.html:50
+#: .\news\models.py:143 .\templates\default.html:47
 msgid "Comments"
 msgstr "Комментарии"
 
@@ -128,21 +123,21 @@ msgid "Rating"
 msgstr "Рейтинг"
 
 #: .\news\templates\news\categories.html:12
-#: .\news\templates\news\post_edit.html:19
+#: .\news\templates\news\post_edit.html:15
 msgid "List of categories"
 msgstr "Список категорий"
 
 #: .\news\templates\news\comments.html:8
-msgid "List"
-msgstr "Список"
+msgid "List of comments"
+msgstr "Список комментариев"
 
 #: .\news\templates\news\comments.html:13
 msgid "Date of creation"
 msgstr "Дата создания"
 
-#: .\news\templates\news\index.html:7
-msgid "My name is John"
-msgstr "Мое имя Евгений"
+#: .\news\templates\news\index.html:8
+msgid "List of posts"
+msgstr "Список постов"
 
 #: .\news\templates\news\post_delete.html:7
 msgid "Delete post"
@@ -169,21 +164,21 @@ msgstr "Удалить"
 msgid "Publication date"
 msgstr "Дата публикации"
 
-#: .\news\templates\news\post_edit.html:27 .\news\templates\news\posts.html:21
-msgid "Publication type"
-msgstr "Тип публикации"
-
-#: .\news\templates\news\posts.html:12 .\news\views\post.py:88
+#: .\news\templates\news\posts.html:11 .\news\views\post.py:87
 msgid "Create News"
 msgstr "Добавить новость"
 
-#: .\news\templates\news\posts.html:13 .\news\views\post.py:86
+#: .\news\templates\news\posts.html:12 .\news\views\post.py:85
 msgid "Create Article"
 msgstr "Добавить статью"
 
 #: .\news\templates\news\posts.html:15
 msgid "Number of posts"
 msgstr "Количество постов"
+
+#: .\news\templates\news\posts.html:21
+msgid "Publication type"
+msgstr "Тип публикации"
 
 #: .\news\templates\news\posts.html:23
 msgid "Author of the publication"
@@ -201,11 +196,11 @@ msgstr "Публикация"
 msgid "No news!"
 msgstr "Новостей нет!"
 
-#: .\news\views\post.py:106
+#: .\news\views\post.py:105
 msgid "Edit Article"
 msgstr "Редактировать статью"
 
-#: .\news\views\post.py:108
+#: .\news\views\post.py:107
 msgid "Edit News"
 msgstr "Редактировать новость"
 
@@ -216,10 +211,12 @@ msgstr ""
 #: .\templates\403.html:24
 msgid "You are not the author and cannot create or edit news and articles"
 msgstr ""
+"Вы не являетесь автором и не можете создавать или редактировать новости и "
+"статьи"
 
-#: .\templates\403.html:25
+#: .\templates\403.html:25 .\templates\profile.html:20
 msgid "Become an author"
-msgstr ""
+msgstr "Стать автором"
 
 #: .\templates\403.html:26
 msgid "To main"
@@ -655,40 +652,56 @@ msgstr ""
 msgid "Menu:"
 msgstr "Меню"
 
-#: .\templates\default.html:35
+#: .\templates\default.html:32
 msgid "Main"
 msgstr "Главная"
 
-#: .\templates\default.html:36
+#: .\templates\default.html:33
 msgid "Profile"
 msgstr "Профиль"
 
-#: .\templates\default.html:39
+#: .\templates\default.html:36
 msgid "To come in"
 msgstr "Войти"
 
-#: .\templates\default.html:40
+#: .\templates\default.html:37
 msgid "Registration"
 msgstr "Регистрация"
 
-#: .\templates\default.html:41
+#: .\templates\default.html:38 .\templates\profile.html:22
 msgid "Go out"
 msgstr "Выйти"
 
-#: .\templates\default.html:44
+#: .\templates\default.html:41
 msgid "Models"
 msgstr "Модели"
 
-#: .\templates\default.html:53
+#: .\templates\default.html:50
 msgid "Search"
 msgstr "Поиск"
 
-#: .\templates\default.html:54
+#: .\templates\default.html:51
 msgid "Admin"
 msgstr "Админ"
 
+#: .\templates\profile.html:9
+msgid "Authorized user page"
+msgstr "Страница авторизованного пользователя"
+
+#: .\templates\profile.html:12
+msgid "You are the author"
+msgstr "Вы являетесь автором"
+
+#: .\templates\profile.html:13
+msgid "You can create and edit news and articles"
+msgstr "Вы можете создавать и редактировать новости и статьи"
+
+#: .\templates\profile.html:15
+msgid "Your personal information is displayed here"
+msgstr "Здесь выводится ваша персональная информация"
+
+#~ msgid "List"
+#~ msgstr "Список"
+
 #~ msgid "You have successfully subscribed to the category newsletter"
 #~ msgstr "Вы успешно подписались на рассылку новостей категории"
-
-#~ msgid "Cancel"
-#~ msgstr "Отмена"

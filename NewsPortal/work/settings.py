@@ -90,6 +90,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'news.middlewares.TimezoneMiddleware', # add that middleware!
 ]
 
 ROOT_URLCONF = 'work.urls'

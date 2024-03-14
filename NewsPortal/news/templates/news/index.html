@@ -1,9 +1,18 @@
 {% extends 'default.html' %}
 {% load i18n %}
+{% load tz %} <!-- не забываем загрузить тег для работы с часовыми поясами -->
 
 {% block title %} index {% endblock title %}
 
 {% block content %}
-<h2>{% trans "My name is John" %}</h2>
+<h3>{% trans "List of posts" %}</h3>
+
+    {% for model in models %}
+    <div class="model-class">
+        {{ model.title }}
+    </div>
+    {% endfor %}
+
+
 
 {% endblock %}

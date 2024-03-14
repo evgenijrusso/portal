@@ -1,23 +1,24 @@
 {% extends 'default.html' %}
+{% load i18n %}
 
 {% block title %}
     Profile
 {% endblock title %}
 
 {% block content %}
-    <h2>Страница авторизованного пользователя {{ request.user.username }}</h2>
+<h2>{% trans "Authorized user page" %} <b>{{ request.user.username }}</b></h2>
     <br>
     {% if not is_not_author %}
-        <h4>Вы являетесь автором!</h4>
-        <div>Вы можете создавать и редактировать новости и статьи.</div>
+        <h4>{% trans "You are the author" %}!</h4>
+        <div>{% trans "You can create and edit news and articles" %}</div>
     {% endif %}
-    <div>Здесь выводится ваша персональная информация.</div>
+    <div>{% trans "Your personal information is displayed here" %}</div>
     <br><br>
     <hr>
-    <div class="text-center" >
+    <div class="flex mb-2">
         {% if is_not_author %}
-            <button class="btn btn-lg btn-dark"><a style="text-decoration: none; color: white" href="upgrade/">Стать автором</a></button>
+            <button class="btn btn-lg btn-dark"><a style="text-decoration: none; color: white" href="upgrade/">{% trans "Become an author" %}</a></button>
         {% endif %}
-        <button class="btn btn-lg btn-dark"><a style="text-decoration: none; color: white" href="/accounts/logout/">Выйти</a></button>
+            <button class="btn btn-lg btn-dark"><a style="text-decoration: none; color: white" href="/accounts/logout/">{% trans "Go out" %}</a></button>
     </div>
 {% endblock content %}
