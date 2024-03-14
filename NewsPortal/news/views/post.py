@@ -1,4 +1,5 @@
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
 from datetime import date
@@ -77,14 +78,14 @@ class PostCreate(PermissionRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['get_title'] = self.get_type_create()[0]
-        context['get_create_update'] = self.get_type_create()[1]
+        context['get_create_update'] = self.get_type_create()[0]
         return context
 
     def get_type_create(self):
         if self.request.path == '/news/articles/create/':
-            return ['Create Article', 'Добавить статью']
+            return [_('Create Article')]
         else:
-            return ['Create News', 'Добавить новость']
+            return [_('Create News')]
 
 
 class PostUpdate(PermissionRequiredMixin, UpdateView):
@@ -102,9 +103,9 @@ class PostUpdate(PermissionRequiredMixin, UpdateView):
 
     def get_type_update(self):
         if 'articles' in self.request.path:      # здесь появляется неверный адрес
-            return ['Edit Article', 'Редактировать статью']
+            return [_('Edit Article'), 'Редактировать статью']
         else:
-            return ['Edit News', 'Редактировать новость']
+            return [_('Edit News'), 'Редактировать новость']
 
 
 class PostDelete(PermissionRequiredMixin, DeleteView):

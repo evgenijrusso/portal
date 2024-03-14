@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-13 09:22+0600\n"
+"POT-Creation-Date: 2024-03-13 15:09+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\news\forms.py:18
+#, fuzzy
+#| msgid "Categories"
+msgid "List_Categories"
+msgstr "Категории"
 
 #: .\news\models.py:12 .\news\models.py:123
 #: .\news\templates\news\comments.html:12
@@ -122,6 +128,7 @@ msgid "Rating"
 msgstr "Рейтинг"
 
 #: .\news\templates\news\categories.html:12
+#: .\news\templates\news\post_edit.html:19
 msgid "List of categories"
 msgstr "Список категорий"
 
@@ -162,21 +169,21 @@ msgstr "Удалить"
 msgid "Publication date"
 msgstr "Дата публикации"
 
-#: .\news\templates\news\posts.html:12
+#: .\news\templates\news\post_edit.html:27 .\news\templates\news\posts.html:21
+msgid "Publication type"
+msgstr "Тип публикации"
+
+#: .\news\templates\news\posts.html:12 .\news\views\post.py:88
 msgid "Create News"
 msgstr "Добавить новость"
 
-#: .\news\templates\news\posts.html:13
+#: .\news\templates\news\posts.html:13 .\news\views\post.py:86
 msgid "Create Article"
 msgstr "Добавить статью"
 
 #: .\news\templates\news\posts.html:15
 msgid "Number of posts"
 msgstr "Количество постов"
-
-#: .\news\templates\news\posts.html:21
-msgid "Publication type"
-msgstr "Тип публикации"
 
 #: .\news\templates\news\posts.html:23
 msgid "Author of the publication"
@@ -193,6 +200,14 @@ msgstr "Публикация"
 #: .\news\templates\news\posts.html:28
 msgid "No news!"
 msgstr "Новостей нет!"
+
+#: .\news\views\post.py:106
+msgid "Edit Article"
+msgstr "Редактировать статью"
+
+#: .\news\views\post.py:108
+msgid "Edit News"
+msgstr "Редактировать новость"
 
 #: .\templates\403.html:23
 msgid "Access closed"
@@ -677,9 +692,3 @@ msgstr "Админ"
 
 #~ msgid "Cancel"
 #~ msgstr "Отмена"
-
-#~ msgid "Edit news"
-#~ msgstr "Редактировать новость"
-
-#~ msgid "Edit Article"
-#~ msgstr "Редактировать статью"
