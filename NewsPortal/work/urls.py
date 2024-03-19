@@ -16,6 +16,18 @@ Including another URLconf
 """
 from django.urls import path, include
 from django.contrib import admin
+from django.views.generic import TemplateView
+from rest_framework import routers
+
+from news.views.viewset import AuthorViewset, CategoryViewset, NewsViewset, ArticlesViewset, UserViewset
+
+
+router = routers.DefaultRouter()
+router.register(r'authors', AuthorViewset)
+router.register(r'news', NewsViewset)
+router.register(r'articles', ArticlesViewset, 'Articles')  # без добавление 'Articles' - ошибка с базовым роутером
+router.register(r'categories', CategoryViewset)
+router.register(r'user', UserViewset)
 
 
 urlpatterns = [
@@ -25,6 +37,12 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', include('appointment.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
+    path('swagger-ui/', TemplateView.as_view(
+        template_name='swagger-ui.html',
+        extra_context={'schema_url': 'openapi-schema'}
+    ), name='swagger-ui'),
+    path('api/', include(router.urls)),
+    # path('api-auth/', include('api.urls')),
 ]
 
 admin.site.site_header = "Администрирование News Portal"

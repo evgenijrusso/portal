@@ -703,5 +703,11 @@ msgstr "Здесь выводится ваша персональная инфо
 #~ msgid "List"
 #~ msgstr "Список"
 
-#~ msgid "You have successfully subscribed to the category newsletter"
-#~ msgstr "Вы успешно подписались на рассылку новостей категории"
+msgid "You have successfully subscribed to the category newsletter"
+msgstr "Вы успешно подписались на рассылку новостей категории"
+
+msgid "You have unsubscribed from the category newsletter"
+msgstr "Вы отписались от рассылки новостей категории"
+
+msgid "OpenAPI Specification"
+msgstr "Спецификация OpenAPI"

@@ -17,7 +17,7 @@ class CategoryListView(ListView):
     model = Category
     template_name = APP + "categories.html"
     context_object_name = "categories_list"
-
+#    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class CategoryDetailView(ListView):
     model = Post
@@ -42,7 +42,7 @@ def subscribe(request, pk):
     category = Category.objects.get(id=pk)
     category.subscribers.add(user)
 
-    message = 'Вы успешно подписались на рассылку новостей категории'
+    message = 'You have successfully subscribed to the category newsletter'
     return render(request, 'news/subscribe.html', {'category': category, 'message': message})
 
 
@@ -52,5 +52,5 @@ def unsubscribe(request, pk):
     category = Category.objects.get(id=pk)
     category.subscribers.remove(user)
 
-    message = 'Вы отписались от рассылки новостей категории'
+    message = 'You have unsubscribed from the category newsletter'
     return render(request, 'news/unsubscribe.html', {'category': category, 'message': message})
